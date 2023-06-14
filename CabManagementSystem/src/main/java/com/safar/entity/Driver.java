@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,33 +18,32 @@ public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer driverId;
-    @NotBlank(message = "Name should not be null")
 
+    @NotNull(message = "Name should not be null")
     private String driverName;
+
+
     @NotBlank
     @Email(message = "Formate should be name@gamil.com")
-
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    @NotBlank
 
+    @NotBlank
+    @NotNull
+    @Size(max = 13,min = 10)
     private String mobileNo;
-    @NotBlank
 
+    @NotNull
     private String address;
-    @NotBlank
 
+    @NotBlank
     private String licenceNo;
-    @NotBlank
 
+    @NotBlank
     private float rating;
-    @NotBlank
-
-    private String role;
 
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
     private Car car;

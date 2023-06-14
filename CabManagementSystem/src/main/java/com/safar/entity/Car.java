@@ -18,10 +18,10 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer carId;
-//    @Enumerated(EnumType.STRING)
 
-    private String carType;
-    @NotBlank(message = "Write proper value")
+    @Enumerated(EnumType.STRING)
+    private CarType carType;
+
     @NotNull(message = "Should not be null")
 
     private float perKmRate;
