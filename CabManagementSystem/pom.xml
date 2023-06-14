@@ -8,7 +8,7 @@
 		<version>3.1.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.masai</groupId>
+	<groupId>com.safar</groupId>
 	<artifactId>CabManagementSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CabManagementSystem</name>

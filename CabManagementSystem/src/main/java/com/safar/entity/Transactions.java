@@ -1,4 +1,4 @@
-package com.masai.entity;
+package com.safar.entity;
 
 import java.time.LocalDateTime;
 
