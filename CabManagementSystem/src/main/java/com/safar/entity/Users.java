@@ -5,6 +5,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -24,10 +25,7 @@ public class Users {
     @NotBlank(message = "Password cannot be blank")
     private String password;
 
-    @NotNull(message = "Email cannot be null")
-    @Size(min = 4, max = 25, message = "Email must be between 3 and 35 characters")
-    @NotBlank(message = "Email cannot be blank")
-    @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$", message = "Email is not valid")
+    @Email( message = "Email is not valid")
     private String email;
 
     @NotNull(message = "Phone cannot be null")
