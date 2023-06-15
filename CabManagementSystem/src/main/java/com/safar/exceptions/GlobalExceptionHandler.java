@@ -1,4 +1,4 @@
-package com.masai.exceptions;
+package com.safar.exceptions;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

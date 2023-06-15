@@ -1,9 +1,11 @@
-package com.masai.entity;
+package com.safar.entity;
 
 import java.util.List;
 import java.util.ArrayList;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,6 +31,9 @@ public class Wallet {
 	
 	@DecimalMin("0.0")
 	private Float balance;
+	
+	@Enumerated(EnumType.STRING)
+    private WalletStatus status;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="walletId")

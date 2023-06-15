@@ -1,4 +1,4 @@
-package com.masai.exceptions;
+package com.safar.exceptions;
 
 public class WalletException extends RuntimeException {
 
