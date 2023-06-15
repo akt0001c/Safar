@@ -30,6 +30,10 @@ public class DriverController {
     }
 
 
+    @GetMapping("/hello")
+    public String testHandler() {
+        return "Welcome to Spring Security";
+    }
 
     @PutMapping("/drivers/driver")
     public ResponseEntity<Driver> updateDriverHandler(@Valid @RequestBody Driver driver){

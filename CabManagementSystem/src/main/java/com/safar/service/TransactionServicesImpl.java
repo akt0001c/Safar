@@ -37,10 +37,11 @@ public class TransactionServicesImpl implements TransactionServices {
 		
 		Wallet ob= wrepo.findById(walletId).orElseThrow(()->new WalletException("Wallet not exist"));
 		
-		List<Transactions> list= trepo.findAllTransactionByWalletId(walletId);
+//		List<Transactions> list= trepo.findAllTransactionByWalletId(walletId);
+        List<Transactions> list= trepo.findAll();
 		 if(list.isEmpty())
 			   throw new TransactionsException("NO TRANSACTION FOUND");
-		
+
 		return list;
 	}
 

@@ -14,6 +14,6 @@ import com.safar.entity.Transactions;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transactions, Integer>, JpaRepositoryImplementation<Transactions, Integer> {
 
-@Query("select trans from Transactions trans where trans.walletId=?1 order by trans.transactionDate Desc")	
-public List<Transactions>  findAllTransactionByWalletId(Integer walledId);
+//@Query("select trans from Transactions trans where trans.walletId=?1 order by trans.transactionDate Desc")
+//public List<Transactions>  findAllTransactionByWalletId(Integer walledId);
 }
