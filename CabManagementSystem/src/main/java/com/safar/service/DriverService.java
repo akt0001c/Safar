@@ -31,4 +31,7 @@ public interface DriverService {
 
 //    view driver by his id
     public Driver viewDriver(int driverId) throws DriverException;
+
+
+    public Driver getDriverDetailsByEmail(String email) throws DriverException;
 }

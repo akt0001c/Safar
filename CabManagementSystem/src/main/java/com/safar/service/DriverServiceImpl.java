@@ -121,5 +121,10 @@ public class DriverServiceImpl implements DriverService{
         }
     }
 
+    @Override
+    public Driver getDriverDetailsByEmail(String email) throws DriverException {
+        return driverRepository.findByEmail(email).orElseThrow(()-> new DriverException("Driver not found with this email "+ email));
+    }
+
 
 }

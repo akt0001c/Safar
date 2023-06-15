@@ -2,10 +2,7 @@ package com.safar.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,18 +28,17 @@ public class Driver {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @NotBlank
-    @NotNull
+    @NotEmpty
     @Size(max = 13,min = 10)
     private String mobileNo;
 
-    @NotNull
+    @NotEmpty
     private String address;
 
-    @NotBlank
+    @NotEmpty
     private String licenceNo;
 
-    @NotBlank
+    @NotEmpty(message = "Please provide rating for driver")
     private float rating;
 
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
