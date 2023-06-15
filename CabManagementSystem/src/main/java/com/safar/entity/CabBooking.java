@@ -43,4 +43,5 @@ public class CabBooking {
 
     @ManyToOne
     private Users user;
+
 }
