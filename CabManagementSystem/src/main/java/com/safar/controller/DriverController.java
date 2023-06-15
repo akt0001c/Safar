@@ -34,14 +34,14 @@ public class DriverController {
     @DeleteMapping("/driver/{driverId}")
     public ResponseEntity<String> deleteDriverHandler(@PathVariable Integer driverId){
         String deletedDriver = driverService.deleteDriver(driverId);
-        return new ResponseEntity<>(deletedDriver, HttpStatus.CREATED);
+        return new ResponseEntity<>(deletedDriver, HttpStatus.ACCEPTED);
     }
 
 
     @GetMapping("/drivers/bestdrivers")
     public ResponseEntity<List<Driver>> viewBestDriverListHandler(){
         List<Driver> viewBestDrivers = driverService.viewBestDrivers();
-        return new ResponseEntity<>(viewBestDrivers, HttpStatus.CREATED);
+        return new ResponseEntity<>(viewBestDrivers, HttpStatus.ACCEPTED);
     }
 
 
@@ -49,6 +49,6 @@ public class DriverController {
     @GetMapping("/drivers/{driverId}")
     public ResponseEntity<Driver> viewDriverHandler(@PathVariable Integer driverId){
         Driver viewDriverById = driverService.viewDriver(driverId);
-        return new ResponseEntity<>(viewDriverById, HttpStatus.CREATED);
+        return new ResponseEntity<>(viewDriverById, HttpStatus.ACCEPTED);
     }
 }
