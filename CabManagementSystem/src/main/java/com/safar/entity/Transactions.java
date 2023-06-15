@@ -26,6 +26,9 @@ public class Transactions {
  @DecimalMin("0.0")
  private Float amount;
  
+ 
+ private Float CurrentBalance;
+ 
  @Enumerated(EnumType.STRING)
  private TransactionType type;
 
