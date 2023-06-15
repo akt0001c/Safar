@@ -12,8 +12,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.validation.constraints.DecimalMin;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +32,7 @@ public class Wallet {
 	
 	
 	@DecimalMin("0.0")
+	@NotNull(message="Balance cannot be null")
 	private Float balance;
 	
 	@Enumerated(EnumType.STRING)
@@ -38,4 +41,8 @@ public class Wallet {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="walletId")
 	private List<Transactions> transactions= new ArrayList<>();
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Users user;
 }

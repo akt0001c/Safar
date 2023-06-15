@@ -10,5 +10,6 @@ import com.safar.entity.Wallet;
 public interface WalletServices {
   public Wallet addMoney(Integer walletId,Float amount);
   public List<Transactions> getAllTranactions(Integer walletId);
-  public Wallet payRideBill(Float bill);
+  public Wallet payRideBill(Integer walletId,Float bill);
+  public Wallet changeStatus(Integer walletId);
 }
