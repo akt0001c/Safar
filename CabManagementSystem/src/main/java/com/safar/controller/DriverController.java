@@ -22,6 +22,35 @@ public class DriverController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+
+    /*
+
+    {
+        "driverName" : "aman",
+        "email" : "aman@gmail.com",
+        "password" : "aman123",
+        "mobileNo" : "1234567890",
+        "address" : "delhi",
+        "licenceNo" : "1234567890",
+        "rating" : 4.5,
+        "car" : {
+            "carType" : "SUV",
+            "perKmRate" : 10.0
+        }
+    }
+
+    "car" : {
+            "carType" : "SUV",
+            "perKmRate" : 10.0,
+            "carNumber" : "1234567890",
+            "carType" : "sedan",
+            "carDescription" : "good"
+        }
+
+
+     */
+
     @PostMapping("/driver")
     public ResponseEntity<Driver> insertDriverHandler(@Valid @RequestBody Driver driver){
         driver.setPassword(passwordEncoder.encode(driver.getPassword()));
@@ -64,10 +93,10 @@ public class DriverController {
     }
 
 
-    @GetMapping("/signIn")
-    public ResponseEntity<String> getLoggedInDriverDetailsHandler(Authentication auth){
-        System.out.println(auth); // this Authentication object having Principle object details
-        Driver driver= driverService.getDriverDetailsByEmail(auth.getName());
-        return new ResponseEntity<>(driver.getDriverName()+"Logged In Successfully", HttpStatus.ACCEPTED);
-    }
+//    @GetMapping("/signIn")
+//    public ResponseEntity<String> getLoggedInDriverDetailsHandler(Authentication auth){
+//        System.out.println(auth); // this Authentication object having Principle object details
+//        Driver driver= driverService.getDriverDetailsByEmail(auth.getName());
+//        return new ResponseEntity<>(driver.getDriverName()+"Logged In Successfully", HttpStatus.ACCEPTED);
+//    }
 }
