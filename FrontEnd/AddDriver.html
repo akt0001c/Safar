@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg pt-3 pb-3 fs-5" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Safar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="Driver.html">All Drivers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Add Drivers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Find Driver By Id</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Find best Drivers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="AllCar.html">All Cars</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="container">
+
+        <div class="card" style="width: 50rem; left: 20%; margin-top: 3rem;">
+            <div class="card-body">
+              
+
+                <form class="row g-3" id="form">
+                    <div class="col-md-6">
+                      <label for="inputEmail4" class="form-label">Name</label>
+                      <input type="name" class="form-control" id="name" placeholder="Rakesh Kumar">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="name@gmail.com">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password">
+                      </div>
+                    <div class="col-md-6">
+                        <label for="Mobile" class="form-label">Mobile No.</label>
+                        <input type="number" class="form-control" id="Mobile" placeholder="9134573824">
+                      </div>
+
+                    <div class="col-12">
+                      <label for="address" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="licence" class="form-label">Licence</label>
+                      <input type="text" class="form-control" id="licence" placeholder="UP91 12345678901">
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <label for="rating" class="form-label">Rating</label>
+                      <input type="text" class="form-control" id="rating" placeholder="3.5">
+                    </div>
+                    
+                    <div class="col-12">
+                      <button type="submit" id="subBtnn" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+
+            </div>
+          </div>
+
+       
+    </div>
+    
+   
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="script/AddDriver.js"></script>
+  </body>
+</html>
