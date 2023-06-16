@@ -26,6 +26,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(UsersException.class)
+    public ResponseEntity<ErrorDetails> userExceptionHandler(UsersException de, WebRequest web){
+        ErrorDetails err = new ErrorDetails();
+        err.setMessage(de.getMessage());
+        err.setTimeStamp(LocalDateTime.now());
+        err.setDescription(web.getDescription(false));
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
   
   @ExceptionHandler(TransactionFaliureException.class)
 	public ResponseEntity<ErrorDetails> transactionsFaliureExceptionHandler(TransactionFaliureException ex ,WebRequest req){

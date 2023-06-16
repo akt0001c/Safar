@@ -15,15 +15,13 @@ import lombok.NoArgsConstructor;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer carId;
 
     @Enumerated(EnumType.STRING)
     private CarType carType;
 
     @NotNull(message = "Should not be null")
-
     private float perKmRate;
 
     @JsonIgnore

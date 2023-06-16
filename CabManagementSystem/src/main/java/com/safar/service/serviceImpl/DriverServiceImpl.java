@@ -1,8 +1,9 @@
-package com.safar.service;
+package com.safar.service.serviceImpl;
 
 import com.safar.entity.Driver;
 import com.safar.exceptions.DriverException;
 import com.safar.repository.DriverRepository;
+import com.safar.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 @Service
-public class DriverServiceImpl implements DriverService{
+public class DriverServiceImpl implements DriverService {
 
     @Autowired
     private DriverRepository driverRepository;

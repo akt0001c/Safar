@@ -1,11 +1,7 @@
 package com.safar.entity;
 
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -15,16 +11,18 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 @Entity
+@Data
 public class Users {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
     @NotNull(message = "User Name cannot be null")
     @Size(min = 3, max = 30, message = "User Name must be between 3 and 30 characters")
     private String username;
     @NotNull(message = "Password cannot be null")
-    @Size(min = 4, max = 30, message = "Password must be between 4 and 30 characters")
     @NotBlank(message = "Password cannot be blank")
     private String password;
 

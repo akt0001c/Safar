@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer driverId;
 
     @NotNull(message = "Name should not be null")
@@ -32,13 +32,13 @@ public class Driver {
     @Size(max = 13,min = 10)
     private String mobileNo;
 
-    @NotEmpty
+//    @NotEmpty
     private String address;
 
-    @NotEmpty
+//    @NotEmpty
     private String licenceNo;
 
-    @NotEmpty(message = "Please provide rating for driver")
+//    @NotEmpty(message = "Please provide rating for driver")
     private float rating;
 
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
