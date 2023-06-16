@@ -2,6 +2,7 @@ package com.safar.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +32,16 @@ public class WalletController {
 		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/changeStatus/{Id}")
+	@PatchMapping("/changeStatus/{Id}")
 	public ResponseEntity<Wallet> changeStatus( @PathVariable("Id") Integer walletId){
 		Wallet res= wService.changeStatus(walletId);
 		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
+	}
+	
+	
+	@PostMapping("/createWallet")
+	public ResponseEntity<Wallet> createWallet( @PathVariable("Id") Integer userId){
+		Wallet res= wService.createWallet(userId);
+		return new ResponseEntity<>(res,HttpStatus.CREATED);
 	}
 }
