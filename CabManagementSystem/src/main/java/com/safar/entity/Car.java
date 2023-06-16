@@ -18,6 +18,14 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer carId;
 
+    @NotNull(message = "Car name should not be null")
+    @NotBlank(message = "Car name should not be blank")
+    private String carName;
+
+    @NotNull(message = "Car Number should not be null")
+    @NotBlank(message = "Car Number should not be blank")
+    private String carNumber;
+
     @Enumerated(EnumType.STRING)
     private CarType carType;
 

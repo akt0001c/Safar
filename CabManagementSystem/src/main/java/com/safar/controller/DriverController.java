@@ -35,8 +35,10 @@ public class DriverController {
         "licenceNo" : "1234567890",
         "rating" : 4.5,
         "car" : {
+            "carName" : "Thor",
+            "carNumber" : "Up1234454",
             "carType" : "SUV",
-            "perKmRate" : 10.0
+            "perKmRate" : 10.0,
         }
     }
 
@@ -85,6 +87,11 @@ public class DriverController {
     }
 
 
+    @GetMapping("/drivers")
+    public ResponseEntity<List<Driver>> getAllDriverHandler(){
+        List<Driver> allDriver = driverService.getAllDriver();
+        return new ResponseEntity<>(allDriver, HttpStatus.ACCEPTED);
+    }
 
     @GetMapping("/drivers/{driverId}")
     public ResponseEntity<Driver> viewDriverHandler(@PathVariable Integer driverId){

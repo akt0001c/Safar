@@ -17,6 +17,7 @@ public interface DriverService {
 //    for updating a driver
     public Driver updateDriver(Driver driver) throws DriverException;
 
+    public List<Driver> getAllDriver() throws DriverException;
 
 
 //    delete a driver for given id

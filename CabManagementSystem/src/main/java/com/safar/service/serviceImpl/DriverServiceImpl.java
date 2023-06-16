@@ -8,6 +8,7 @@ import com.safar.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -60,7 +61,12 @@ public class DriverServiceImpl implements DriverService {
 
     }
 
-
+    @Override
+    public List<Driver> getAllDriver() throws DriverException{
+        List<Driver> allDrivers = driverRepository.findAll();
+        if(allDrivers.isEmpty()) throw new DriverException("List is empty");
+        return allDrivers;
+    }
 
 
     //    delete a driver for given id

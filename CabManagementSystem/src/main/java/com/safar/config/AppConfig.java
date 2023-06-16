@@ -52,7 +52,7 @@ public class AppConfig {
                             .requestMatchers("/hello").permitAll()
                             .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
                             .requestMatchers(HttpMethod.POST,"/users").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/users","/hello","driver/**").hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.GET, "/users","/hello","driver/**","/drivers").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.GET, "/users/**").hasAnyRole("ADMIN","USER")
                             .anyRequest().authenticated();
                 })
