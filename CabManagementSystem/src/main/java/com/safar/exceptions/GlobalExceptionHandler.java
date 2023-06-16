@@ -71,6 +71,16 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
 	}
 	
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ErrorDetails> gereralExceptionHandler(Exception ex ,WebRequest req){
+		ErrorDetails err= new ErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMessage(ex.getLocalizedMessage());
+		err.setDescription(req.getDescription(false));
+		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+	}
+	
 
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ResponseEntity<ErrorDetails> walletExceptionHandler(NoHandlerFoundException ex ,WebRequest req){

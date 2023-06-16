@@ -9,16 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.safar.entity.Wallet;
 import com.safar.exceptions.TransactionFaliureException;
+import com.safar.exceptions.UsersException;
 import com.safar.exceptions.WalletException;
+import com.safar.repository.UserRepository;
 import com.safar.repository.WalletRepository;
 import com.safar.entity.*;
 
 public class WalletServicesImpl implements WalletServices {
 	
 	private WalletRepository wrepo;
+	private UserRepository urepo;
 	
-	
-    @Autowired
+	@Autowired
+    public void setUrepo(UserRepository urepo) {
+		this.urepo = urepo;
+	}
+
+	@Autowired
 	public void setWrepo(WalletRepository wrepo) {
 		this.wrepo = wrepo;
 	}
@@ -109,6 +116,27 @@ public class WalletServicesImpl implements WalletServices {
 			 ob.setStatus(WalletStatus.Active);
 		 
 		 Wallet res= wrepo.save(ob);
+		
+		return res;
+	}
+
+	@Override
+	public Wallet createWallet(Integer userId) {
+		if(userId==null )
+			   throw new WalletException("Invalid Details");
+		
+		Users user= urepo.findById(userId).orElseThrow(()->new UsersException("User does not exist") );
+		
+		Wallet ob2= user.getWallet();
+		    if(ob2!=null)
+		    	  throw new WalletException("Wallet has been already  allocated for this user So Another Wallet cannot be created ");
+		
+		Wallet ob= new Wallet();
+		ob.setBalance(0.0f);
+		ob.setStatus(WalletStatus.Active);
+		ob.setUser(user);
+		
+		Wallet res= wrepo.save(ob);
 		
 		return res;
 	}
