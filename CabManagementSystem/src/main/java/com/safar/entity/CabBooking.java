@@ -5,14 +5,20 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class CabBooking {
     @Id
-    @NotNull
-    private Integer tripBookingId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer cabBookingId;
 
     @NotNull(message = "From location cannot be null")
     @Size(min = 4, max = 20, message = "From location must be between 4 and 20 characters")
