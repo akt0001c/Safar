@@ -34,6 +34,15 @@ public class GlobalExceptionHandler {
         err.setDescription(web.getDescription(false));
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
+    
+    @ExceptionHandler(CabBookingException.class)
+    public ResponseEntity<ErrorDetails> cabBookingExceptionHandler(CabBookingException de, WebRequest web){
+        ErrorDetails err = new ErrorDetails();
+        err.setMessage(de.getMessage());
+        err.setTimeStamp(LocalDateTime.now());
+        err.setDescription(web.getDescription(false));
+        return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
   
   @ExceptionHandler(TransactionFaliureException.class)
 	public ResponseEntity<ErrorDetails> transactionsFaliureExceptionHandler(TransactionFaliureException ex ,WebRequest req){
