@@ -1,5 +1,6 @@
 package com.safar.service.serviceImpl;
 
+import com.safar.entity.Car;
 import com.safar.entity.Driver;
 import com.safar.exceptions.DriverException;
 import com.safar.repository.DriverRepository;
@@ -27,6 +28,8 @@ public class DriverServiceImpl implements DriverService {
         if(driver == null){
             throw new DriverException("Driver should not be null");
         }
+        Car car = driver.getCar();
+        car.setDriver(driver);
 
 //        inserting the driver
         return driverRepository.save(driver);
