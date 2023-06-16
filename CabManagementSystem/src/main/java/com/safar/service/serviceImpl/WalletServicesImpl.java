@@ -54,7 +54,8 @@ public class WalletServicesImpl implements WalletServices {
 		 
 		 if(ob.getStatus().equals(WalletStatus.Inactive))
 			   throw new WalletException("Wallet is Inactive so please activate the wallet first");
-			    
+		
+		 
 		
 		List<Transactions>  list=  ob.getTransactions();
 		
