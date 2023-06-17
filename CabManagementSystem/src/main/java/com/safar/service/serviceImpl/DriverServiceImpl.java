@@ -36,6 +36,12 @@ public class DriverServiceImpl implements DriverService {
 
     }
 
+    @Override
+    public List<Driver> findAllDrivers() throws DriverException {
+        List<Driver> drivers = driverRepository.findAll();
+        if(drivers.isEmpty()) throw new DriverException("No Drivers found");
+        return drivers;
+    }
 
 
     //    for updating a driver
@@ -60,7 +66,21 @@ public class DriverServiceImpl implements DriverService {
 
     }
 
+//    change a driver name by his id
+    @Override
+    public Driver changeName(Integer id, String name) throws DriverException {
+        Optional<Driver> opt = driverRepository.findById(id);
 
+//        check this driver exist or not
+        if(opt.isPresent()){
+            Driver driver = opt.get();
+            driver.setDriverName(name);
+            driverRepository.save(driver);
+            return driver;
+        }else{
+            throw new DriverException("Driver should be present for updating");
+        }
+    }
 
 
     //    delete a driver for given id

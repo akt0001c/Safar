@@ -13,11 +13,15 @@ public interface DriverService {
     public Driver insertDriver(Driver driver) throws DriverException;
 
 
+//    for getting all drivers
+    public List<Driver> findAllDrivers() throws DriverException;
+
 
 //    for updating a driver
     public Driver updateDriver(Driver driver) throws DriverException;
 
-
+// for changing name of a driver
+    public Driver changeName(Integer id,String name) throws DriverException;
 
 //    delete a driver for given id
     public String deleteDriver(int driverId) throws DriverException;
