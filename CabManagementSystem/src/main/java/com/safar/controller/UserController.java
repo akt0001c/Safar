@@ -109,7 +109,7 @@ public class UserController {
 
         Users users= userService.getUserDetailsByEmail(auth.getName());
 
-        return new ResponseEntity<>(users.getUsername()+"Logged In Successfully", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(users.getUsername()+"Logged In Successfully: ", HttpStatus.ACCEPTED);
     }
 
 }

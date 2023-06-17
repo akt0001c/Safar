@@ -25,11 +25,8 @@ public class CabBookingController {
 	/*
 
 	{
-	  "fromLocation": "dharmapuri",
-	  "toLocation":"erode",
-	  "fromDateTime": "2023-05-21-03-30-30",
-	  "toDateTime": "2023-05-22-05-30-30",
-	  "status": "Cancelled",
+	  "fromLocation": "delhi",
+	  "toLocation":"kanpur",
 	  "distanceInKm":50.0,
 	  "bill":500.0
 	}
@@ -37,13 +34,13 @@ public class CabBookingController {
 	 */
 
 	
-	@PostMapping("/cabBooking")
-	public ResponseEntity<CabBooking> insertCabBookingHandler(@RequestBody CabBooking cabBooking){
-		CabBooking c= cabbookingservice.insertCabBooking(cabBooking);
+	@PostMapping("/cabBooking/{email}")
+	public ResponseEntity<CabBooking> insertCabBookingHandler(@RequestBody CabBooking cabBooking ,@PathVariable String email){
+		CabBooking c= cabbookingservice.insertCabBooking(cabBooking, email);
 		return new ResponseEntity<CabBooking>(c, HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/cabBooking/{userId}")
+	@PostMapping("/cabBooking/Id/{userId}")
 	public ResponseEntity<CabBooking> insertCabBookingByUserHandler(@RequestBody CabBooking cabBooking,@PathVariable Integer userId){
 		CabBooking c= cabbookingservice.insertCabBookingByUser(cabBooking, userId);
 		return new ResponseEntity<CabBooking>(c, HttpStatus.ACCEPTED);

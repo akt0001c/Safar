@@ -28,11 +28,11 @@ public class CabBooking {
     @Size(min = 4, max = 20, message = "To location must be between 4 and 20 characters")
     private String toLocation;
 
-    @NotNull(message = "From date time cannot be null")
+
     @JsonFormat(pattern="yyyy-MM-dd-HH-mm-ss")
     private LocalDateTime fromDateTime;
 
-    @NotNull(message = "To date time cannot be null")
+
     @JsonFormat(pattern="yyyy-MM-dd-HH-mm-ss")
     private LocalDateTime toDateTime;
 

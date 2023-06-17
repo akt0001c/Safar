@@ -1,22 +1,22 @@
 package com.safar.service.serviceImpl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.safar.entity.Driver;
-import com.safar.entity.Status;
+import com.safar.entity.*;
 import com.safar.service.DriverService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safar.entity.CabBooking;
-import com.safar.entity.Users;
 import com.safar.exceptions.CabBookingException;
 import com.safar.repository.CabBookingRepository;
 import com.safar.repository.UserRepository;
 import com.safar.service.CabBookingService;
 
 @Service
+@Slf4j
 public class CabBookingServiceImpl implements CabBookingService{
 	
 	@Autowired
@@ -34,8 +34,33 @@ public class CabBookingServiceImpl implements CabBookingService{
 			throw new CabBookingException("cabBooking object is null");
 		}
         Users user=userrepo.findByEmail(email).orElseThrow(()->new CabBookingException("enter valid email"));
+
+        List<Driver> drivers = driverService.findAllDrivers();
+//        log.info( drivers.toString());
+        System.out.println(drivers);
+//        System.out.println(drivers.toString());
+        List<Driver> newDriver = drivers.stream().filter((driver) -> driver.getNewLocation().
+                equals(cabbooking.getToLocation())).toList();
+
+//        List<Driver> newDriver = drivers.stream().filter((driver) -> driver.getNewLocation().
+//                equals(cabbooking.getToLocation())).filter((s) -> s.getStatus().equals(DriverStatus.Available)).toList();
+
+        if(newDriver.isEmpty()) throw new CabBookingException("No drivers found");
+
+
+
+
+        String  distance=  cabbooking.getDistanceInKm()+"";
+        int distanceInKm= Integer.parseInt(distance);
+
+        cabbooking.setFromDateTime(LocalDateTime.now());
+        cabbooking.setToDateTime(LocalDateTime.now().plusMinutes(distanceInKm* 3L));
+
+        Driver driver = newDriver.get(0);
+        driver.setStatus(DriverStatus.Booked);
+        driver.setNewLocation(cabbooking.getToLocation());
         cabbooking.setUser(user);
-//        List<Driver> drivers = driverService.();
+        cabbooking.setDriver(driver);
 		return cabbookingrepo.save(cabbooking);
 	}
 
@@ -49,7 +74,7 @@ public class CabBookingServiceImpl implements CabBookingService{
         String  distance=  cabbooking.getDistanceInKm()+"";
         int distanceInKm= Integer.parseInt(distance);
 
-		c.setFromDateTime(cabbooking.getFromDateTime());
+		c.setFromDateTime(LocalDateTime.now());
 		c.setToDateTime(LocalDateTime.now().plusMinutes(distanceInKm* 3L));
 		c.setToLocation(cabbooking.getToLocation());
 		c.setDistanceInKm(cabbooking.getDistanceInKm());

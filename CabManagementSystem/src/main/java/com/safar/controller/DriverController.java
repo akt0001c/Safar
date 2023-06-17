@@ -28,13 +28,15 @@ public class DriverController {
     /*
 
     {
-        "driverName" : "aman",
-        "email" : "aman@gmail.com",
+        "driverName" : "amank",
+        "email" : "amansingh@gmail.com",
         "password" : "aman123",
-        "mobileNo" : "1234567890",
+        "mobileNo" : "1234567880",
         "address" : "delhi",
-        "licenceNo" : "1234567890",
+        "licenceNo" : "1234561890",
         "rating" : 4.5,
+        "newLocation" : "delhi",
+        "status" : "Available",
         "car" : {
             "carType" : "SUV",
             "perKmRate" : 10.0

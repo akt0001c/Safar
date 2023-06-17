@@ -45,6 +45,9 @@ public class Driver {
 //    @NotEmpty(message = "Please provide rating for driver")
     private float rating;
 
+    private String newLocation;
+
+    @Enumerated(EnumType.STRING)
     private DriverStatus status;
 
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
