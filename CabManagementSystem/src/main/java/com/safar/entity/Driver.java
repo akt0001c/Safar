@@ -1,11 +1,15 @@
 package com.safar.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -41,7 +45,12 @@ public class Driver {
 //    @NotEmpty(message = "Please provide rating for driver")
     private float rating;
 
+    private DriverStatus status;
+
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
     private Car car;
+    @JsonIgnore
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
+    private List<CabBooking> cabBookings = new ArrayList<>();
 
 }

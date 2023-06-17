@@ -77,7 +77,7 @@ public class UserController {
     }
 
 
-    @PutMapping("/users/{email}")
+    @PatchMapping("/users/{email}")
     public ResponseEntity<Users> updateUserDetailsByEmailHandler(@PathVariable("email") String email, @RequestBody Users users){
 
         Users user= userService.updateUserDetailsByEmail(email,users);

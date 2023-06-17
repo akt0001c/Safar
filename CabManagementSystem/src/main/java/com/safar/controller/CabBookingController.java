@@ -22,48 +22,52 @@ public class CabBookingController {
 	
 	@Autowired
 	CabBookingService cabbookingservice;
+	/*
+
+	{
+	  "fromLocation": "dharmapuri",
+	  "toLocation":"erode",
+	  "fromDateTime": "2023-05-21-03-30-30",
+	  "toDateTime": "2023-05-22-05-30-30",
+	  "status": "Cancelled",
+	  "distanceInKm":50.0,
+	  "bill":500.0
+	}
+
+	 */
+
 	
-//	{
-//		  "fromLocation": "dharmapuri",
-//		  "toLocation":"erode",
-//		  "fromDateTime": "2023-05-21-03-30-30",
-//		  "toDateTime": "2023-05-22-05-30-30",
-//		  "status": "Cancelled",
-//		  "distanceInKm":50.0,
-//		  "bill":500.0
-//		}
-	
-	@PostMapping("/cabbooking")
-	public ResponseEntity<CabBooking> insertCabBookingHandler(@RequestBody CabBooking cabooking){
-		CabBooking c= cabbookingservice.insertCabBooking(cabooking);
+	@PostMapping("/cabBooking")
+	public ResponseEntity<CabBooking> insertCabBookingHandler(@RequestBody CabBooking cabBooking){
+		CabBooking c= cabbookingservice.insertCabBooking(cabBooking);
 		return new ResponseEntity<CabBooking>(c, HttpStatus.ACCEPTED);
 	}
 	
-	@PostMapping("/cabbooking/{userId}")
-	public ResponseEntity<CabBooking> insertCabBookingByUserHandler(@RequestBody CabBooking cabooking,@PathVariable Integer userId){
-		CabBooking c= cabbookingservice.insertCabBookingByUser(cabooking, userId);
+	@PostMapping("/cabBooking/{userId}")
+	public ResponseEntity<CabBooking> insertCabBookingByUserHandler(@RequestBody CabBooking cabBooking,@PathVariable Integer userId){
+		CabBooking c= cabbookingservice.insertCabBookingByUser(cabBooking, userId);
 		return new ResponseEntity<CabBooking>(c, HttpStatus.ACCEPTED);
 	}
 	
-	@PutMapping("/cabbooking/{cabBookingId}")
-	public ResponseEntity<CabBooking> insertCabBookingHandler(@RequestBody CabBooking cabooking,@PathVariable Integer cabBookingId){
-		CabBooking c= cabbookingservice.updateCabBooking(cabBookingId, cabooking);
+	@PutMapping("/cabBooking/{cabBookingId}")
+	public ResponseEntity<CabBooking> insertCabBookingHandler(@RequestBody CabBooking cabBooking,@PathVariable Integer cabBookingId){
+		CabBooking c= cabbookingservice.updateCabBooking(cabBookingId, cabBooking);
 		return new ResponseEntity<CabBooking>(c, HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/cabbooking/{cabBookingId}")
+	@DeleteMapping("/cabBooking/{cabBookingId}")
 	public ResponseEntity<String> deleteCabBookingHandler(@PathVariable Integer cabBookingId){
 		String c= cabbookingservice.deleteCabBooking(cabBookingId);
 		return new ResponseEntity<String>(c, HttpStatus.OK);
 	}
 	
-	@GetMapping("/cabbooking/{userId}")
+	@GetMapping("/cabBooking/{userId}")
 	public ResponseEntity<List<CabBooking>> getCabBookingHandler(@PathVariable Integer userId){
 		List<CabBooking> list= cabbookingservice.viewAllTrips(userId);
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/cabbooking/{userId}/{cabBookingId}")
+	@GetMapping("/cabBooking/{userId}/{cabBookingId}")
 	public ResponseEntity<Float> getCabBookingHandler(@PathVariable Integer userId,@PathVariable Integer cabBookingId){
 		Float ans= cabbookingservice.calculateBill(userId, cabBookingId);
 		return new ResponseEntity<>(ans, HttpStatus.OK);

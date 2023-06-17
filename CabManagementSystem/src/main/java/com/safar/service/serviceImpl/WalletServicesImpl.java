@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import com.safar.service.WalletServices;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.safar.entity.Wallet;
@@ -14,21 +15,19 @@ import com.safar.exceptions.WalletException;
 import com.safar.repository.UserRepository;
 import com.safar.repository.WalletRepository;
 import com.safar.entity.*;
+import org.springframework.stereotype.Service;
 
+@Service
+@Slf4j
 public class WalletServicesImpl implements WalletServices {
-	
+
+
+    @Autowired
 	private WalletRepository wrepo;
+    @Autowired
 	private UserRepository urepo;
 	
-	@Autowired
-    public void setUrepo(UserRepository urepo) {
-		this.urepo = urepo;
-	}
 
-	@Autowired
-	public void setWrepo(WalletRepository wrepo) {
-		this.wrepo = wrepo;
-	}
 
 	@Override
 	public Wallet addMoney(Integer walletId, Float amount) {
@@ -121,12 +120,13 @@ public class WalletServicesImpl implements WalletServices {
 	}
 
 	@Override
-	public Wallet createWallet(Integer userId) {
-		if(userId==null )
+	public Wallet createWallet(String email) {
+		if(email==null )
 			   throw new WalletException("Invalid Details");
 		
-		Users user= urepo.findById(userId).orElseThrow(()->new UsersException("User does not exist") );
-		
+		Users user= urepo.findByEmail(email).orElseThrow(()->new UsersException("User does not exist") );
+		log.info("user is "+user);
+
 		Wallet ob2= user.getWallet();
 		    if(ob2!=null)
 		    	  throw new WalletException("Wallet has been already  allocated for this user So Another Wallet cannot be created ");

@@ -1,7 +1,11 @@
 package com.safar.service.serviceImpl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import com.safar.entity.Driver;
+import com.safar.entity.Status;
+import com.safar.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +20,22 @@ import com.safar.service.CabBookingService;
 public class CabBookingServiceImpl implements CabBookingService{
 	
 	@Autowired
-	UserRepository userrepo;
+	private UserRepository userrepo;
 	
 	@Autowired
-	CabBookingRepository cabbookingrepo; 
+	private CabBookingRepository cabbookingrepo;
+
+    @Autowired
+    private DriverService driverService;
 
 	@Override
-	public CabBooking insertCabBooking(CabBooking cabbooking) {
+	public CabBooking insertCabBooking(CabBooking cabbooking, String email) {
 		if(cabbooking==null) {
-			throw new CabBookingException("cabbooking object is null");
+			throw new CabBookingException("cabBooking object is null");
 		}
+        Users user=userrepo.findByEmail(email).orElseThrow(()->new CabBookingException("enter valid email"));
+        cabbooking.setUser(user);
+//        List<Driver> drivers = driverService.();
 		return cabbookingrepo.save(cabbooking);
 	}
 
@@ -33,11 +43,15 @@ public class CabBookingServiceImpl implements CabBookingService{
 	public CabBooking updateCabBooking(Integer cabBookingId, CabBooking cabbooking) {
 		if(cabbooking==null) throw new CabBookingException("cabbooking object is null");
 		CabBooking c= cabbookingrepo.findById(cabBookingId).orElseThrow(()->new CabBookingException("enter valid cab booking id"));
+        //here we need date and time now we are not getting it from frontend
+
+        if(c.getStatus().equals(Status.Cancelled)) throw new CabBookingException("cab booking is cannot be updated as it is already booked");
+        String  distance=  cabbooking.getDistanceInKm()+"";
+        int distanceInKm= Integer.parseInt(distance);
+
 		c.setFromDateTime(cabbooking.getFromDateTime());
-		c.setToDateTime(cabbooking.getToDateTime());
-		c.setFromLocation(cabbooking.getFromLocation());
+		c.setToDateTime(LocalDateTime.now().plusMinutes(distanceInKm* 3L));
 		c.setToLocation(cabbooking.getToLocation());
-		c.setStatus(cabbooking.getStatus());
 		c.setDistanceInKm(cabbooking.getDistanceInKm());
 		c.setBill(cabbooking.getBill());
 		return cabbookingrepo.save(c);

@@ -47,11 +47,8 @@ public class UserServiceImpl implements UserService {
     public Users updateUserDetailsByEmail(String  email, Users users) throws UsersException {
         Users users1 = userRepository.findByEmail(email).orElseThrow(() -> new UsersException("Users Not found with Id: " + users.getUserId()));
         users1.setUsername(users.getUsername());
-        users1.setPassword(users.getPassword());
-        users1.setEmail(users.getEmail());
         users1.setPhone(users.getPhone());
         users1.setAddress(users.getAddress());
-        users1.setWallet(users.getWallet());
         return userRepository.save(users1);
     }
 

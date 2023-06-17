@@ -32,7 +32,6 @@ public interface DriverService {
     public List<Driver> viewBestDrivers();
 
 
-
 //    view driver by his id
     public Driver viewDriver(int driverId) throws DriverException;
 

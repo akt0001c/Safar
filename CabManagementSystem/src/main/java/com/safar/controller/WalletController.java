@@ -1,5 +1,6 @@
 package com.safar.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -15,7 +16,8 @@ import com.safar.service.WalletServices;
 @RestController
 @RequestMapping("/WALLET")
 public class WalletController {
-	
+
+    @Autowired
 	private WalletServices wService;
     
 	@PostMapping("/addMoney")
@@ -39,9 +41,9 @@ public class WalletController {
 	}
 	
 	
-	@PostMapping("/createWallet")
-	public ResponseEntity<Wallet> createWallet( @PathVariable("Id") Integer userId){
-		Wallet res= wService.createWallet(userId);
+	@PostMapping("/createWallet/{email}")
+	public ResponseEntity<Wallet> createWallet( @PathVariable String email){
+		Wallet res= wService.createWallet(email);
 		return new ResponseEntity<>(res,HttpStatus.CREATED);
 	}
 }

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 public class CabBooking {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer cabBookingId;
 
     @NotNull(message = "From location cannot be null")
@@ -49,5 +49,8 @@ public class CabBooking {
 
     @ManyToOne
     private Users user;
+
+    @ManyToOne
+    private Driver driver;
 
 }

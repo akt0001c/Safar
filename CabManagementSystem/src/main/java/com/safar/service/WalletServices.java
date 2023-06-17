@@ -12,5 +12,5 @@ public interface WalletServices {
   public List<Transactions> getAllTranactions(Integer walletId);
   public Wallet payRideBill(Integer walletId,Float bill);
   public Wallet changeStatus(Integer walletId);
-  public Wallet createWallet(Integer userId);
+  public Wallet createWallet(String  email);
 }

@@ -11,7 +11,9 @@ import com.safar.exceptions.TransactionsException;
 import com.safar.exceptions.WalletException;
 import com.safar.repository.TransactionRepository;
 import com.safar.repository.WalletRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TransactionServicesImpl implements TransactionServices {
 	
 	private TransactionRepository trepo;

@@ -2,11 +2,7 @@ package com.safar.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.util.List;
 
@@ -27,10 +23,12 @@ public class Users {
     private String password;
 
     @Email( message = "Email is not valid")
+    @Column(unique = true)
     private String email;
 
     @NotNull(message = "Phone cannot be null")
     @Size(min = 10, max = 13, message = "Phone must be 10 to 12 characters")
+    @Column(unique = true)
     private String phone;
 
     @NotNull(message = "Address cannot be null")

@@ -11,7 +11,7 @@ import com.safar.entity.CabBooking;
 public interface CabBookingService {
 	
 //	insert cabbooking
-	public CabBooking insertCabBooking(CabBooking cabbooking);
+	public CabBooking insertCabBooking(CabBooking cabbooking, String email);
 	
 //	insert cabbooking by user
 	public CabBooking insertCabBookingByUser(CabBooking cabbooking,Integer userId);
