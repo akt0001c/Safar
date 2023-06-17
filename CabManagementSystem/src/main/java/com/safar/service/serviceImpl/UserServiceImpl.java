@@ -1,6 +1,7 @@
 package com.safar.service.serviceImpl;
 
 import com.safar.entity.Users;
+import com.safar.entity.Wallet;
 import com.safar.exceptions.UsersException;
 import com.safar.repository.UserRepository;
 import com.safar.service.UserService;
@@ -19,6 +20,8 @@ public class UserServiceImpl implements UserService {
     public Users registerCustomer(Users users) {
         if (users == null)
             throw new UsersException("Invalid users Details");
+        Wallet wallet = users.getWallet();
+        wallet.setWalletId(users.getUserId());
         return userRepository.save(users);
     }
 
@@ -37,4 +40,37 @@ public class UserServiceImpl implements UserService {
 
         return usersList;
     }
+
+    @Override
+    public Users updateUserDetails(Users users) throws UsersException {
+        Users users1 = userRepository.findById(users.getUserId()).orElseThrow(() -> new UsersException("Users Not found with Id: " + users.getUserId()));
+        users1.setUsername(users.getUsername());
+        users1.setPassword(users.getPassword());
+        users1.setEmail(users.getEmail());
+        users1.setPhone(users.getPhone());
+        users1.setAddress(users.getAddress());
+        users1.setWallet(users.getWallet());
+        return userRepository.save(users1);
+    }
+
+    @Override
+    public Users deleteUserEmail(String email) throws UsersException {
+        Users users = userRepository.findByEmail(email).orElseThrow(() -> new UsersException("Users Not found with Email: " + email));
+        userRepository.delete(users);
+        return users;
+
+    }
+
+    @Override
+    public List<Users> getAllUsersDetailsByRole(String role) throws UsersException {
+
+        List<Users> usersList = userRepository.findAllByRole("ROLE_"+role.toUpperCase());
+
+        if (usersList.isEmpty())
+            throw new UsersException("No Users find");
+
+        return usersList;
+    }
+
+
 }

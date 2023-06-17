@@ -12,4 +12,9 @@ public interface UserService {
     public Users getUserDetailsByEmail(String email)throws UsersException;
 
     public List<Users> getAllUsersDetails()throws UsersException;
+
+    public Users updateUserDetails(Users users)throws UsersException;
+
+    public Users deleteUserEmail(String email)throws UsersException;
+    public List<Users> getAllUsersDetailsByRole(String role)throws UsersException;
 }
