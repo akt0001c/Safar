@@ -76,6 +76,38 @@ public class UserController {
 
     }
 
+    @GetMapping("/users/{email}")
+    public ResponseEntity<Users> getUserDetailsByEmailHandler(@PathVariable("email") String email){
+
+     	Users user= userService.getUserDetailsByEmail(email);
+
+     	return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/users/{email}")
+    public ResponseEntity<Users> updateUserDetailsByEmailHandler(@PathVariable("email") String email, @RequestBody Users users){
+
+        Users user= userService.updateUserDetailsByEmail(email,users);
+
+        return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/users/{email}")
+    public ResponseEntity<Users> deleteUserByEmailHandler(@PathVariable("email") String email){
+
+     	Users user= userService.deleteUserEmail(email);
+
+     	return new ResponseEntity<>(user,HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/users/role/{role}")
+    public ResponseEntity<List<Users>> getAllUsersDetailsByRoleHandler(@PathVariable("role") String role){
+
+     	List<Users> users= userService.getAllUsersDetailsByRole(role);
+
+     	return new ResponseEntity<>(users,HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/signIn")
     public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){
 

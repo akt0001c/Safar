@@ -42,8 +42,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users updateUserDetails(Users users) throws UsersException {
-        Users users1 = userRepository.findById(users.getUserId()).orElseThrow(() -> new UsersException("Users Not found with Id: " + users.getUserId()));
+    public Users updateUserDetailsByEmail(String  email, Users users) throws UsersException {
+        Users users1 = userRepository.findByEmail(email).orElseThrow(() -> new UsersException("Users Not found with Id: " + users.getUserId()));
         users1.setUsername(users.getUsername());
         users1.setPassword(users.getPassword());
         users1.setEmail(users.getEmail());
