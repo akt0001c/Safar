@@ -16,10 +16,10 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public Users registerCustomer(Users customer) {
-        if (customer == null)
-            throw new UsersException("Invalid Customer Details");
-        return userRepository.save(customer);
+    public Users registerCustomer(Users users) {
+        if (users == null)
+            throw new UsersException("Invalid users Details");
+        return userRepository.save(users);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Users> getAllCustomerDetails() throws UsersException {
+    public List<Users> getAllUsersDetails() throws UsersException {
 
         List<Users> usersList = userRepository.findAll();
 

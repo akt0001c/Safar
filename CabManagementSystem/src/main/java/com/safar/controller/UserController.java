@@ -70,7 +70,7 @@ public class UserController {
     public ResponseEntity<List<Users>> getAllUsersHandler(){
 
 
-        List<Users> users= userService.getAllCustomerDetails();
+        List<Users> users= userService.getAllUsersDetails();
 
         return new ResponseEntity<>(users,HttpStatus.ACCEPTED);
 

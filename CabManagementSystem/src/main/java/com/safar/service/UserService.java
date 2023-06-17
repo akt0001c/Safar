@@ -11,5 +11,5 @@ public interface UserService {
 
     public Users getUserDetailsByEmail(String email)throws UsersException;
 
-    public List<Users> getAllCustomerDetails()throws UsersException;
+    public List<Users> getAllUsersDetails()throws UsersException;
 }
