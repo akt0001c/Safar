@@ -34,47 +34,38 @@ public class CabBookingServiceImpl implements CabBookingService{
 			throw new CabBookingException("cabBooking object is null");
 		}
         Users user=userrepo.findByEmail(email).orElseThrow(()->new CabBookingException("enter valid email"));
-        System.out.println(user); 
+
         List<Driver> drivers = driverService.findAllDrivers();
      
-      //  drivers.forEach((d)->System.out.println(d.getNewLocation()));
-       if(drivers.isEmpty()) throw new CabBookingException("All  drivers  are not avaliable");
-        
-       // drivers.forEach((d)->System.out.println(d));
-//        log.info( drivers.toString());
-    //    System.out.println(drivers);
-//        System.out.println(drivers.toString());
-   //    List<Driver> newDriver = drivers.stream().filter((driver) -> driver.getNewLocation().equals(cabbooking.getFromLocation())).toList();
-       for(Driver d:drivers)
-       {
-    	   System.out.println(d.getNewLocation()+" "+cabbooking.getFromLocation());
-    	   System.out.println(d.getNewLocation().equals(cabbooking.getFromLocation()));
-    	
+
+       if(drivers.isEmpty()) {
+           throw new CabBookingException("All  drivers  are not available");
        }
-//
-//        List<Driver> newDriver = drivers.stream().filter((driver) -> driver.getNewLocation().
-//                equals(cabbooking.getFromLocation())).filter((s) -> s.getStatus().equals(DriverStatus.Available)).toList();
-////
-   //    if(newDriver.isEmpty()) throw new CabBookingException("No drivers found for this location");
 
+         List<Driver> newDriver = drivers.stream().filter((driver) -> driver.getNewLocation().
+                equals(cabbooking.getFromLocation())).filter((s) -> s.getStatus().equals(DriverStatus.Available)).toList();
 
+       newDriver.forEach((driver) -> log.info(driver.getDriverName()));
+       if(newDriver.isEmpty()) {
+           throw new CabBookingException("No drivers found for this location");
+       }
 
+        Driver driver = newDriver.get(0);
 
-//        String  distance=  cabbooking.getDistanceInKm()+" ";
-//        System.out.println(distance);
-//        distance= distance.trim();
-//        int distanceInKm= Integer.parseInt(distance);
-        
-       // int distanceInKm = (int)Math.floor(cabbooking.getDistanceInKm());
-//
+        int distanceInKm = (int)Math.floor(cabbooking.getDistanceInKm());
+
        cabbooking.setFromDateTime(LocalDateTime.now());
-      cabbooking.setToDateTime(LocalDateTime.now().plusMinutes(3));
-//
-        Driver driver = drivers.get(0);
+       cabbooking.setToDateTime(LocalDateTime.now().plusMinutes(distanceInKm* 2L));
+
+
+
+        cabbooking.setBill( driver.getCar().getPerKmRate()*cabbooking.getDistanceInKm());
         driver.setStatus(DriverStatus.Booked);
         driver.setNewLocation(cabbooking.getToLocation());
         cabbooking.setUser(user);
         cabbooking.setDriver(driver);
+        cabbooking.setStatus(Status.Booked);
+
 		return cabbookingrepo.save(cabbooking);
 	}
 
