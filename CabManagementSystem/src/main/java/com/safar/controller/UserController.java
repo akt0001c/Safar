@@ -1,6 +1,8 @@
 package com.safar.controller;
 
+import com.safar.entity.CabBooking;
 import com.safar.entity.Users;
+import com.safar.service.CabBookingService;
 import com.safar.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CabBookingService cabBookingService;
+
     @GetMapping("/users/hello")
     public String testHandler() {
         return "Welcome to Spring Security";
@@ -41,9 +46,26 @@ public class UserController {
 
 	 */
 
+    @PostMapping("/users/saveCavBooking")
+    public ResponseEntity<CabBooking> saveCabBookingHandler(@RequestBody CabBooking cabBooking,  Authentication authentication){
+
+        String email=authentication.getName();
+        log.info(email+"user email");
+
+        Users user= userService.getUserDetailsByEmail(email);
+
+//        log.info(user.getUsername());
+//        cabBooking.setUser(user);
+
+        CabBooking cabBooking1= cabBookingService.insertCabBooking(cabBooking,user.getEmail());
+
+        return new ResponseEntity<>(cabBooking1, HttpStatus.ACCEPTED);
+
+    }
 
     @PostMapping("/users")
     public ResponseEntity<Users> saveCustomerHandler(@RequestBody Users user){
+
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

@@ -1,7 +1,18 @@
 package com.safar.controller;
 
+import com.safar.entity.CabBooking;
+import com.safar.entity.Users;
+import com.safar.service.CabBookingService;
+import com.safar.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,22 +31,26 @@ import com.safar.service.CabBookingService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
+=======
+>>>>>>> b98ce707673276b7562912424bf31d0f9c34d88d
 @RestController
+@Slf4j
 public class CabBookingController {
+<<<<<<< HEAD
 	
 	@Autowired
    private	CabBookingService cabbookingservice;
 	/*
+=======
+>>>>>>> b98ce707673276b7562912424bf31d0f9c34d88d
 
-	{
-	  "fromLocation": "delhi",
-	  "toLocation":"kanpur",
-	  "distanceInKm":50.0,
-	  "bill":500.0
-	}
+    @Autowired
+    private CabBookingService cabBookingService;
 
-	 */
+    @Autowired
+    private UserService userService;
 
+<<<<<<< HEAD
 	
 	@PostMapping("/cabBookings")
 	public ResponseEntity<CabBooking> insertCabBookingHandler(  @RequestBody Users user ){
@@ -77,5 +92,38 @@ public class CabBookingController {
 //		return new ResponseEntity<>(ans, HttpStatus.OK);
 //	}
 	
+=======
+    @PostMapping("/cabBooking")
+    public ResponseEntity<CabBooking> saveCabBookingHandler(@RequestBody CabBooking cabBooking, Authentication authentication){
+
+        String email=authentication.getName();
+        log.info(email+"user email");
+
+        Users user= userService.getUserDetailsByEmail(email);
+        CabBooking cabBooking1= cabBookingService.insertCabBooking(cabBooking,user.getEmail());
+        return ResponseEntity.ok(cabBooking1);
+    }
+
+
+    @PatchMapping("/cabBooking/{cabBookingId}")
+    public ResponseEntity<CabBooking> updateCabBookingHandler(@RequestBody CabBooking cabBooking, @PathVariable Integer cabBookingId){
+        CabBooking cabBooking1= cabBookingService.updateCabBooking(cabBookingId,cabBooking);
+        return ResponseEntity.ok(cabBooking1);
+    }
+
+    @GetMapping("/cabBooking/cancel/{cabBookingId}")
+    public ResponseEntity<String > cancelCabBookingHandler(@PathVariable Integer cabBookingId){
+        String message= cabBookingService.cancelCabBooking(cabBookingId);
+        return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/cabBooking/history")
+    public ResponseEntity<List<CabBooking>> getAllCabBookingHandler(Authentication authentication){
+        String email=authentication.getName();
+        log.info(email+" user email");
+        List<CabBooking> cabBookings= cabBookingService.viewAllTrips(email);
+        return ResponseEntity.ok(cabBookings);
+    }
+>>>>>>> b98ce707673276b7562912424bf31d0f9c34d88d
 
 }
