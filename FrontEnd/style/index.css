@@ -56,9 +56,16 @@
 #info-section>div{
     display: flex;
     justify-content: space-between;
+    width:100%;
 }
 
 #info-section >div img{
-    width:95%;
+    width:98%;
+}
+
+#footer{
+    background-color: gray;
+    height:300px;
+    width:100%;
 }
 

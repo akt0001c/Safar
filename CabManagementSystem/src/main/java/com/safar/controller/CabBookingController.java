@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safar.entity.CabBooking;
+import com.safar.entity.Users;
+import com.safar.exceptions.CabBookingException;
 import com.safar.service.CabBookingService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -22,7 +24,7 @@ import jakarta.validation.Valid;
 public class CabBookingController {
 	
 	@Autowired
-	CabBookingService cabbookingservice;
+   private	CabBookingService cabbookingservice;
 	/*
 
 	{
@@ -35,11 +37,14 @@ public class CabBookingController {
 	 */
 
 	
-	@PostMapping("/cabBooking/{email}")
-	public ResponseEntity<CabBooking> insertCabBookingHandler( @Valid @RequestBody CabBooking cabBooking ,@PathVariable String email){
-		System.out.println(cabBooking.getFromLocation() +" "+"controller message");
-		CabBooking c= cabbookingservice.insertCabBooking(cabBooking, email);
-		return new ResponseEntity<CabBooking>(c, HttpStatus.ACCEPTED);
+	@PostMapping("/cabBookings")
+	public ResponseEntity<CabBooking> insertCabBookingHandler(  @RequestBody Users user ){
+		
+		System.out.println(user.getEmail());
+//		System.out.println(cabBooking.getFromLocation());
+//	
+//		CabBooking c= cabbookingservice.insertCabBooking(cabBooking, null);
+		return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
 	}
 	
 //	@PostMapping("/cabBooking/Id/{userId}")
