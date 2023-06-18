@@ -45,7 +45,10 @@ public class CabBookingServiceImpl implements CabBookingService{
          List<Driver> newDriver = drivers.stream().filter((driver) -> driver.getNewLocation().
                 equals(cabbooking.getFromLocation())).filter((s) -> s.getStatus().equals(DriverStatus.Available)).toList();
 
+
        newDriver.forEach((driver) -> log.info(driver.getDriverName()));
+
+
        if(newDriver.isEmpty()) {
            throw new CabBookingException("No drivers found for this location");
        }
@@ -71,62 +74,50 @@ public class CabBookingServiceImpl implements CabBookingService{
 
 	@Override
 	public CabBooking updateCabBooking(Integer cabBookingId, CabBooking cabbooking) {
-		if(cabbooking==null) throw new CabBookingException("cabbooking object is null");
+		if(cabbooking==null) {
+            throw new CabBookingException("Cab object is null");
+        }
 		CabBooking c= cabbookingrepo.findById(cabBookingId).orElseThrow(()->new CabBookingException("enter valid cab booking id"));
-        //here we need date and time now we are not getting it from frontend
 
-        if(c.getStatus().equals(Status.Cancelled)) throw new CabBookingException("cab booking is cannot be updated as it is already booked");
-        String  distance=  cabbooking.getDistanceInKm()+"";
-        int distanceInKm= Integer.parseInt(distance);
+        Driver driver = c.getDriver();
 
+        if(c.getStatus().equals(Status.Cancelled)) {
+            throw new CabBookingException("cab is cannot be updated as it is already Cancelled");
+        }
+
+
+        int distanceInKm = (int)Math.floor(cabbooking.getDistanceInKm());
+
+        driver.setNewLocation(cabbooking.getToLocation());
 		c.setFromDateTime(LocalDateTime.now());
-		c.setToDateTime(LocalDateTime.now().plusMinutes(distanceInKm* 3L));
+		c.setToDateTime(LocalDateTime.now().plusMinutes(distanceInKm* 2L));
 		c.setToLocation(cabbooking.getToLocation());
 		c.setDistanceInKm(cabbooking.getDistanceInKm());
-		c.setBill(cabbooking.getBill());
+		c.setBill( driver.getCar().getPerKmRate()*cabbooking.getDistanceInKm());
 		return cabbookingrepo.save(c);
 	}
 
 	@Override
-	public String deleteCabBooking(Integer cabBookingId) {
-		CabBooking c= cabbookingrepo.findById(cabBookingId).orElseThrow(()->new CabBookingException("enter valid cabbooking id"));
-		cabbookingrepo.delete(c);
-		return c.getCabBookingId()+" cabbooking is deleted successfully";
+	public String cancelCabBooking(Integer cabBookingId) {
+		CabBooking c= cabbookingrepo.findById(cabBookingId).orElseThrow(()->new CabBookingException("enter valid cab id"));
+		if(c.getStatus().equals(Status.Cancelled)) {
+            throw new CabBookingException("cab is already Cancelled");
+        }
+        c.setStatus(Status.Cancelled);
+        c.getDriver().setStatus(DriverStatus.Available);
+        return "cab booking is cancelled";
 	}
 
 	@Override
-	public List<CabBooking> viewAllTrips(Integer userId) {
-		Users user=userrepo.findById(userId).orElseThrow(()-> new CabBookingException("enter valid userId"));
+	public List<CabBooking> viewAllTrips(String  email) {
+		Users user=userrepo.findByEmail(email).orElseThrow(()-> new CabBookingException("enter valid userId"));
 		List<CabBooking> list=user.getCabBookings();
 		if(list.isEmpty()) throw new CabBookingException("user did not book any cab");
 		return list;
+
 	}
 
-	@Override
-	public CabBooking insertCabBookingByUser(CabBooking cabbooking, Integer userId) {
-		Users user=userrepo.findById(userId).orElseThrow(()-> new CabBookingException("enter valid userId"));
-		user.getCabBookings().add(cabbooking);
-		if(cabbooking==null) throw new CabBookingException("cabbooking object is null");
-		cabbooking.setUser(user);
-		return cabbookingrepo.save(cabbooking);
-	}
 
-	@Override
-	public Float calculateBill(Integer userId,Integer cabBookingId) {
-		Users user=userrepo.findById(userId).orElseThrow(()-> new CabBookingException("enter valid userId"));
-		List<CabBooking> list=user.getCabBookings();
-		CabBooking cab=null;
-		for(CabBooking c:list) {
-			if(c.getCabBookingId()==cabBookingId) {
-				cab=c;
-			}
-		}
-		if(cab==null) {
-			throw new CabBookingException(userId+" user dont have booking in "+cabBookingId);
-		}
-		else {
-			return cab.getBill();
-		}
-	}
+
 
 }

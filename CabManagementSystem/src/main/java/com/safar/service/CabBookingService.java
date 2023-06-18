@@ -10,22 +10,19 @@ import com.safar.entity.CabBooking;
 
 public interface CabBookingService {
 	
-//	insert cabbooking
+//	insert CabBooking
 	public CabBooking insertCabBooking(CabBooking cabbooking, String email);
-	
-//	insert cabbooking by user
-	public CabBooking insertCabBookingByUser(CabBooking cabbooking,Integer userId);
-	
+
 //	update cab booking
 	public CabBooking updateCabBooking(Integer cabBookingId,CabBooking cabbooking);
 
 //  delete cab booking
-	public String deleteCabBooking(Integer cabBookingId);
+	public String cancelCabBooking(Integer cabBookingId);
 	
 //	view all trips of a particular user
-	public List<CabBooking> viewAllTrips(Integer userId);
+	public List<CabBooking> viewAllTrips(String  email);
 	
-//	calculate bill 
-	public Float calculateBill(Integer userId,Integer cabBookingId);
+
+
 
 }
