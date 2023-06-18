@@ -35,7 +35,7 @@ public class Users {
     @Size(min = 4, max = 50, message = "Address must be between 4 and 50 characters")
     private String address;
     private String role;
-
+    
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<CabBooking> cabBookings;
     

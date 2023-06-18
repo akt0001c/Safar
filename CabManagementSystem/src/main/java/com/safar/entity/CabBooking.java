@@ -1,6 +1,8 @@
 package com.safar.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
@@ -39,18 +41,21 @@ public class CabBooking {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @DecimalMin("0.0")
+    //@DecimalMin("0.0")
     @NotNull(message = "Distance cannot be null")
     private Float distanceInKm;
 
-    @DecimalMin("0.0")
+    //@DecimalMin("0.0")
     @NotNull(message = "Bill cannot be null")
     private Float bill;
-
-    @ManyToOne
+    
+    @JsonIgnore
+    @ManyToOne(cascade=CascadeType.ALL)
     private Users user;
-
-    @ManyToOne
+    
+    
+    
+    @ManyToOne(cascade=CascadeType.ALL)
     private Driver driver;
 
 }

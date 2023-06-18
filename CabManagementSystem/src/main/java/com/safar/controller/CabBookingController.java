@@ -16,6 +16,7 @@ import com.safar.entity.CabBooking;
 import com.safar.service.CabBookingService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 
 @RestController
 public class CabBookingController {
@@ -35,7 +36,7 @@ public class CabBookingController {
 
 	
 	@PostMapping("/cabBooking/{email}")
-	public ResponseEntity<CabBooking> insertCabBookingHandler(@RequestBody CabBooking cabBooking ,@PathVariable String email){
+	public ResponseEntity<CabBooking> insertCabBookingHandler( @RequestBody CabBooking cabBooking ,@PathVariable String email){
 		CabBooking c= cabbookingservice.insertCabBooking(cabBooking, email);
 		return new ResponseEntity<CabBooking>(c, HttpStatus.ACCEPTED);
 	}

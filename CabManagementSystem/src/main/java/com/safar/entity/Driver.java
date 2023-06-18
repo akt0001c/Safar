@@ -52,6 +52,7 @@ public class Driver {
 
     @OneToOne(mappedBy = "driver",cascade = CascadeType.ALL)
     private Car car;
+   
     @JsonIgnore
     @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
     private List<CabBooking> cabBookings = new ArrayList<>();
