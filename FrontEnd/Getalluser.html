@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getalluser</title>
+</head>
+<style>
+    
+    table,th,td{
+        border: 1px solid red;
+    }
+    #table{
+        width: 80%;
+        margin: auto;
+        background-color: antiquewhite;
+    }
+
+
+</style>
+<body onload="getallusers()">
+    <h1 style="text-align: center;">All Users Details</h1>
+    <table id="table">
+        <thead>
+            <tr>
+                <th>Userid</th>
+                <th>name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>address</th>
+                <th>role</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="user-table-body">
+
+        </tbody>
+        <script src="./script/Getalluser.js"></script>
+    </table>
+   
+
+    
+</body>
+</html>
