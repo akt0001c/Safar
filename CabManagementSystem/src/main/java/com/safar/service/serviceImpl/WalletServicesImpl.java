@@ -142,6 +142,12 @@ public class WalletServicesImpl implements WalletServices {
 	}
 	
 	
+
+	@Override
+  public Wallet  getWallet(Integer id){
+      Wallet res= wrepo.findById(id).orElseThrow(()->new WalletException("Wallet not found"));
+	  return res;
+  }
 	
    
 }
