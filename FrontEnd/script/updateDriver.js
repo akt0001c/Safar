@@ -68,10 +68,9 @@ function updateUser(mail,username,phone,address) {
   );
 
   var raw = JSON.stringify({
-    
-    "username": username,
-    "phone": phone,
-    "address": address
+    driverName: username,
+    mobileNo: phone,
+    address: address
   });
 
   var requestOptions = {
@@ -81,17 +80,17 @@ function updateUser(mail,username,phone,address) {
     redirect: "follow",
   };
 
-  fetch("http://localhost:8888/users/"+mail, requestOptions)
+  fetch("http://localhost:8888/ADMIN/driver/"+mail, requestOptions)
     .then((response) => response.text())
     .then((result) => console.log(result),
       Swal.fire(
         'Good job!',
-        'Successfully Updated User',
+        'Successfully Updated Driver',
         'success'
       ),
       // alert("user updated successfully"),
       setTimeout(()=>{
-        window.location.href="./Getalluser.html"
+        window.location.href="./Driver.html"
       },1000) 
         
     )

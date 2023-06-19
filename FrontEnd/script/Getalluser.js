@@ -36,6 +36,7 @@ function getallusers(){
 
 }
 
+getallusers();
 
 
 function deleteuser(mail){

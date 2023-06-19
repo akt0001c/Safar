@@ -91,7 +91,7 @@ public class DriverController {
      */
 
     @PatchMapping("/driver/{email}")
-    public ResponseEntity<Driver> updateDriverHandler(@PathVariable String email,@Valid @RequestBody Driver driver){
+    public ResponseEntity<Driver> updateDriverHandler(@PathVariable String email, @RequestBody Driver driver){
         Driver updatedDriver = driverService.updateDriver(email,driver);
         return new ResponseEntity<>(updatedDriver, HttpStatus.CREATED);
     }

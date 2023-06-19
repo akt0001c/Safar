@@ -62,7 +62,7 @@ function getallusers(){
                 <td>${user.mobileNo}</td>
                 <td>${user.licenceNo}</td>
                 <td>${user.rating}</td>
-                <td><button style="background-color: green;" onclick="updateuser('${user.email}','${user.username}','${user.phone}','${user.address}')">Update</button></td>
+                <td><button style="background-color: green;" onclick="updateDriver('${user.email}','${user.username}','${user.phone}','${user.address}')">Update</button></td>
                 <td><button style="background-color: red;" onclick="deleteuser('${user.email}')">Delete</button></td>
                 `;
                 tbody.appendChild(row);
@@ -112,7 +112,7 @@ function deleteuser(mail){
 
 }
 
-function updateuser(email,username,phone,address){
-    const url=`Updateuser.html?email=${email}&username=${username}&phone=${phone}&address=${address}`;
+function updateDriver(email,username,phone,address){
+    const url=`updateDriver.html?email=${email}&username=${username}&phone=${phone}&address=${address}`;
     location.href=url;
 }

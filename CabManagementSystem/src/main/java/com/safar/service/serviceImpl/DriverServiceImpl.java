@@ -54,11 +54,7 @@ public class DriverServiceImpl implements DriverService {
         Driver driver1 = opt.get();
         driver1.setDriverName(driver.getDriverName());
         driver1.setAddress(driver.getAddress());
-        driver1.setNewLocation(driver.getNewLocation());
         driver1.setMobileNo(driver.getMobileNo());
-        driver1.setRating(driver.getRating());
-        driver1.setStatus(driver.getStatus());
-        driver1.setCar(driver.getCar());
 
 //        now saving Driver in database
         return driverRepository.save(driver1);

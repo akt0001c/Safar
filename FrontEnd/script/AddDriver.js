@@ -44,6 +44,9 @@ form.addEventListener('submit',(e)=>{
             response.json().then(data=>{
                 alert("driver added successfully :")
             })
+            setTimeout(()=>{
+                window.location.href="./Driver.html"
+              },1000)
         }else{
             response.json().then(data=> alert("Something went wrong !"));
         }
