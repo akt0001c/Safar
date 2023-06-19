@@ -1,0 +1,78 @@
+#heading{
+    text-align: center;
+    color: green;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#profile-data{
+    display: flex;
+    width:90%;
+    margin: auto;
+    justify-content: space-evenly;
+    box-shadow: 0px 0px  2px 3px green;
+    padding: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.fa-user-circle{
+   font-size: 100px;
+}
+
+.sub-heading{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#booking-div{
+  width:90%;
+  margin: auto;
+}
+
+#booking-table{
+    width:100%;
+}
+table,th,td{
+    border:1px solid black;
+}
+
+#wallet{
+    box-shadow: 0px 0px  2px 3px green;
+    width:60%;
+    margin:auto;
+    padding:8px;
+   
+}
+
+#wallet >h3{
+    margin-left:25%;
+}
+
+#wallet >div{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#status-btn,#addMoney-btn{
+    background-color: gray;
+    color:white;
+    font-size: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    
+}
+
+#transactions-div{
+    width:90%;
+    margin:auto;
+}
+
+#transactions-div>table{
+    width: 100%;
+}
+
+
+
