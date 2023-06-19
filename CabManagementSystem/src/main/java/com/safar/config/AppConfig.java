@@ -49,11 +49,11 @@ public class AppConfig {
                 .authorizeHttpRequests(auth ->{
                     auth
 //                            .requestMatchers(HttpMethod.POST,"/driver").permitAll()
-                            .requestMatchers("/hello").permitAll()
+//                            .requestMatchers("/hello").permitAll()
                             .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
                             .requestMatchers(HttpMethod.POST,"/users").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/users","/hello","driver/**","/cabBooking/**","cabBooking").hasRole("ADMIN")
-                            .requestMatchers(HttpMethod.GET, "/users/**","/WALLET/**").hasAnyRole("ADMIN","USER")
+                            .requestMatchers("/users/**","/hello","driver/**","/cabBooking/**","cabBooking","/WALLET/**").hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.PATCH,"/users/**","/WALLET/**").hasAnyRole("ADMIN","USER")
                             .anyRequest().authenticated();
                 })
                 .csrf(csrf -> csrf.disable())

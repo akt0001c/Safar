@@ -1,6 +1,7 @@
 package com.safar.service;
 
 import com.safar.entity.Users;
+import com.safar.entity.Wallet;
 import com.safar.exceptions.UsersException;
 
 import java.util.List;

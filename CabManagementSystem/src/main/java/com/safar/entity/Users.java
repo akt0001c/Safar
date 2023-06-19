@@ -1,6 +1,7 @@
 package com.safar.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -25,6 +26,7 @@ public class Users {
     private String username;
     @NotNull(message = "Password cannot be null")
     @NotBlank(message = "Password cannot be blank")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Email( message = "Email is not valid")
@@ -44,7 +46,7 @@ public class Users {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<CabBooking> cabBookings;
     
-    @JsonIgnore
+
     @OneToOne(mappedBy="user" ,cascade=CascadeType.ALL)
     private Wallet wallet;
 

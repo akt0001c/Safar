@@ -2,6 +2,7 @@ package com.safar.service.serviceImpl;
 
 import com.safar.entity.Users;
 import com.safar.entity.Wallet;
+import com.safar.entity.WalletStatus;
 import com.safar.exceptions.UsersException;
 import com.safar.repository.UserRepository;
 import com.safar.service.UserService;
@@ -22,7 +23,11 @@ public class UserServiceImpl implements UserService {
     public Users registerCustomer(Users users) {
         if (users == null)
             throw new UsersException("Invalid users Details");
-//        Wallet wallet = users.getWallet();
+        Wallet wallet = new Wallet();
+        wallet.setBalance(0.0f);
+        wallet.setStatus(WalletStatus.Active);
+        wallet.setUser(users);
+        users.setWallet(wallet);
 //        wallet.setWalletId(users.getUserId());
         return userRepository.save(users);
     }

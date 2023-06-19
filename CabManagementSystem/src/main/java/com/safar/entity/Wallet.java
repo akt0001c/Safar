@@ -50,7 +50,7 @@ public class Wallet {
 	@JoinColumn(name="walletId")
 	private List<Transactions> transactions= new ArrayList<>();
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@OneToOne
+	@JsonIgnore
 	private Users user;
 }

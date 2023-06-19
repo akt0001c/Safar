@@ -42,6 +42,7 @@ public class UserController {
         "phone": "1234567890",
         "address": "kanpur",
         "role": "admin"
+
     }
 
 	 */
