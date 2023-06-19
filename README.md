@@ -23,7 +23,7 @@
 
 
 ## ER DIGRAM
-  ![safar-digram](https://github.com/akt0001c/fearful-doll-6867/assets/110126989/dd8e9a06-b8d8-4209-bf08-9d59ce0b43d4)
+ ![SAFAR DIAGRAM](https://github.com/akt0001c/fearful-doll-6867/assets/115461689/59fbdd3b-f22e-41c7-87c2-faf1d330cf34)
   
   
 ## FEATURES
