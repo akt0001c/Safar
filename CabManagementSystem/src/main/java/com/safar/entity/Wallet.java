@@ -49,8 +49,7 @@ public class Wallet {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="walletId")
 	private List<Transactions> transactions= new ArrayList<>();
-	
-	@JsonIgnore
+
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Users user;

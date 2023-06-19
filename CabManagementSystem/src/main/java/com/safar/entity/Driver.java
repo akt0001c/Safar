@@ -32,6 +32,7 @@ public class Driver {
 
     @NotBlank
     @Email(message = "Formate should be name@gamil.com")
+    @Column(unique = true)
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -39,12 +40,14 @@ public class Driver {
 
     @NotEmpty
     @Size(max = 13,min = 10)
+    @Column(unique = true)
     private String mobileNo;
 
 //    @NotEmpty
     private String address;
 
 //    @NotEmpty
+    @Column(unique = true)
     private String licenceNo;
 
 //    @NotEmpty(message = "Please provide rating for driver")

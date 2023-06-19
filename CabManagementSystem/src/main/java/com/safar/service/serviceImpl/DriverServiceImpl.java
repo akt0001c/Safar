@@ -46,19 +46,18 @@ public class DriverServiceImpl implements DriverService {
 
     //    for updating a driver
     @Override
-    public Driver updateDriver(Driver driver) throws DriverException {
-        Optional<Driver> opt = driverRepository.findById(driver.getDriverId());
+    public Driver updateDriver(String email,Driver driver) throws DriverException {
+        Optional<Driver> opt = driverRepository.findByEmail(email);
 
 //        check for this id driver exist or not
         if(opt.isEmpty()) throw new DriverException("Driver should be present");
         Driver driver1 = opt.get();
         driver1.setDriverName(driver.getDriverName());
-        driver1.setEmail(driver.getEmail());
         driver1.setAddress(driver.getAddress());
+        driver1.setNewLocation(driver.getNewLocation());
         driver1.setMobileNo(driver.getMobileNo());
-        driver1.setLicenceNo(driver.getLicenceNo());
-        driver1.setPassword(driver.getPassword());
         driver1.setRating(driver.getRating());
+        driver1.setStatus(driver.getStatus());
         driver1.setCar(driver.getCar());
 
 //        now saving Driver in database
@@ -68,8 +67,8 @@ public class DriverServiceImpl implements DriverService {
 
 //    change a driver name by his id
     @Override
-    public Driver changeName(Integer id, String name) throws DriverException {
-        Optional<Driver> opt = driverRepository.findById(id);
+    public Driver changeName(String email, String name) throws DriverException {
+        Optional<Driver> opt = driverRepository.findByEmail(email);
 
 //        check this driver exist or not
         if(opt.isPresent()){
@@ -85,12 +84,13 @@ public class DriverServiceImpl implements DriverService {
 
     //    delete a driver for given id
     @Override
-    public String deleteDriver(int driverId) throws DriverException {
-        Optional<Driver> opt = driverRepository.findById(driverId);
+    public String deleteDriver(String email) throws DriverException {
+        Optional<Driver> opt = driverRepository.findByEmail(email);
 
 //        check this driver exist or not
         if(opt.isPresent()){
-            driverRepository.deleteById(driverId);
+            Driver driver = opt.get();
+            driverRepository.deleteById(driver.getDriverId());
             return "Driver deleted successfully";
         }else{
             throw new DriverException("Driver should be present for deleting");

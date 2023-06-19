@@ -73,22 +73,39 @@ public class DriverController {
         return "Welcome to Spring Security";
     }
 
-    @PutMapping("/driver")
-    public ResponseEntity<Driver> updateDriverHandler(@Valid @RequestBody Driver driver){
-        Driver updatedDriver = driverService.updateDriver(driver);
+
+
+    /*
+    {
+        "driverName" : "amank",
+        "mobileNo" : "1234567880",
+        "address" : "delhi",
+        "rating" : 4.5,
+        "newLocation" : "delhi",
+        "status" : "Available",
+        "car" : {
+            "carType" : "SUV",
+            "perKmRate" : 10.0
+        }
+    }
+     */
+
+    @PatchMapping("/{email}")
+    public ResponseEntity<Driver> updateDriverHandler(@PathVariable String email,@Valid @RequestBody Driver driver){
+        Driver updatedDriver = driverService.updateDriver(email,driver);
         return new ResponseEntity<>(updatedDriver, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{id}/{name}")
-    public ResponseEntity<Driver> updateDriverHandler(@Valid @PathVariable Integer id,@PathVariable String name){
-        Driver updatedDriver = driverService.changeName(id,name);
+    @PatchMapping("/{email}/{name}")
+    public ResponseEntity<Driver> updateDriverHandler(@Valid @PathVariable String email,@PathVariable String name){
+        Driver updatedDriver = driverService.changeName(email,name);
         return new ResponseEntity<>(updatedDriver, HttpStatus.CREATED);
     }
 
 
-    @DeleteMapping("/{driverId}")
-    public ResponseEntity<String> deleteDriverHandler(@PathVariable Integer driverId){
-        String deletedDriver = driverService.deleteDriver(driverId);
+    @DeleteMapping("/{driverEmail}")
+    public ResponseEntity<String> deleteDriverHandler(@PathVariable String driverEmail){
+        String deletedDriver = driverService.deleteDriver(driverEmail);
         return new ResponseEntity<>(deletedDriver, HttpStatus.ACCEPTED);
     }
 

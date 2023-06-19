@@ -18,13 +18,13 @@ public interface DriverService {
 
 
 //    for updating a driver
-    public Driver updateDriver(Driver driver) throws DriverException;
+    public Driver updateDriver(String email,Driver driver) throws DriverException;
 
 // for changing name of a driver
-    public Driver changeName(Integer id,String name) throws DriverException;
+    public Driver changeName(String email,String name) throws DriverException;
 
 //    delete a driver for given id
-    public String deleteDriver(int driverId) throws DriverException;
+    public String deleteDriver(String email) throws DriverException;
 
 
 

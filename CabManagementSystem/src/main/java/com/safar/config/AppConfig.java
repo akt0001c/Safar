@@ -53,7 +53,7 @@ public class AppConfig {
                             .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
                             .requestMatchers(HttpMethod.POST,"/users").permitAll()
                             .requestMatchers(HttpMethod.GET, "/users","/hello","driver/**","/cabBooking/**","cabBooking").hasRole("ADMIN")
-                            .requestMatchers(HttpMethod.GET, "/users/**").hasAnyRole("ADMIN","USER")
+                            .requestMatchers(HttpMethod.GET, "/users/**","/WALLET/**").hasAnyRole("ADMIN","USER")
                             .anyRequest().authenticated();
                 })
                 .csrf(csrf -> csrf.disable())
