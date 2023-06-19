@@ -47,7 +47,7 @@ const username = usernameInput.value;
                         
                     })
                     setTimeout(()=>{
-                        // window.location.href="/index.html"
+                        window.location.href="/Driver.html"
                       },1000)
                     
 

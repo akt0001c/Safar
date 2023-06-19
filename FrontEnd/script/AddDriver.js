@@ -31,13 +31,12 @@ form.addEventListener('submit',(e)=>{
             "carType" : "SUV",
             "perKmRate" : 10.0
         }
+        
     }
     // console.log(driver);
     fetch("http://localhost:8888/ADMIN/driver",{
         method:"POST",
-        headers: {
-            'Authorization': `Bearer ${token}`
-          },
+        headers: {"Content-Type": "application/json"},
           body:JSON.stringify(driver)
     }).then(response=>{
         if(response.ok){
