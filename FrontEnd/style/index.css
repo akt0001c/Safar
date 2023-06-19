@@ -69,7 +69,7 @@ html{
 } */
 
 .row .col{
-    height: 50vh;
+    /* height: 50vh; */
     /* background-color: red; */
     align-items: center;
     line-height: 1.55;
