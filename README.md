@@ -4,6 +4,7 @@
  - User Module
  - Cab Managment Module
  - Driver Managment Module
+ - Booking Managment Module
  - Wallet Managment Module
 
 
