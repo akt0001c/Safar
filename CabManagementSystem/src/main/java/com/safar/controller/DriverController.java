@@ -118,11 +118,11 @@ public class DriverController {
 
 
 
-    @GetMapping("/driver/{driverId}")
-    public ResponseEntity<Driver> viewDriverHandler(@PathVariable Integer driverId){
-        Driver viewDriverById = driverService.viewDriver(driverId);
-        return new ResponseEntity<>(viewDriverById, HttpStatus.ACCEPTED);
-    }
+//    @GetMapping("/driver/{driverId}")
+//    public ResponseEntity<Driver> viewDriverHandler(@PathVariable Integer driverId){
+//        Driver viewDriverById = driverService.viewDriver(driverId);
+//        return new ResponseEntity<>(viewDriverById, HttpStatus.ACCEPTED);
+//    }
 
     @GetMapping("/driver/{driverEmail}")
     public ResponseEntity<Driver> viewDriverByEmailHandler(@PathVariable String driverEmail){
