@@ -107,6 +107,12 @@ public class DriverController {
         return new ResponseEntity<>(viewDriverById, HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/driver/{driverEmail}")
+    public ResponseEntity<Driver> viewDriverByEmailHandler(@PathVariable String driverEmail){
+        Driver viewDriverById = driverService.getDriverDetailsByEmail(driverEmail);
+        return new ResponseEntity<>(viewDriverById, HttpStatus.ACCEPTED);
+    }
+
 
 //    @GetMapping("/signIn")
 //    public ResponseEntity<String> getLoggedInDriverDetailsHandler(Authentication auth){
