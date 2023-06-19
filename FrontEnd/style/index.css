@@ -4,6 +4,7 @@
 }
 html{
     font-size: 62.5%;
+	scroll-behavior: smooth;
 }
 #body{
     background-image: url(../images/bg_01.jpg);
@@ -19,24 +20,25 @@ html{
     min-height: 100vh;
     position: relative;
     z-index: 1;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
+	
 }
 
-.fnav ,.navbar{
+/* .fnav ,.navbar{
     margin-left: 15px;
     margin-right: 15px;
-}
+} */
 
 .fnav{
     font-size: 1.5rem;
     margin: 0;
-    width: 100vw;
+    /* width: 100vw; */
     scroll-behavior: smooth;
     display: flex;
     justify-content: space-around;
     color: white;
     background-color: rgba(22, 22, 22, 0.51);
-    padding: .8rem;
+    /* padding: .8rem; */
 }
 
 .overlay{
@@ -140,6 +142,24 @@ html{
     text-decoration: none;
     color: black;
 }
+
+.home-section2{
+	width: 100%;
+	margin-top: 2rem;
+	padding-bottom: 3rem;
+	text-align: center;
+}
+
+.home-section2 .row .text{
+	font-size: 2.5rem;
+}
+
+.forBookingCar-header h1{
+	margin-bottom: 3rem;
+	font-size: 4rem;
+	color: white;
+}
+
 
 
 
