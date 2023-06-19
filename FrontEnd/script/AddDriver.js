@@ -23,7 +23,7 @@ form.addEventListener('submit',(e)=>{
         "password" : password.value,
         "mobileNo" : dMob.value,
         "address" : dAddress.value,
-        "newLocation": "Andhra",
+        "newLocation": "delhi",
         "licenceNo" : dLic.value,
         "rating" : dRate.value,
         "status" : "Available",

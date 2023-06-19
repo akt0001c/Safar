@@ -16,6 +16,17 @@ import java.util.List;
 @Slf4j
 public class CabBookingController {
 
+    /*
+
+    {
+          "fromLocation": "delhi",
+          "toLocation": "pune",
+          "distanceInKm": 15.0,
+          "bill": 500.0
+  
+       }
+     */
+
     @Autowired
     private CabBookingService cabBookingService;
 

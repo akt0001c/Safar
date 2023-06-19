@@ -81,7 +81,9 @@ function getallusers(){
 
 
 function deleteuser(mail){
-    const token="eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzEwNzA1OSwiZXhwIjoxNjg3MTY3MDU5fQ.3rCI-q82wFE1zyUg4_GIsLl0UAkTWQsVsIwPpWvXWgw";
+    const token = localStorage.getItem('jwtToken');
+    
+    console.log(token);
         
     // console.log("deleted started");
     let choice=confirm("Are you sure ? ");
@@ -93,17 +95,20 @@ function deleteuser(mail){
               }
         }
         ).then(response=>{
-            if(response.ok){
-                response.json().then(data=>{
-                    alert("user deleted successfully !");
-                    location.reload();
-                });
-            }
-            else{
-                response.json().then(data=>alert("Sometging went wrong !"))
-            }
-        })
+            response.json().then(data=>{
+                alert("user deleted successfully !");
+                getallusers()
+                
+            });setTimeout(()=>{
+                window.location.href="/Driver.html"
+            },1000)
+            
+        }).catch(error => {
+            getallusers()
+            console.error(error);
+        });
     }
+
 
 }
 

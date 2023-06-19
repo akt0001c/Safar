@@ -31,7 +31,7 @@ public class Driver {
 
 
     @NotBlank
-    @Email(message = "Formate should be name@gamil.com")
+    @Email(message = "Format should be name@gamil.com")
     @Column(unique = true)
     private String email;
 
