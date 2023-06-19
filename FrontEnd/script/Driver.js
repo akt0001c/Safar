@@ -58,7 +58,7 @@ function getallusers(){
                 <td>${user.driverId}</td>
                 <td>${user.driverName}</td>
                 <td>${user.email}</td>
-                <td>${user.address}</td>
+                <td>${user.newLocation}</td>
                 <td>${user.mobileNo}</td>
                 <td>${user.licenceNo}</td>
                 <td>${user.rating}</td>

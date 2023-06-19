@@ -70,7 +70,7 @@ function updateUser(mail,username,phone,address) {
   var raw = JSON.stringify({
     driverName: username,
     mobileNo: phone,
-    address: address
+    newLocation: address
   });
 
   var requestOptions = {

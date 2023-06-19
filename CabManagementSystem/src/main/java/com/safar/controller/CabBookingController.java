@@ -23,7 +23,7 @@ public class CabBookingController {
           "toLocation": "pune",
           "distanceInKm": 15.0,
           "bill": 500.0
-  
+
        }
      */
 

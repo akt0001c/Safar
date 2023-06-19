@@ -53,7 +53,7 @@ public class DriverServiceImpl implements DriverService {
         if(opt.isEmpty()) throw new DriverException("Driver should be present");
         Driver driver1 = opt.get();
         driver1.setDriverName(driver.getDriverName());
-        driver1.setAddress(driver.getAddress());
+        driver1.setNewLocation(driver.getNewLocation());
         driver1.setMobileNo(driver.getMobileNo());
 
 //        now saving Driver in database
