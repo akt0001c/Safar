@@ -40,9 +40,10 @@ let tbody = document.getElementById("tbody");
 getallusers();
 function getallusers(){
     // const usertablebody=document.getElementById("tbody");
-    const token="eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzEwNzA1OSwiZXhwIjoxNjg3MTY3MDU5fQ.3rCI-q82wFE1zyUg4_GIsLl0UAkTWQsVsIwPpWvXWgw";
+    const token=localStorage.getItem('jwtToken');
+    console.log(token);
 
-    fetch("http://localhost:8888/driver/drivers",{
+    fetch("http://localhost:8888/ADMIN/drivers",{
        method:"GET",
        headers: {
         'Authorization': `Bearer ${token}`
@@ -85,7 +86,7 @@ function deleteuser(mail){
     // console.log("deleted started");
     let choice=confirm("Are you sure ? ");
     if(choice){
-        fetch("http://localhost:8888/driver/"+mail,{
+        fetch("http://localhost:8888/ADMIN/driver/"+mail,{
             method:"DELETE",
             headers: {
                 'Authorization': `Bearer ${token}`
