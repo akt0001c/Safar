@@ -20,7 +20,7 @@ function getallusers(){
                 <td>${user.phone}</td>
                 <td>${user.address}</td>
                 <td>${user.role}</td>
-                <td><button style="background-color: green; onclick="updateuser()">Update</button></td>
+                <td><button style="background-color: green;" onclick="updateuser('${user.email}','${user.username}','${user.phone}','${user.address}')">Update</button></td>
                 <td><button style="background-color: red;" onclick="deleteuser('${user.email}')">Delete</button></td>
                 `;
                 usertablebody.appendChild(row);
@@ -29,7 +29,7 @@ function getallusers(){
     }
     else{
         console.log("testing");
-        response.json().then(data=>alert(data.msg));
+        response.json().then(data=>alert("Sometging went wrong !"));
     }
     })
 
@@ -58,9 +58,14 @@ function deleteuser(mail){
                 });
             }
             else{
-                response.json().then(data=>alert(data.msg))
+                response.json().then(data=>alert("Sometging went wrong !"))
             }
         })
     }
 
+}
+
+function updateuser(email,username,phone,address){
+    const url=`Updateuser.html?email=${email}&username=${username}&phone=${phone}&address=${address}`;
+    location.href=url;
 }

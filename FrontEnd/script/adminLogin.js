@@ -93,7 +93,7 @@ signupForm.addEventListener("submit", function(event) {
     const password = passwordInput.value;
     const phone = phoneInput.value;
     const addrss = addressInput.value;
-    const data = {username: username, password: password, email: email, phone: phone, address: addrss, role:'user'};
+    const data = {username: username, password: password, email: email, phone: phone, address: addrss, role:'admin'};
     console.log(data)
     if(email && password && username!=""){
         fetch("http://localhost:8888/users", {
