@@ -6,7 +6,20 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
-  <body>
+  <style>
+    
+    table,th,td{
+        border: 1px solid red;
+    }
+    #table{
+        width: 80%;
+        margin: auto;
+        background-color: #d2eafa;
+    }
+
+
+</style>
+  <body onload="getAllDriver()">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg pt-3 pb-3 fs-5" style="background-color: #e3f2fd;">
             <div class="container-fluid">
@@ -37,30 +50,26 @@
           </nav>
     </div>
     <div class="container-fluid mt-3">
-        <table class="table table-bordered table-striped table-success">
-            <thead>
-              <tr>
-                <th scope="col">Driver Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Address</th>
-                <th scope="col">Mobile No.</th>
-                <th scope="col">Licence No.</th>
-                <th scope="col">Rating</th>
-              </tr>
-            </thead>
-            <tbody id="tbody">
-              <!-- <tr>
-                <th scope="row" class="dId"></th>
-                <td class="dName">Mark</td>
-                <td class="dEmail">Otto</td>
-                <td class="dAddress">@mdo</td>
-                <td class="dMob">@mdo</td>
-                <td class="dLic">@mdo</td>
-                <td class="dRateing">@mdo</td>
-              </tr> -->
-            </tbody>
-          </table>
+      <h1 style="text-align: center;">All Driver Details</h3>
+      <table id="table">
+        <thead>
+            <tr>
+                <th>Driverid</th>
+                <th>name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>address</th>
+                <th>Licence No</th>
+                <th>Rating</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="driver-table-body">
+
+        </tbody>
+    </table>
+   
     </div>
     
    
@@ -70,3 +79,4 @@
     <script src="script/Driver.js"></script>
   </body>
 </html>
+
