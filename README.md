@@ -22,6 +22,13 @@
 
 ## ER DIGRAM
   ![safar-digram](https://github.com/akt0001c/fearful-doll-6867/assets/110126989/dd8e9a06-b8d8-4209-bf08-9d59ce0b43d4)
+  
+  
+## FEATURES
+ - User can login ,signin and Book the cab.
+ - Admin can manage All Users , Cab Drivers and their cab.
+ 
+** Gihub Link-> https://github.com/akt0001c/fearful-doll-6867.git **
 
 
  
