@@ -6,7 +6,19 @@
  - Driver Managment Module
  - Booking Managment Module
  - Wallet Managment Module
+![yellow-black-sign-taxi-placed-top-car-night](https://github.com/akt0001c/fearful-doll-6867/assets/110126989/a5a4a01a-7dfa-4f08-8ad1-09217e88c833)
 
+## Frontend And Backend Technologies
+- HTML
+- JavaScript
+- CSS
+- Spring Boot
+- Maven
+- Spring Data Jpa
+- Hibernate
+- Mysql
+- Lombok
+- Swagger
 
  
 
