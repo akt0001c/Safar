@@ -10,24 +10,41 @@ let dRate = document.getElementsByClassName("dRate");
 let tbody = document.getElementById("tbody");
 
 
-for(let i = 0; i < 5; i++){
-    display();
+
+getallusers();
+function getallusers(){
+    // const usertablebody=document.getElementById("tbody");
+    const token=localStorage.getItem('jwtToken');
+
+    fetch("http://localhost:8888/ADMIN/drivers",{
+       method:"GET",
+       headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(response=>{
+    if(response.ok){
+        response.json().then(data=>{
+            console.log(data);
+            data.forEach(user => {
+                const row=document.createElement("tr");
+                row.innerHTML=`
+                <td>${user.car.carId}</td>
+                <td>${user.car.carType}</td>
+                <td>${user.car.perKmRate}</td>
+                <td>${user.driverId}</td>
+                `;
+                tbody.appendChild(row);
+            })
+        })
+    }
+    else{
+        console.log("testing");
+        response.json().then(data=>alert("Sometging went wrong !"));
+    }
+    })
+
+
 }
 
 
-function display(){
-    let tr = document.createElement("tr");
-    let td1 = document.createElement("td");
-    td1.innerHTML = '1';
-    let td2 = document.createElement("td");
-    td2.innerHTML = 'SUV'
-    let td3 = document.createElement("td");
-    td3.innerHTML = '100';
-    let td4 = document.createElement("td");
-    td4.innerHTML = '1';
-    
-    tr.append(td1,td2,td3,td4);
-    tbody.append(tr);
 
-   
-}

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/driver")
+@RequestMapping("/ADMIN")
 public class DriverController {
 
     @Autowired
@@ -90,27 +90,27 @@ public class DriverController {
     }
      */
 
-    @PatchMapping("/{email}")
+    @PatchMapping("/driver/{email}")
     public ResponseEntity<Driver> updateDriverHandler(@PathVariable String email,@Valid @RequestBody Driver driver){
         Driver updatedDriver = driverService.updateDriver(email,driver);
         return new ResponseEntity<>(updatedDriver, HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{email}/{name}")
+    @PatchMapping("/driver/{email}/{name}")
     public ResponseEntity<Driver> updateDriverHandler(@Valid @PathVariable String email,@PathVariable String name){
         Driver updatedDriver = driverService.changeName(email,name);
         return new ResponseEntity<>(updatedDriver, HttpStatus.CREATED);
     }
 
 
-    @DeleteMapping("/{driverEmail}")
+    @DeleteMapping("/driver/{driverEmail}")
     public ResponseEntity<String> deleteDriverHandler(@PathVariable String driverEmail){
         String deletedDriver = driverService.deleteDriver(driverEmail);
         return new ResponseEntity<>(deletedDriver, HttpStatus.ACCEPTED);
     }
 
 
-    @GetMapping("/bestdrivers")
+    @GetMapping("/driver/bestdrivers")
     public ResponseEntity<List<Driver>> viewBestDriverListHandler(){
         List<Driver> viewBestDrivers = driverService.viewBestDrivers();
         return new ResponseEntity<>(viewBestDrivers, HttpStatus.ACCEPTED);
@@ -118,7 +118,7 @@ public class DriverController {
 
 
 
-    @GetMapping("/{driverId}")
+    @GetMapping("/driver/{driverId}")
     public ResponseEntity<Driver> viewDriverHandler(@PathVariable Integer driverId){
         Driver viewDriverById = driverService.viewDriver(driverId);
         return new ResponseEntity<>(viewDriverById, HttpStatus.ACCEPTED);
