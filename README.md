@@ -16,9 +16,11 @@
 - Maven
 - Spring Data Jpa
 - Hibernate
+- Spring Security
 - Mysql
 - Lombok
 - Swagger
+
 
 ## ER DIGRAM
   ![safar-digram](https://github.com/akt0001c/fearful-doll-6867/assets/110126989/dd8e9a06-b8d8-4209-bf08-9d59ce0b43d4)
