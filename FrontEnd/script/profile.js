@@ -7,19 +7,20 @@ let addbtn= document.querySelector("#addMoney-btn");
 // let token= JSON.parse(localStorage.getItem("jwtToken"))||"";
 // let loggedUser= JSON.parse(localStorage.getItem("loggedUser"))||{};
 
-let token=`eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzA5NDM4NSwiZXhwIjoxNjg3MTU0Mzg1fQ.fY1CEGUC73ajFePcU7QxZBnFpqltFWapS6hBxK3ZYs4`;
+let token= `eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzI4MDQ1MiwiZXhwIjoxNjg3MzQwNDUyfQ.U5yb3Nxs6KI5-pYqvhlSZZuwsiKYD8miZE1R-rqpwWY`;
 let loggedUser={
-    "userId":2,
-    "username":"Ankit choubey",
-    "email":"ankit@gmail.com",
-    "address":"Uttarakhand",
-    "phone":"1234567893",
-    "role":"User",
-    "wallet":{
-        "walletId":100,
-        "balance":0.0,
-        "status":"Active",
-
+    "userId": 1,
+    "username": "Dhanush",
+    "email": "dhanush@gmail.com",
+    "phone": "12345567890",
+    "address": "kanpur",
+    "role": "ROLE_ADMIN",
+    "cabBookings": [],
+    "wallet": {
+        "walletId": 1,
+        "balance": 0.0,
+        "status": "Active",
+        "transactions": []
     }
 };
 
@@ -32,6 +33,8 @@ window.onload= ()=>{
    document.querySelector("#user-mobile").textContent=loggedUser.phone;
    document.querySelector("#user-role").textContent=loggedUser.role;
    showAllBookings();
+   showAllTransaction();
+
    
 
 };  
@@ -185,7 +188,7 @@ let transactionAppend= (data)=>{
                  td4.style.color="Red";
               }
         let td5= document.createElement("td");
-        td5.textContent=ele.CurrentBalance;
+        td5.textContent=ele.currentBalance;
       
  
         row.append(td1,td2,td3,td4,td5);
@@ -199,7 +202,7 @@ let transactionAppend= (data)=>{
 let showAllBookings= async ()=>{
 
     try {
-        let res =  await fetch(`http://localhost:8888/${loggedUser.email}`,{
+        let res =  await fetch(`http://localhost:8888/users/${loggedUser.email}`,{
         method:"GET",
         headers:{
             "Content-Type":"application/json",
@@ -211,6 +214,7 @@ let showAllBookings= async ()=>{
      {
         let user = await res.json();
         let data= user.cabBookings;
+        console.log(data);
         bookingAppend(data);
      }else
       {
@@ -226,7 +230,7 @@ let showAllBookings= async ()=>{
 
 let showAllTransaction= async ()=>{
     try {
-        let res =  await fetch(`http://localhost:8888/getWallet/${loggedUser.wallet.walletId}`,{
+        let res =  await fetch(`http://localhost:8888/WALLET/getWallet/${loggedUser.wallet.walletId}`,{
         method:"GET",
         headers:{
             "Content-Type":"application/json",
@@ -237,7 +241,9 @@ let showAllTransaction= async ()=>{
     if(res.ok)
      {
         let user = await res.json();
-        let data= user.cabBookings;
+        let data= user.transactions;
+        console.log(data);
+        console.log("testing");
         transactionAppend(data);
      }else
       {
