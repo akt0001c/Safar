@@ -1,12 +1,19 @@
 // let did = document.getElementsByClassName("dId");
 // let dName = document.getElementsByClassName("dName");
-// let dEmail = document.getElementsByClassName("dEmail");
+let Email = document.getElementById("exampleInputEmail1");
 // let dAddress = document.getElementsByClassName("dAddress");
 // let dMob = document.getElementsByClassName("dMob");
 // let dLic = document.getElementsByClassName("dLic");
 // let dRate = document.getElementsByClassName("dRate");
 
-// let tbody = document.getElementById("tbody");
+let tbody = document.getElementById("tbody");
+
+document.getElementById("subBtn").addEventListener("click",(e)=>{
+    e.preventDefault();
+    let email = Email.value;
+    console.log(email);
+    getallusers(email);
+})
 
 
 // for(let i = 0; i < 5; i++){
@@ -37,13 +44,13 @@
    
 // }
 
-getallusers();
-function getallusers(){
+
+function getallusers(email){
     // const usertablebody=document.getElementById("tbody");
     const token=localStorage.getItem('jwtToken');
     console.log(token);
 
-    fetch("http://localhost:8888/ADMIN/drivers",{
+    fetch("http://localhost:8888/ADMIN/driver/"+email,{
        method:"GET",
        headers: {
         'Authorization': `Bearer ${token}`
@@ -52,7 +59,7 @@ function getallusers(){
     if(response.ok){
         response.json().then(data=>{
             console.log(data);
-            data.forEach(user => {
+            let user = data;
                 const row=document.createElement("tr");
                 row.innerHTML=`
                 <td>${user.driverId}</td>
@@ -66,7 +73,6 @@ function getallusers(){
                 <td><button style="background-color: red;" onclick="deleteuser('${user.email}')">Delete</button></td>
                 `;
                 tbody.appendChild(row);
-            })
         })
     }
     else{

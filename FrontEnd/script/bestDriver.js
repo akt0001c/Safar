@@ -1,12 +1,12 @@
-// let did = document.getElementsByClassName("dId");
-// let dName = document.getElementsByClassName("dName");
-// let dEmail = document.getElementsByClassName("dEmail");
-// let dAddress = document.getElementsByClassName("dAddress");
-// let dMob = document.getElementsByClassName("dMob");
-// let dLic = document.getElementsByClassName("dLic");
-// let dRate = document.getElementsByClassName("dRate");
+let did = document.getElementsByClassName("dId");
+let dName = document.getElementsByClassName("dName");
+let dEmail = document.getElementsByClassName("dEmail");
+let dAddress = document.getElementsByClassName("dAddress");
+let dMob = document.getElementsByClassName("dMob");
+let dLic = document.getElementsByClassName("dLic");
+let dRate = document.getElementsByClassName("dRate");
 
-// let tbody = document.getElementById("tbody");
+let tbody = document.getElementById("tbody");
 
 
 // for(let i = 0; i < 5; i++){
@@ -43,7 +43,7 @@ function getallusers(){
     const token=localStorage.getItem('jwtToken');
     console.log(token);
 
-    fetch("http://localhost:8888/ADMIN/drivers",{
+    fetch("http://localhost:8888/ADMIN/driver/bestdrivers",{
        method:"GET",
        headers: {
         'Authorization': `Bearer ${token}`
