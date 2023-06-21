@@ -45,13 +45,15 @@ bookCab.addEventListener('click', function (event) {
                 response.json().then(data => {
                     Swal.fire(
                         'Good job!',
-                        'Ride Booked Successfully',
+                        'Ride Booked Your Bill: '+data.bill,
                         'success'
                     )
+                    console.log(data);
+
                 })
                 setTimeout(()=>{
                     window.location.href="/profile.html"
-                  },1000)
+                  },4000)
             } else {
                 response.json().then(data => Swal.fire({
                                 icon: 'error',
