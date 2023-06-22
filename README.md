@@ -53,7 +53,7 @@
 
 ### Login Module
 
-* `POST //api/signIn` : Admin can login with Email and password provided at the time of registration
+* `POST //signIn` : Admin can login with Email and password provided at the time of registration
 
 
 
