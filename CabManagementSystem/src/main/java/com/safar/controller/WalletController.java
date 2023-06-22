@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.safar.entity.Wallet;
+import com.safar.exceptions.WalletException;
 import com.safar.service.WalletServices;
 
 @RestController
@@ -55,4 +57,12 @@ public class WalletController {
 		Wallet res= wService.getWallet(id);
 		return new ResponseEntity<Wallet>(res, HttpStatus.ACCEPTED);
 	 }
+	
+	@GetMapping("/WalletDetails")
+	public ResponseEntity<Wallet> getLoggedUserWallet(Authentication auth){
+		if(auth.getName()==null)
+			  throw new WalletException("User is not logged into the system");
+	    Wallet res= wService.getLoggedUserWallet(auth.getName());
+		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
+	}
 }

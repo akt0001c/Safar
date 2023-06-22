@@ -148,6 +148,18 @@ public class WalletServicesImpl implements WalletServices {
       Wallet res= wrepo.findById(id).orElseThrow(()->new WalletException("Wallet not found"));
 	  return res;
   }
+
+	@Override
+	public Wallet getLoggedUserWallet(String email) {
+		if(email==null)
+			  throw new UsersException("Invalid user details provided");
+		
+	   Users user= urepo.findByEmail(email).orElseThrow(()->new UsersException(" No logged User not found"));
+	   Wallet res= user.getWallet();
+	   if(res==null)
+		     throw new WalletException("NO Wallet found ");
+		return res;
+	}
 	
    
 }

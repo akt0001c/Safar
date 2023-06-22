@@ -4,25 +4,25 @@ let bookingBody= document.querySelector("#booking-table-body");
 let transactionBody= document.querySelector("#transaction-div-body");
 let statusbtn= document.querySelector("#status-btn");
 let addbtn= document.querySelector("#addMoney-btn");
-// let token= JSON.parse(localStorage.getItem("jwtToken"))||"";
-// let loggedUser= JSON.parse(localStorage.getItem("loggedUser"))||{};
+ let token= localStorage.getItem("jwtToken")||"";
+ let loggedUser= JSON.parse(localStorage.getItem("userData"))||{};
 
-let token= `eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzI4MDQ1MiwiZXhwIjoxNjg3MzQwNDUyfQ.U5yb3Nxs6KI5-pYqvhlSZZuwsiKYD8miZE1R-rqpwWY`;
-let loggedUser={
-    "userId": 1,
-    "username": "Dhanush",
-    "email": "dhanush@gmail.com",
-    "phone": "12345567890",
-    "address": "kanpur",
-    "role": "ROLE_ADMIN",
-    "cabBookings": [],
-    "wallet": {
-        "walletId": 1,
-        "balance": 0.0,
-        "status": "Active",
-        "transactions": []
-    }
-};
+//let token= `eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzI4MDQ1MiwiZXhwIjoxNjg3MzQwNDUyfQ.U5yb3Nxs6KI5-pYqvhlSZZuwsiKYD8miZE1R-rqpwWY`;
+// let loggedUser={
+//     "userId": 1,
+//     "username": "Dhanush",
+//     "email": "dhanush@gmail.com",
+//     "phone": "12345567890",
+//     "address": "kanpur",
+//     "role": "ROLE_ADMIN",
+//     "cabBookings": [],
+//     "wallet": {
+//         "walletId": 1,
+//         "balance": 0.0,
+//         "status": "Active",
+//         "transactions": []
+//     }
+// };
 
 
 window.onload= ()=>{
@@ -34,36 +34,40 @@ window.onload= ()=>{
    document.querySelector("#user-role").textContent=loggedUser.role;
    showAllBookings();
    showAllTransaction();
+   getWalletData();
 
    
 
 };  
 
-// let createWallet= async (loggedUser)=>{
-// try {
-//     let res= await fetch(`http://localhost:8888//WALLET/createWallet/${loggedUser.userId}`,{
-//         method:"POST",
-//         headers:{
-//             "Content-Type":"application/json",
-//             "Authorization": `Bearer ${token}`
-//         },
-       
-//     });
-// if(res.ok)
-//   {
-//      walletDetails= await res.json();
-//     assignValuetowallet(walletDetails);
-//   }
-//    else 
-//     {
-//       let message= await res.json();
-//       alert(message); 
-//     }
-// } catch (error) {
-//     alert(error);
-// }
+let getWalletData= async ()=>{
 
-// }
+    try {
+        let res= await fetch(`http://localhost:8888/WALLET/WalletDetails`,{
+            method:"GET",
+            headers:{
+             "Content-Type":"application/json",
+             "Authorization":`Bearer ${token}`
+            }
+        });
+     
+        if(res.ok)
+          {
+             loggedUser.wallet= await res.json();
+             assignValuetowallet(loggedUser.wallet);
+          }
+          else
+           {
+             let response= await res.json();
+             console.log(response);
+           }
+    } catch (error) {
+        alert(error);
+    }
+  
+  
+   
+};
 
 let assignValuetowallet= (walletDetails)=>{
     document.querySelector("#balance-box").textContent=walletDetails.balance;
@@ -76,7 +80,7 @@ let assignValuetowallet= (walletDetails)=>{
 statusbtn.onclick= async (event)=>{
 
  try {
-    let  res= await fetch(`http://localhost:8888//WALLET/changeStatus/${loggedUser.wallet.walletId}`,{
+    let  res= await fetch(`http://localhost:8888/WALLET/changeStatus/${loggedUser.wallet.walletId}`,{
     method:'PATCH',
     headers:{
         "Content-Type":"application/json",

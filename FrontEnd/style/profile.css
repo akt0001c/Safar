@@ -1,3 +1,7 @@
+body{
+    
+}
+
 #heading{
     text-align: center;
     color: green;
@@ -6,22 +10,29 @@
 
 #profile-data{
     display: flex;
-    width:90%;
+    width:40%;
     margin: auto;
     justify-content: space-evenly;
     box-shadow: 0px 0px  2px 3px green;
     padding: 5px;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 100px;
 }
 
 .fa-user-circle{
    font-size: 100px;
 }
 
+#details-section{
+    padding:5px;
+    
+}
+
 .sub-heading{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 60px;
 }
 
 #booking-div{
@@ -41,6 +52,7 @@ table,th,td{
     width:60%;
     margin:auto;
     padding:8px;
+    margin-bottom: 100px;
    
 }
 
@@ -68,6 +80,7 @@ table,th,td{
 #transactions-div{
     width:90%;
     margin:auto;
+   
 }
 
 #transactions-div>table{

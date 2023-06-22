@@ -56,6 +56,7 @@ public class AppConfig {
                             .requestMatchers(HttpMethod.DELETE,"/ADMIN/driver").hasRole("ADMIN")
                             .requestMatchers("/users/**","/hello","/ADMIN/**","/cabBooking/**","cabBooking","/WALLET/**").hasRole("ADMIN")
                             .requestMatchers(HttpMethod.PATCH,"/users/**","/WALLET/**").hasAnyRole("ADMIN","USER")
+                            .requestMatchers("/WALLET/**").hasRole("USER")
                             .anyRequest().authenticated();
                 })
                 .csrf(csrf -> csrf.disable())
