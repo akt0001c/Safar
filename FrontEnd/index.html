@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Safar</title>
+    <link rel="icon" href="/images/SAFAR.png" />
     <link rel="stylesheet" href="./style/index.css">
     <script src="https://kit.fontawesome.com/56d003bef3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,6 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -29,7 +31,7 @@
             </span>
             <span class="navbar-text">
                 <span><i class="fa-solid fa-phone-flip"></i></span>
-                <span>+1-202-555-0156</span>
+                <span>+91 7007219431</span>
             </span>
             <span class="navbar-text">
                 <i class="fa-brands fa-facebook-f me-5"></i>
@@ -181,20 +183,19 @@
                 </div>
                 <div class="row g-3">
                     <div class="col">
-                      <input type="text" class="form-control text" placeholder="Pick Up From" aria-label="First name">
+                      <input type="text" required class="form-control text" id="pickUp" placeholder="Pick Up From" aria-label="Pick Up From">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control text" placeholder="To destination" aria-label="Last name">
+                      <input type="text" required class="form-control text" id="to" placeholder="To destination" aria-label="To destination">
                     </div>
                     <div class="col">
-                      <input type="text" class="form-control text" placeholder="To destination" aria-label="Last name">
+                      <input type="text" required class="form-control text" id="distance" placeholder="distance" aria-label="distance">
                     </div>
                   </div>
                   <div class="row g-3 mt-5">
                    
                     <div class="col">
-                        <a class="btn btn-danger fs-2 ps-5 pe-5" href="#" role="button">Book A Car<i
-                            class="fa-solid fa-arrow-right ms-3"></i></a>
+                        <button type="submit" id="subBtn" class="btn btn-danger fs-2 ps-5 pe-5">Submit</button>
                     </div>
                   </div>
             </div>
@@ -284,6 +285,16 @@
     </footer>
 
    
+<<<<<<< HEAD
+=======
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+        <script src="./script/index.js" type="module"></script>
+        <!-- <script src="./scripts/index.js" type="module"></script> -->
+
+>>>>>>> e4bf98595d20b3ffc63b4925c5130e5ddb710371
 </body>
 
 </html>

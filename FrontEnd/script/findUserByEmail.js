@@ -62,14 +62,13 @@ function getallusers(email){
             let user = data;
                 const row=document.createElement("tr");
                 row.innerHTML=`
-                <td>${user.driverId}</td>
-                <td>${user.driverName}</td>
+                <td>${user.userId}</td>
+                <td>${user.username}</td>
                 <td>${user.email}</td>
-                <td>${user.newLocation}</td>
-                <td>${user.mobileNo}</td>
-                <td>${user.licenceNo}</td>
-                <td>${user.rating}</td>
-                <td><button style="background-color: green;" onclick="updateDriver('${user.email}','${user.username}','${user.phone}','${user.address}')">Update</button></td>
+                <td>${user.phone}</td>
+                <td>${user.address}</td>
+                <td>${user.role}</td>
+                <td><button style="background-color: green;" onclick="updateuser('${user.email}','${user.username}','${user.phone}','${user.address}')">Update</button></td>
                 <td><button style="background-color: red;" onclick="deleteuser('${user.email}')">Delete</button></td>
                 `;
                 tbody.appendChild(row);
@@ -94,7 +93,7 @@ function deleteuser(mail){
     // console.log("deleted started");
     let choice=confirm("Are you sure ? ");
     if(choice){
-        fetch("http://localhost:8888/ADMIN/driver/"+mail,{
+        fetch("http://localhost:8888/users/"+mail,{
             method:"DELETE",
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -119,6 +118,6 @@ function deleteuser(mail){
 }
 
 function updateDriver(email,username,phone,address){
-    const url=`updateDriver.html?email=${email}&username=${username}&phone=${phone}&address=${address}`;
+    const url=`UpdateUser.html?email=${email}&username=${username}&phone=${phone}&address=${address}`;
     location.href=url;
 }

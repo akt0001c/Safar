@@ -50,11 +50,12 @@ public class AppConfig {
                     auth
 //                            .requestMatchers(HttpMethod.POST,"/driver").permitAll()
 //                            .requestMatchers("/hello").permitAll()
-                            .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
+                              .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
                             .requestMatchers(HttpMethod.POST,"/users").permitAll()
                             .requestMatchers(HttpMethod.POST,"/ADMIN/driver").permitAll()
                             .requestMatchers(HttpMethod.DELETE,"/ADMIN/driver").hasRole("ADMIN")
-                            .requestMatchers("/users/**","/hello","/ADMIN/**","/cabBooking/**","cabBooking","/WALLET/**").hasRole("ADMIN")
+                            .requestMatchers("/users/**","/hello","/ADMIN/**").hasRole("ADMIN")
+                            .requestMatchers("/cabBooking/**","cabBooking","/WALLET/**").hasAnyRole("ADMIN","USER")
                             .requestMatchers(HttpMethod.PATCH,"/users/**","/WALLET/**").hasAnyRole("ADMIN","USER")
                             .requestMatchers("/WALLET/**").hasRole("USER")
                             .anyRequest().authenticated();
