@@ -1,5 +1,7 @@
 package com.safar.controller;
 
+import com.safar.entity.Users;
+import com.safar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -24,24 +26,31 @@ public class WalletController {
 
     @Autowired
 	private WalletServices wService;
+    @Autowired
+    private UserService userService;
     
 	@PostMapping("/addMoney")
-	public ResponseEntity<Wallet>  addMoneyToWallet(@RequestParam("Id") Integer walletId , @RequestParam("amount") Float amount){
-     
-		Wallet res= wService.addMoney(walletId, amount);
+	public ResponseEntity<Wallet>addMoneyToWallet(Authentication auth, @RequestParam("amount") Float amount){
+        Users user = userService.getUserDetailsByEmail(auth.getName());
+        Wallet wallet = user.getWallet();
+		Wallet res= wService.addMoney(wallet.getWalletId(), amount);
 		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
 		
 	}
 	
 	@PostMapping("/billPayment")
-	public ResponseEntity<Wallet> payBill( @RequestParam("Id") Integer walletId,@RequestParam("BillAmount") Float billAmount){
-		Wallet res= wService.payRideBill(walletId, billAmount);
+	public ResponseEntity<Wallet> payBill( Authentication auth,@RequestParam("BillAmount") Float billAmount){
+        Users user = userService.getUserDetailsByEmail(auth.getName());
+        Wallet wallet = user.getWallet();
+		Wallet res= wService.payRideBill(wallet.getWalletId(), billAmount);
 		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
 	}
 	
-	@PatchMapping("/changeStatus/{Id}")
-	public ResponseEntity<Wallet> changeStatus( @PathVariable("Id") Integer walletId){
-		Wallet res= wService.changeStatus(walletId);
+	@PatchMapping("/changeStatus")
+	public ResponseEntity<Wallet> changeStatus(Authentication auth){
+        Users user = userService.getUserDetailsByEmail(auth.getName());
+        Wallet wallet = user.getWallet();
+		Wallet res= wService.changeStatus(wallet.getWalletId());
 		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
 	}
 	
@@ -52,10 +61,11 @@ public class WalletController {
 		return new ResponseEntity<>(res,HttpStatus.CREATED);
 	}
 
-	@GetMapping("/getWallet/{Id}")
-	 public ResponseEntity<Wallet> getWallet(@PathVariable("Id") Integer id){
-		Wallet res= wService.getWallet(id);
-		return new ResponseEntity<Wallet>(res, HttpStatus.ACCEPTED);
+	@GetMapping("/getWallet")
+	 public ResponseEntity<Wallet> getWallet(Authentication auth){
+        Users user = userService.getUserDetailsByEmail(auth.getName());
+        Wallet wallet = user.getWallet();
+		return new ResponseEntity<Wallet>(wallet, HttpStatus.ACCEPTED);
 	 }
 	
 	@GetMapping("/WalletDetails")
