@@ -35,11 +35,48 @@
 ### Contributors
 - Ankit Choubry
 - Aman Kumar
-- Susheel kumar
+- Susheel Kumar
 - Dhanushpriyan
 
 
  
+
+
+## API Root Endpoint
+
+`https://localhost:888/`
+
+`http://localhost:8888/swagger-ui/`
+
+
+## API Module Endpoints
+
+### Login Module
+
+* `POST //api/signIn` : Admin can login with Email and password provided at the time of registration
+
+### User Module
+
+
+
+
+### Sample API Response for Admin Login
+
+`POST   localhost:8888/signIn`
+
+* Request Body
+
+```
+    {
+        "username": "Admin@gmail.com",
+        "password": "admin"
+    }
+
+```
+
+
+
+
 
 
 
