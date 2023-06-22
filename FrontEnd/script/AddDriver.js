@@ -5,6 +5,10 @@ let dAddress = document.getElementById("address");
 let dMob = document.getElementById("Mobile");
 let dLic = document.getElementById("licence");
 let dRate = document.getElementById("rating");
+let carType = document.getElementById("carType");
+let perKmRate = document.getElementById("perKmRate");
+let carNumber = document.getElementById("carNumber");
+
 
 let tbody = document.getElementById("tbody");
 
@@ -28,8 +32,9 @@ form.addEventListener('submit',(e)=>{
         "rating" : dRate.value,
         "status" : "Available",
         "car" : {
-            "carType" : "SUV",
-            "perKmRate" : 10.0
+            "carType" : carType.value,
+            "carNumber" : carNumber.value,
+            "perKmRate" :perKmRate.value
         }
         
     }
@@ -42,13 +47,24 @@ form.addEventListener('submit',(e)=>{
         if(response.ok){
             console.log("hii")
             response.json().then(data=>{
-                alert("driver added successfully :")
+                Swal.fire(
+                    'Good job!',
+                    'Driver Successfully Registered',
+                    'success'
+                  )
             })
             setTimeout(()=>{
                 window.location.href="./Driver.html"
               },1000)
         }else{
-            response.json().then(data=> alert("Something went wrong !"));
+            response.json().then(data=> {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Invalid Credentials',
+                    footer: '<a href="">Why do I have this issue?</a>'
+                  })
+            });
         }
     })
 })

@@ -28,6 +28,8 @@ public class WalletController {
 	private WalletServices wService;
     @Autowired
     private UserService userService;
+
+//    http://localhost:8888/WALLET/addMoney?amount=900.0
     
 	@PostMapping("/addMoney")
 	public ResponseEntity<Wallet>addMoneyToWallet(Authentication auth, @RequestParam("amount") Float amount){

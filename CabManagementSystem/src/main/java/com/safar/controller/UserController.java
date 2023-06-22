@@ -125,14 +125,14 @@ public class UserController {
     }
 
     @GetMapping("/signIn")
-    public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){
+    public ResponseEntity<Users> getLoggedInCustomerDetailsHandler(Authentication auth){
 
 
         log.info(auth.getName()); // this will print the email of the logged in user
 
         Users users= userService.getUserDetailsByEmail(auth.getName());
 
-        return new ResponseEntity<>(users.getUsername()+" Logged In Successfully: ", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(users, HttpStatus.ACCEPTED);
     }
 
 }

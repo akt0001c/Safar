@@ -30,6 +30,7 @@ function getallusers(){
                 row.innerHTML=`
                 <td>${user.car.carId}</td>
                 <td>${user.car.carType}</td>
+                <td>${user.car.carNumber}</td>
                 <td>${user.car.perKmRate}</td>
                 <td>${user.driverId}</td>
                 `;

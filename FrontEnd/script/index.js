@@ -2,6 +2,12 @@
 
 let bookCab = document.getElementById("subBtn");
 
+let usern = document.getElementById('userN');
+const names = localStorage.getItem("username");
+usern.innerHTML =  names;
+console.log(usern);
+console.log(names);
+
 
 
 bookCab.addEventListener('click', function (event) {

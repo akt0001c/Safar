@@ -35,6 +35,8 @@ const username = usernameInput.value;
                     const token = res.headers.get("Authorization");
                     console.log(token)
                     localStorage.setItem("jwtToken",token)
+                    
+
                     Swal.fire(
                         'Good job!',
                         'Successfully Registered',
@@ -43,6 +45,7 @@ const username = usernameInput.value;
                       
                     res.json().then(data =>{
                         console.log(data)
+                        localStorage.setItem("username",data.username)
                         localStorage.setItem("userData",JSON.stringify(data))
                         
                     })

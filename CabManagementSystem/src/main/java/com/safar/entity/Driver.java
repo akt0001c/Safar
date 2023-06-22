@@ -32,7 +32,7 @@ public class Driver {
 
     @NotBlank
     @Email(message = "Format should be name@gamil.com")
-    @Column(unique = true)
+    @Column(unique=true)
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

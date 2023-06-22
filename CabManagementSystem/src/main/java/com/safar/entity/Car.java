@@ -27,8 +27,13 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private CarType carType;
 
+    @NotBlank(message = "Should not be blank")
+    @Column(unique = true)
+    private String carNumber;
+
     @NotNull(message = "Should not be null")
     private float perKmRate;
+
 
     @JsonIgnore
     @OneToOne

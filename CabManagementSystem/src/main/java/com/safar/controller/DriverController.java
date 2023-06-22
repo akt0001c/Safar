@@ -39,6 +39,7 @@ public class DriverController {
         "status" : "Available",
         "car" : {
             "carType" : "SUV",
+            "carNumber" : "UP 12 1234",
             "perKmRate" : 10.0
         }
     }
