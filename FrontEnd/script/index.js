@@ -4,11 +4,13 @@ let bookCab = document.getElementById("subBtn");
 
 let usern = document.getElementById('userN');
 const names = localStorage.getItem("username");
+
 if(names!=undefined){
     usern.innerHTML =  names;
 }else{
     usern.innerHTML = "Your Name";
 }
+
 console.log(usern);
 console.log(names);
 

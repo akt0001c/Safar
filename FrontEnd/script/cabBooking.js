@@ -19,7 +19,6 @@ function getallusers(){
                 const row=document.createElement("tr");
                 row.innerHTML=`
                 <td>${user.cabBookingId}</td>
-                <td>${user.userId}</td>
                 <td>${user.driver.driverId}</td>
                 <td>${user.fromDateTime}</td>
                 <td>${user.toDateTime}</td>
@@ -43,41 +42,3 @@ function getallusers(){
 
 }
 
-
-
-function deleteuser(mail){
-    const token = localStorage.getItem('jwtToken');
-    
-    console.log(token);
-        
-    // console.log("deleted started");
-    let choice=confirm("Are you sure ? ");
-    if(choice){
-        fetch("http://localhost:8888/ADMIN/driver/"+mail,{
-            method:"DELETE",
-            headers: {
-                'Authorization': `Bearer ${token}`
-              }
-        }
-        ).then(response=>{
-            response.json().then(data=>{
-                alert("user deleted successfully !");
-                getallusers()
-                
-            });setTimeout(()=>{
-                window.location.href="/Driver.html"
-            },1000)
-            
-        }).catch(error => {
-            getallusers()
-            console.error(error);
-        });
-    }
-
-
-}
-
-function updateDriver(email,username,phone,address){
-    const url=`updateDriver.html?email=${email}&username=${username}&phone=${phone}&address=${address}`;
-    location.href=url;
-}
