@@ -15,4 +15,5 @@ public interface WalletServices {
   public Wallet createWallet(String  email);
   public Wallet getWallet(Integer id);
   public Wallet getLoggedUserWallet(String email);
+
 }

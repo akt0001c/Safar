@@ -22,7 +22,8 @@ public interface CabBookingService {
 //	view all trips of a particular user
 	public List<CabBooking> viewAllTrips(String  email);
 	
+    public CabBooking completeTrip(Integer cabBookingId , String email);
 
-
+    public List<CabBooking> viewAllBookendCab();
 
 }

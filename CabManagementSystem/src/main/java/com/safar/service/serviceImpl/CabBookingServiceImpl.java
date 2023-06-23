@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.safar.entity.*;
 import com.safar.service.DriverService;
+import com.safar.service.WalletServices;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ public class CabBookingServiceImpl implements CabBookingService{
 
     @Autowired
     private DriverService driverService;
+
+    @Autowired
+    private WalletServices walletServices;
 
 	@Override
 	public CabBooking insertCabBooking(CabBooking cabbooking, String email) {
@@ -117,7 +121,36 @@ public class CabBookingServiceImpl implements CabBookingService{
 
 	}
 
+    @Override
+    public CabBooking completeTrip(Integer cabBookingId, String email) {
+        CabBooking c= cabbookingrepo.findById(cabBookingId).orElseThrow(()->new CabBookingException("enter valid cab id"));
+        if(c.getStatus().equals(Status.Cancelled)) {
+            throw new CabBookingException("cab is already Cancelled");
+        }
+        if(c.getStatus().equals(Status.COMPLETED)) {
+            throw new CabBookingException("cab is already completed");
+        }
+        Users user=userrepo.findByEmail(email).orElseThrow(()-> new CabBookingException("enter valid userId"));
+        Wallet wallet=user.getWallet();
+        walletServices.payRideBill(wallet.getWalletId(),c.getBill());
+//        wallet.setBalance(wallet.getBalance()-c.getBill());
+//        user.setWallet(wallet);
+        c.setStatus(Status.COMPLETED);
+        c.getDriver().setStatus(DriverStatus.Available);
+        return cabbookingrepo.save(c);
+    }
 
+    @Override
+    public List<CabBooking> viewAllBookendCab() {
+        List<CabBooking> list=cabbookingrepo.findAll();
+        List<CabBooking> list1=new ArrayList<>();
+        for(CabBooking c:list) {
+            if(c.getStatus().equals(Status.Booked)) {
+                list1.add(c);
+            }
+        }
+        return list1;
+    }
 
 
 }

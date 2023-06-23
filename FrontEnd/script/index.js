@@ -8,6 +8,33 @@ usern.innerHTML =  names;
 console.log(usern);
 console.log(names);
 
+window.onload = () =>{
+    
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    if(userData != undefined){
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('logout').style.display = 'block';
+    }else{
+        document.getElementById('login').style.display = 'block';
+        document.getElementById('logout').style.display = 'none';
+
+    }
+    console.log(userData);
+
+
+
+}
+
+let logout = document.getElementById("logout");
+logout.addEventListener('click', function (event) {
+    localStorage.removeItem('userData');
+    localStorage.removeItem('username');
+    localStorage.removeItem('jwtToken');
+    window.location.href = "../index.html";
+    
+    console.log("hello text ");
+})
+
 
 
 bookCab.addEventListener('click', function (event) {
@@ -51,15 +78,15 @@ bookCab.addEventListener('click', function (event) {
                 response.json().then(data => {
                     Swal.fire(
                         'Good job!',
-                        'Ride Booked Your Bill: '+data.bill,
+                        'Ride Booked ',
                         'success'
                     )
                     console.log(data);
-
+                    setTimeout(()=>{
+                        window.location.href="/profile.html"
+                      },4000)
                 })
-                setTimeout(()=>{
-                    window.location.href="/profile.html"
-                  },4000)
+                
             } else {
                 response.json().then(data => Swal.fire({
                                 icon: 'error',
