@@ -47,7 +47,12 @@ const username = usernameInput.value;
                         
                     })
                     setTimeout(()=>{
-                        window.location.href="/Driver.html"
+                        if(data.role == ROLE_ADMIN){
+                            window.location.href="/Driver.html"
+                        }else{
+                            window.location.href="../index.html"
+                        }
+                        
                       },1000)
                     
 

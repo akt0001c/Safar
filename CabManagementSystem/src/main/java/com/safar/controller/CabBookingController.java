@@ -65,4 +65,17 @@ public class CabBookingController {
         return ResponseEntity.ok(cabBookings);
     }
 
+    @GetMapping("/cabBooking/completeTrip/{cabBookingId}")
+    public ResponseEntity<CabBooking> completeTripHandler(@PathVariable Integer cabBookingId,Authentication authentication){
+        Users user= userService.getUserDetailsByEmail(authentication.getName());
+        CabBooking cabBooking= cabBookingService.completeTrip(cabBookingId,user.getEmail());
+        return ResponseEntity.ok(cabBooking);
+    }
+
+
+    @GetMapping("/ADMIN/cabBooking/history")
+    public ResponseEntity<List<CabBooking>> getAllCabBookingHandler(){
+        List<CabBooking> cabBookings= cabBookingService.viewAllBookendCab();
+        return ResponseEntity.ok(cabBookings);
+    }
 }
