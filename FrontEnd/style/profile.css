@@ -10,23 +10,62 @@ body{
 
 #profile-data{
     display: flex;
-    width:40%;
-    margin: auto;
-    justify-content: space-evenly;
-    box-shadow: 0px 0px  2px 3px green;
+    width:98%;
+    
+    justify-content: space-around;
+    /* box-shadow: 0px 0px  2px 3px green; */
     padding: 5px;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 100px;
 }
 
+#profile-data>div:nth-child(1){
+   
+    padding:40px 70px;
+    background-color: rgb(210, 209, 209);
+    box-shadow: 0px 0px  2px 3px gray;
+    border-radius: 5px;
+}
 .fa-user-circle{
-   font-size: 100px;
+   font-size: 200px;
+}
+
+#details-section span{
+    margin-left: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #details-section{
     padding:5px;
+    box-shadow: 0px 0px  2px 3px gray;
+    border-radius: 5px;
+    width:55%;
     
+}
+
+#details-section table{
+    border: none;
+
+}
+
+#details-section th{
+    border: none;
+
+}
+
+#details-section td{
+    border: none;
+
+}
+#details-section span{
+    color:blue;
+}
+
+
+#details-section table{
+    width:80%;
+    height: 280px;
 }
 
 .sub-heading{
@@ -35,29 +74,53 @@ body{
     margin-top: 60px;
 }
 
+#trans-head{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 60px;
+}
+
 #booking-div{
   width:90%;
   margin: auto;
+  box-shadow: 0px 0px  2px 3px gray;
+  border-radius: 5px;
+
 }
 
 #booking-table{
     width:100%;
 }
-table,th,td{
+
+
+ table,th,td{
     border:1px solid black;
 }
 
+
+
 #wallet{
-    box-shadow: 0px 0px  2px 3px green;
-    width:60%;
-    margin:auto;
+    box-shadow: 0px 0px  2px 3px gray;
+    width:21%;
+    margin-left: 88px;
     padding:8px;
     margin-bottom: 100px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 5px;
    
 }
 
 #wallet >h3{
     margin-left:25%;
+    font-size: 25px ;
+}
+
+#wallet span{
+    color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #wallet >div{
@@ -80,12 +143,23 @@ table,th,td{
 #transactions-div{
     width:90%;
     margin:auto;
-   
+    box-shadow: 0px 0px  2px 3px gray;
+    border-radius: 5px;
+    
 }
 
 #transactions-div>table{
     width: 100%;
 }
 
+.details-heading{
+    font-size: 25px;
+}
+
+#wallet-transaction-div{
+    display: flex;
+    width:98%;
+    justify-content: space-around;
+}
 
 

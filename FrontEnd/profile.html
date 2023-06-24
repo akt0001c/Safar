@@ -14,28 +14,54 @@
             <i class="fa fa-user-circle"></i>
         </div>
         <div id="details-section">
-            <h2 >Name: <span id="user-name"></span></h2>
-            <h2> Email: <span id="user-email"></span></h2>
-            <h2> Address: <span id="user-address"></span></h2>
-            <h2> Mobile no: <span id="user-mobile"></span></h2>
-            <h2> Role: <span id="user-role"></span></h2>
+            <table>
+                <tr>
+                    <td class="details-heading"> Name: </td>
+                    <td> <span id="user-name"></span></td>
+                </tr>
+                <tr>
+                    <td class="details-heading">  Email: </td>
+                    <td><span id="user-email"></span></td>
+                </tr>
+                <tr>
+                    <td class="details-heading">  Address: </td>
+                    <td><span id="user-address"></span></td>
+                </tr>
+                <tr>
+                    <td class="details-heading">  Mobile no: </td>
+                    <td><span id="user-mobile"></span></td>
+                </tr>
+                <tr>
+                    <td class="details-heading"> Role: </td>
+                    <td><span id="user-role"></span></td>
+                </tr>
+
+            </table>
+           
+           
+           
+           
+            
         </div>
     </div>
 
     
-    <h1 class="sub-heading">WALLET</h1>
+    
+   
     <div id="wallet">
-     <h3>Balance: <span id="balance-box"></span></h3>
-     <h3>Status: <span id="status-box"></span></h3>
-     <div>
-        <button id="status-btn">Disable</button>
-        <button id="addMoney-btn">Add Money</button>
-     </div>
-
+        <h3>Balance: <span id="balance-box"></span></h3>
+        <h3>Status: <span id="status-box"></span></h3>
+        <div>
+           <button id="status-btn">Disable</button>
+           <button id="addMoney-btn">Add Money</button>
+        </div>
+   
     </div>
 
-    <h1 class="sub-heading">TRANSACTIONS</h1>
-    <div id="transactions-div">
+
+    <h1 id="trans-head">TRANSACTIONS</h1>
+ <div id="transactions-div">
+       
         <table>
             <thead>
                 <th>Transaction Id</th>
@@ -46,7 +72,14 @@
             </thead>
             <tbody id="transaction-div-body"></tbody>
         </table>
-    </div>
+    
+
+   </div>
+
+    
+
+   
+    
 
 
     <h1 class="sub-heading">ALL BOOKINGS</h1>
