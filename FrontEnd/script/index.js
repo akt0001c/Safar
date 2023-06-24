@@ -91,12 +91,12 @@ bookCab.addEventListener('click', function (event) {
                         'Ride Booked ',
                         'success'
                     )
-                    // alert("Ride Booked")
                     console.log(data);
                     setTimeout(() => {
                         window.location.href = "/profile.html"
                     }, 3000)
                 })
+
             } else {
                 response.json().then(data => Swal.fire({
                     icon: 'error',
