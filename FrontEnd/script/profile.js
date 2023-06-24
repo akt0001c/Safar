@@ -40,6 +40,8 @@ window.onload = () => {
 
 };
 
+
+
 let getWalletData = async () => {
 
     try {
@@ -53,7 +55,7 @@ let getWalletData = async () => {
 
         if (res.ok) {
             loggedUser.wallet = await res.json();
-            localStorage.setItem("userData",JSON.stringify(loggedUser));
+            localStorage.setItem("userData", JSON.stringify(loggedUser));
             assignValuetowallet(loggedUser.wallet);
         }
         else {
@@ -61,7 +63,8 @@ let getWalletData = async () => {
             console.log(response);
         }
     } catch (error) {
-        alert(error);
+        // alert(error);
+        console.log(error);
     }
 
 
@@ -91,18 +94,19 @@ statusbtn.onclick = async (event) => {
         if (res.ok) {
             walletDetails = await res.json();
             loggedUser.wallet = walletDetails;
-            localStorage.setItem("userData",JSON.stringify(loggedUser));
+            localStorage.setItem("userData", JSON.stringify(loggedUser));
             assignValuetowallet(loggedUser.wallet);
-            if(loggedUser.wallet.status=== "Active")
+            if (loggedUser.wallet.status === "Active")
                 document.querySelector("#status-btn").textContent = "Disable";
-                else 
-                document.querySelector("#status-btn").textContent = "Enable"; 
+            else
+                document.querySelector("#status-btn").textContent = "Enable";
         }
         else {
             alert("Something went wrong");
         }
     } catch (error) {
-        alert(error);
+        // alert(error);
+        console.log(error);
     }
 
 
@@ -131,7 +135,8 @@ addbtn.onclick = async (event) => {
             alert("Something went wrong");
         }
     } catch (error) {
-        alert(error);
+        // alert(error);
+        console.log(error);
     }
 
 };
@@ -139,7 +144,7 @@ addbtn.onclick = async (event) => {
 
 
 let bookingAppend = (data) => {
-    bookingBody.innerHTML=null;
+    bookingBody.innerHTML = null;
     data.forEach(ele => {
         let row = document.createElement("tr");
         let td1 = document.createElement("td");
@@ -162,19 +167,62 @@ let bookingAppend = (data) => {
         td6.textContent = ele.distanceInKm;
         let td7 = document.createElement("td");
         td7.textContent = ele.bill;
-        let td8= document.createElement("button");
-        td8.textContent= "Complete Ride"
-        td8.setAttribute("class","payBill_btn");
-        td8.style.backgroundColor="Red";
+        let td8 = document.createElement("button");
+        td8.textContent = "Complete Ride"
+        td8.setAttribute("class", "payBill_btn");
+        td8.style.backgroundColor = "Red";
 
-        row.append(td1, td2, td3, td4, td5, td6, td7,td8);
+        td8.onclick = async (event) => {
+            // event.preventDefault();
+            console.log(ele);
+            console.log("t8" + ele.cabBookingId);
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${token}`);
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(`http://localhost:8888/cabBooking/completeTrip/${ele.cabBookingId}`, requestOptions)
+            .then(response => {
+                
+                if (response.ok) {
+                    console.log("hii")
+                    response.json().then(data => {
+                        Swal.fire(
+                            'Good job!',
+                            'Ride Completed Successfully ',
+                            'success'
+                        )
+                        showAllBookings()
+                        console.log(data);
+                        setTimeout(() => {
+                            window.location.href = "/profile.html"
+                        }, 2000)
+                    })
+    
+                } else {
+                    response.json().then(data => Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: data.message,
+                        footer: '<a href="">Why do I have this issue?</a>'
+                    }));
+                }
+            })
+
+        }
+
+        row.append(td1, td2, td3, td4, td5, td6, td7, td8);
         bookingBody.append(row);
 
     });
 };
 
 let transactionAppend = (data) => {
-    transactionBody.innerHTML=null;
+    transactionBody.innerHTML = null;
     data.forEach(ele => {
         let row = document.createElement("tr");
         let td1 = document.createElement("td");
@@ -223,10 +271,12 @@ let showAllBookings = async () => {
         } else {
             let error = await res.json();
             //  alert(error.HttpStatus);
+            console.log(error);
         }
 
     } catch (error) {
-        alert(error);
+        // alert(error);
+        console.log(error);
     }
 
 };
@@ -253,7 +303,8 @@ let showAllTransaction = async () => {
         }
 
     } catch (error) {
-        alert(error);
+        // alert(error);
+        console.log(error);
     }
 
 };

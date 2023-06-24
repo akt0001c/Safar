@@ -5,22 +5,22 @@ let bookCab = document.getElementById("subBtn");
 let usern = document.getElementById('userN');
 const names = localStorage.getItem("username");
 
-if(names!=undefined){
-    usern.innerHTML =  names;
-}else{
+if (names != undefined) {
+    usern.innerHTML = names;
+} else {
     usern.innerHTML = "Your Name";
 }
 
 console.log(usern);
 console.log(names);
 
-window.onload = () =>{
-    
+window.onload = () => {
+
     let userData = JSON.parse(localStorage.getItem('userData'));
-    if(userData != undefined){
+    if (userData != undefined) {
         document.getElementById('login').style.display = 'none';
         document.getElementById('logout').style.display = 'block';
-    }else{
+    } else {
         document.getElementById('login').style.display = 'block';
         document.getElementById('logout').style.display = 'none';
 
@@ -37,12 +37,12 @@ logout.addEventListener('click', function (event) {
     localStorage.removeItem('username');
     localStorage.removeItem('jwtToken');
     window.location.href = "../index.html";
-    
+
     console.log("hello text ");
 });
 
-let logoutUser= ()=>{
-    
+let logoutUser = () => {
+
 };
 
 
@@ -92,22 +92,22 @@ bookCab.addEventListener('click', function (event) {
                         'success'
                     )
                     console.log(data);
-                    setTimeout(()=>{
-                        window.location.href="/profile.html"
-                      },4000)
+                    setTimeout(() => {
+                        window.location.href = "/profile.html"
+                    }, 4000)
                 })
-                
+
             } else {
                 response.json().then(data => Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text:  data.message,
-                                footer: '<a href="">Why do I have this issue?</a>'
-                            }));
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.message,
+                    footer: '<a href="">Why do I have this issue?</a>'
+                }));
             }
         })
 
-    
+
 
 
 
