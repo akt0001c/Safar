@@ -5,10 +5,13 @@ let dAddress = document.getElementById("address");
 let dMob = document.getElementById("Mobile");
 let dLic = document.getElementById("licence");
 let dRate = document.getElementById("rating");
-let carType = document.getElementById("carType");
+let carType = document.getElementById("inputCarType");
 let perKmRate = document.getElementById("perKmRate");
 let carNumber = document.getElementById("carNumber");
 
+console.log("---------------");
+console.log(carType.value);
+console.log("---------------");
 
 let tbody = document.getElementById("tbody");
 

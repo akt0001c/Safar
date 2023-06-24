@@ -11,10 +11,67 @@
      -->
 
 
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' />
+ 
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      
 </head>
-<body style="background-color: antiquewhite;">
+<style>
+    .navbar{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .card{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+</style>
+
+<body>
+
+
+    
+      <!-- As a link -->
+      <nav class="navbar mb-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="Getalluser.html"><i class="fa fa-cube"></i>Suhana<b>Safar</b></a>
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+
+        <div class="card" style="width: 50rem; left: 20%; margin-top: 3rem;">
+            <div class="card-body">
+                <form class="row g-3" id="form">
+                    <div class="col-md-6">
+                      <label for="username" class="form-label">User Name</label>
+                      <input type="text" class="form-control" id="username" placeholder="User Name">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="name@gmail.com">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="phone" class="form-label">Phone</label>
+                      <!-- <input type="password" class="form-control" id="inputPassword4"> -->
+                      <input type="text" class="form-control" name="number" id="phone" placeholder="9876543210">
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <label for="address" class="form-label">Location</label>
+                      <input type="text" class="form-control" id="address" placeholder="Delhi">
+                    </div>
+                    <div class="col-12">
+                      <button id="submit" type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+    
+
+<!-- 
     <h1 style="text-align: center;">Update User Details</h1>
     <form id="form">
         <table align="center">
@@ -41,7 +98,7 @@
                 </td>
             </tr>
         </table>
-    </form>
+    </form> -->
 </body>
 <script src="./script/UpdateUser.js"></script>
 </html>
