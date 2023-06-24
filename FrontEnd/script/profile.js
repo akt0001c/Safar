@@ -162,8 +162,12 @@ let bookingAppend = (data) => {
         td6.textContent = ele.distanceInKm;
         let td7 = document.createElement("td");
         td7.textContent = ele.bill;
+        let td8= document.createElement("button");
+        td8.textContent= "Complete Ride"
+        td8.setAttribute("class","payBill_btn");
+        td8.style.backgroundColor="Red";
 
-        row.append(td1, td2, td3, td4, td5, td6, td7);
+        row.append(td1, td2, td3, td4, td5, td6, td7,td8);
         bookingBody.append(row);
 
     });
