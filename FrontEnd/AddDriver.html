@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/images/SAFAR.png" />
     <title>Admin</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
+
+  <style>
+    .navbar{
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+  </style>
+
   <body>
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg pt-3 pb-3" style="background-color: #e3f2fd;">
+      <nav class="navbar navbar-expand-lg pt-3 pb-3" style="background-color: #fafafa;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Suhana<b>Safar</b></a>
+          <a class="navbar-brand" href="index.html"><i class="fa fa-cube"></i>Suhana<b>Safar</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -85,20 +93,29 @@
                       <label for="rating" class="form-label">Rating</label>
                       <input type="text" class="form-control" id="rating" placeholder="3.5">
                     </div>
-                    <div class="col-md-6">
+
+
+                    <div class="col-md-4">
                       <label for="carType" class="form-label">Car Type</label>
-                      <!-- <input type="text" class="form-control" id="carType" placeholder="3.5"> -->
-                      <select name="" id="carType">
+                      <select id="inputCarType" class="form-select">
                         <option value="SUV">SUV</option>
-                        <option value="SUV">SEDAN</option>
-                        <option value="SUV">HATCHBACK</option>
+                        <option value="SEDAN">SEDAN</option>
+                        <option value="HATCHBACK">HATCHBACK</option>
                       </select>
                     </div>
-                    <div class="col-md-6">
+
+                    <!-- <div class="col-md-6">
+                      <label for="carType" class="form-label">Car Type</label> -->
+                      <!-- <input type="text" class="form-control" id="carType" placeholder="3.5"> -->
+                      <!-- <select name="" id="carType">
+                        
+                      </select>
+                    </div> -->
+                    <div class="col-md-4">
                       <label for="carNumber" class="form-label">Car Number</label>
                       <input type="text" class="form-control" id="carNumber" placeholder="UP 12 1234">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <label for="carNumber" class="form-label">Per KM Rate</label>
                       <input type="text" class="form-control" id="perKmRate" placeholder="10.0">
                     </div>
