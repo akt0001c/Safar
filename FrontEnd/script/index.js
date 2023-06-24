@@ -39,7 +39,11 @@ logout.addEventListener('click', function (event) {
     window.location.href = "../index.html";
     
     console.log("hello text ");
-})
+});
+
+let logoutUser= ()=>{
+    
+};
 
 
 

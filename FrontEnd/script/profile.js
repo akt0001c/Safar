@@ -53,6 +53,7 @@ let getWalletData = async () => {
 
         if (res.ok) {
             loggedUser.wallet = await res.json();
+            localStorage.setItem("userData",JSON.stringify(loggedUser));
             assignValuetowallet(loggedUser.wallet);
         }
         else {
@@ -78,7 +79,7 @@ let assignValuetowallet = (walletDetails) => {
 statusbtn.onclick = async (event) => {
 
     try {
-        let res = await fetch(`http://localhost:8888/WALLET/changeStatus/${loggedUser.wallet.walletId}`, {
+        let res = await fetch(`http://localhost:8888/WALLET/changeStatus`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
@@ -90,9 +91,12 @@ statusbtn.onclick = async (event) => {
         if (res.ok) {
             walletDetails = await res.json();
             loggedUser.wallet = walletDetails;
-
+            localStorage.setItem("userData",JSON.stringify(loggedUser));
             assignValuetowallet(loggedUser.wallet);
-            document.querySelector("#status-btn").textContent = walletDetails.status;
+            if(loggedUser.wallet.status=== "Active")
+                document.querySelector("#status-btn").textContent = "Disable";
+                else 
+                document.querySelector("#status-btn").textContent = "Enable"; 
         }
         else {
             alert("Something went wrong");
@@ -121,6 +125,7 @@ addbtn.onclick = async (event) => {
             walletDetails = await res.json();
             loggedUser.wallet = walletDetails;
             assignValuetowallet(loggedUser.wallet);
+            showAllTransaction();
         }
         else {
             alert("Something went wrong");
@@ -134,6 +139,7 @@ addbtn.onclick = async (event) => {
 
 
 let bookingAppend = (data) => {
+    bookingBody.innerHTML=null;
     data.forEach(ele => {
         let row = document.createElement("tr");
         let td1 = document.createElement("td");
@@ -164,6 +170,7 @@ let bookingAppend = (data) => {
 };
 
 let transactionAppend = (data) => {
+    transactionBody.innerHTML=null;
     data.forEach(ele => {
         let row = document.createElement("tr");
         let td1 = document.createElement("td");
