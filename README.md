@@ -32,6 +32,8 @@
  
   *Gihub Link-> https://github.com/akt0001c/fearful-doll-6867.git*
   
+  *Netlify Link-> https://6498687fdd20971f58da64a1--statuesque-jalebi-8543ee.netlify.app/*
+  
 ### Contributors
 - Ankit Choubry
 - Aman Kumar
