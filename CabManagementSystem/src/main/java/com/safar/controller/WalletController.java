@@ -30,7 +30,15 @@ public class WalletController {
     private UserService userService;
 
 //    http://localhost:8888/WALLET/addMoney?amount=900.0
-    
+
+
+    /**
+     * Adds money to a user's wallet.
+     *
+     * @param auth   The authentication object for the logged-in user.
+     * @param amount The amount of money to add.
+     * @return The updated wallet.
+     */
 	@PostMapping("/addMoney")
 	public ResponseEntity<Wallet>addMoneyToWallet(Authentication auth, @RequestParam("amount") Float amount){
         Users user = userService.getUserDetailsByEmail(auth.getName());
@@ -39,42 +47,56 @@ public class WalletController {
 		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
 		
 	}
-	
-	@PostMapping("/billPayment")
-	public ResponseEntity<Wallet> payBill( Authentication auth,@RequestParam("BillAmount") Float billAmount){
+    /**
+     * Changes the status of a wallet.
+     *
+     * @param auth The authentication object for the logged-in user.
+     * @return The updated wallet.
+     */
+    @PatchMapping("/changeStatus")
+    public ResponseEntity<Wallet> changeStatus(Authentication auth) {
         Users user = userService.getUserDetailsByEmail(auth.getName());
         Wallet wallet = user.getWallet();
-		Wallet res= wService.payRideBill(wallet.getWalletId(), billAmount);
-		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
-	}
-	
-	@PatchMapping("/changeStatus")
-	public ResponseEntity<Wallet> changeStatus(Authentication auth){
-        Users user = userService.getUserDetailsByEmail(auth.getName());
-        Wallet wallet = user.getWallet();
-		Wallet res= wService.changeStatus(wallet.getWalletId());
-		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
-	}
-	
-	
-	@PostMapping("/createWallet/{email}")
-	public ResponseEntity<Wallet> createWallet( @PathVariable String email){
-		Wallet res= wService.createWallet(email);
-		return new ResponseEntity<>(res,HttpStatus.CREATED);
-	}
+        Wallet res = wService.changeStatus(wallet.getWalletId());
+        return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
+    }
 
-	@GetMapping("/getWallet")
-	 public ResponseEntity<Wallet> getWallet(Authentication auth){
+    /**
+     * Creates a wallet for a user.
+     *
+     * @param email The email of the user for whom to create the wallet.
+     * @return The created wallet.
+     */
+    @PostMapping("/createWallet/{email}")
+    public ResponseEntity<Wallet> createWallet(@PathVariable String email) {
+        Wallet res = wService.createWallet(email);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
+    }
+
+    /**
+     * Retrieves a user's wallet.
+     *
+     * @param auth The authentication object for the logged-in user.
+     * @return The user's wallet.
+     */
+    @GetMapping("/getWallet")
+    public ResponseEntity<Wallet> getWallet(Authentication auth) {
         Users user = userService.getUserDetailsByEmail(auth.getName());
         Wallet wallet = user.getWallet();
-		return new ResponseEntity<Wallet>(wallet, HttpStatus.ACCEPTED);
-	 }
-	
-	@GetMapping("/WalletDetails")
-	public ResponseEntity<Wallet> getLoggedUserWallet(Authentication auth){
-		if(auth.getName()==null)
-			  throw new WalletException("User is not logged into the system");
-	    Wallet res= wService.getLoggedUserWallet(auth.getName());
-		return new ResponseEntity<>(res,HttpStatus.ACCEPTED);
-	}
+        return new ResponseEntity<>(wallet, HttpStatus.ACCEPTED);
+    }
+
+    /**
+     * Retrieves the wallet details of the logged-in user.
+     *
+     * @param auth The authentication object for the logged-in user.
+     * @return The wallet details of the logged-in user.
+     */
+    @GetMapping("/WalletDetails")
+    public ResponseEntity<Wallet> getLoggedUserWallet(Authentication auth) {
+        if (auth.getName() == null)
+            throw new WalletException("User is not logged into the system");
+        Wallet res = wService.getLoggedUserWallet(auth.getName());
+        return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
+    }
 }

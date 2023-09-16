@@ -33,6 +33,17 @@ public class TransactionServicesImpl implements TransactionServices {
 
 
 
+    /**
+     * Retrieves a list of transactions by wallet ID.
+     * If the wallet ID is null, it throws a WalletException indicating invalid wallet details.
+     * Checks if a wallet with the given ID exists, throws an exception if not found.
+     * Returns a list of transactions associated with the wallet.
+     *
+     * @param walletId The ID of the wallet to retrieve transactions for.
+     * @return The list of transactions associated with the wallet.
+     * @throws WalletException If the wallet is not found.
+     * @throws TransactionsException If no transactions are found.
+     */
 	@Override
 	public List<Transactions> getAllTransationByWalledId(Integer walletId) {
 		if(walletId==null)

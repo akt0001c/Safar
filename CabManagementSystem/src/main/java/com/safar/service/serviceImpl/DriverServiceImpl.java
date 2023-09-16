@@ -21,7 +21,14 @@ public class DriverServiceImpl implements DriverService {
 
 
 
-    //    for inserting a new driver
+    /**
+     * Inserts a new driver into the system.
+     * Validates the input driver object and associates it with a car.
+     *
+     * @param driver The driver to be inserted.
+     * @return The inserted driver.
+     * @throws DriverException If validation or insertion fails.
+     */
     @Override
     public Driver insertDriver(Driver driver) throws DriverException {
 
@@ -36,6 +43,14 @@ public class DriverServiceImpl implements DriverService {
 
     }
 
+
+
+    /**
+     * Retrieves a list of all drivers in the system.
+     *
+     * @return A list of all drivers.
+     * @throws DriverException If no drivers found.
+     */
     @Override
     public List<Driver> findAllDrivers() throws DriverException {
         List<Driver> drivers = driverRepository.findAll();
@@ -44,7 +59,15 @@ public class DriverServiceImpl implements DriverService {
     }
 
 
-    //    for updating a driver
+    /**
+     * Updates a driver's details by their email.
+     * Modifies the driver's name, location, and mobile number.
+     *
+     * @param email The email of the driver to update.
+     * @param driver The updated driver details.
+     * @return The updated driver.
+     * @throws DriverException If the driver is not found.
+     */
     @Override
     public Driver updateDriver(String email,Driver driver) throws DriverException {
         Optional<Driver> opt = driverRepository.findByEmail(email);
@@ -61,7 +84,15 @@ public class DriverServiceImpl implements DriverService {
 
     }
 
-//    change a driver name by his id
+    /**
+     * Changes the name of a driver identified by their email.
+     * If the driver is found, updates the driver's name and saves the changes.
+     *
+     * @param email The email of the driver to update.
+     * @param name The new name for the driver.
+     * @return The updated driver with the new name.
+     * @throws DriverException If the driver is not found.
+     */
     @Override
     public Driver changeName(String email, String name) throws DriverException {
         Optional<Driver> opt = driverRepository.findByEmail(email);
@@ -78,7 +109,14 @@ public class DriverServiceImpl implements DriverService {
     }
 
 
-    //    delete a driver for given id
+    /**
+     * Deletes a driver by their email.
+     * If the driver is found, deletes the driver from the database.
+     *
+     * @param email The email of the driver to delete.
+     * @return A message indicating the driver was deleted successfully.
+     * @throws DriverException If the driver is not found.
+     */
     @Override
     public String deleteDriver(String email) throws DriverException {
         Optional<Driver> opt = driverRepository.findByEmail(email);
@@ -97,7 +135,12 @@ public class DriverServiceImpl implements DriverService {
 
 
 
-    //    viewing the list of best drivers
+    /**
+     * Retrieves a list of best drivers with a rating of 4.5 or higher.
+     *
+     * @return A list of the best drivers.
+     * @throws DriverException If no best drivers are found.
+     */
     @Override
     public List<Driver> viewBestDrivers() {
 
@@ -127,7 +170,13 @@ public class DriverServiceImpl implements DriverService {
 
 
 
-    //    view driver by his id
+    /**
+     * Retrieves driver details by their ID.
+     *
+     * @param driverId The ID of the driver to retrieve.
+     * @return The driver details.
+     * @throws DriverException If the driver is not found.
+     */
     @Override
     public Driver viewDriver(int driverId) throws DriverException {
         Optional<Driver> opt = driverRepository.findById(driverId);
@@ -141,6 +190,14 @@ public class DriverServiceImpl implements DriverService {
         }
     }
 
+
+    /**
+     * Retrieves driver details by their email.
+     *
+     * @param email The email of the driver to retrieve.
+     * @return The driver details.
+     * @throws DriverException If the driver is not found.
+     */
     @Override
     public Driver getDriverDetailsByEmail(String email) throws DriverException {
         return driverRepository.findByEmail(email).orElseThrow(()-> new DriverException("Driver not found with this email "+ email));
