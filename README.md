@@ -2,7 +2,7 @@
 
 # This is an Online cab booking application called Safar, which provides REST API services for booking cabs and managing users with two roles: admin and user, through interactive API services.
 
-
+![Home Page](https://github.com/akt0001c/fearful-doll-6867/assets/110126989/a5a4a01a-7dfa-4f08-8ad1-09217e88c833)
 
 ## Table of Contents
 - [Features](#features)
@@ -32,10 +32,10 @@ Before you begin, ensure you have met the following requirements:
 - Lombok and Swagger for API documentation.
 
 
-# Screenshots
 
-### Home Page
-![Home Page](https://github.com/akt0001c/fearful-doll-6867/assets/110126989/a5a4a01a-7dfa-4f08-8ad1-09217e88c833)
+
+
+
 
 ### ER DIGRAM
 ![SAFAR DIAGRAM](https://github.com/akt0001c/fearful-doll-6867/assets/115461689/59fbdd3b-f22e-41c7-87c2-faf1d330cf34)
