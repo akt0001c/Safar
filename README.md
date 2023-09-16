@@ -13,6 +13,7 @@
 - [Database Configuration](#database-configuration)
 - [Testing](#testing)
 - [Contributing](#contributing)
+- [Contributors](#Contributors)
 
 ## Features
 
@@ -109,11 +110,17 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-
-
-
 ## Testing
-mvn test
+- mvn test
+
+## Contributors
+- Ankit Choubry
+- Aman Kumar
+- Susheel Kumar
+- Dhanushpriyan
+
+
+
 
 ## Contributing
 
