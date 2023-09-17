@@ -32,6 +32,18 @@ public class CabBookingServiceImpl implements CabBookingService{
     @Autowired
     private WalletServices walletServices;
 
+
+    /**
+     * Inserts a new cab booking into the system.
+     * Validates the input cabbooking object.
+     * Finds an available driver for the requested location.
+     * Calculates the fare and updates driver and booking information.
+     *
+     * @param cabbooking The cab booking object to be inserted.
+     * @param email The email of the user making the booking.
+     * @return The inserted cab booking with updated details.
+     * @throws CabBookingException If validation or booking fails.
+     */
 	@Override
 	public CabBooking insertCabBooking(CabBooking cabbooking, String email) {
 		if(cabbooking==null) {
@@ -40,7 +52,7 @@ public class CabBookingServiceImpl implements CabBookingService{
         Users user=userrepo.findByEmail(email).orElseThrow(()->new CabBookingException("enter valid email"));
 
         List<Driver> drivers = driverService.findAllDrivers();
-     
+
 
        if(drivers.isEmpty()) {
            throw new CabBookingException("All  drivers  are not available");
@@ -76,6 +88,17 @@ public class CabBookingServiceImpl implements CabBookingService{
 		return cabbookingrepo.save(cabbooking);
 	}
 
+
+    /**
+     * Updates an existing cab booking.
+     * Validates the input cabbooking object.
+     * Modifies the cab booking details and updates the database.
+     *
+     * @param cabBookingId The ID of the cab booking to update.
+     * @param cabbooking The updated cab booking details.
+     * @return The updated cab booking with modified details.
+     * @throws CabBookingException If validation or update fails.
+     */
 	@Override
 	public CabBooking updateCabBooking(Integer cabBookingId, CabBooking cabbooking) {
 		if(cabbooking==null) {
@@ -101,6 +124,16 @@ public class CabBookingServiceImpl implements CabBookingService{
 		return cabbookingrepo.save(c);
 	}
 
+
+
+    /**
+     * Cancels an existing cab booking.
+     * Marks the cab booking as cancelled and updates driver status.
+     *
+     * @param cabBookingId The ID of the cab booking to cancel.
+     * @return A message indicating that the cab booking is cancelled.
+     * @throws CabBookingException If cancellation fails.
+     */
 	@Override
 	public String cancelCabBooking(Integer cabBookingId) {
 		CabBooking c= cabbookingrepo.findById(cabBookingId).orElseThrow(()->new CabBookingException("enter valid cab id"));
@@ -112,6 +145,16 @@ public class CabBookingServiceImpl implements CabBookingService{
         return "cab booking is cancelled";
 	}
 
+
+
+
+    /**
+     * Retrieves all cab bookings made by a user.
+     *
+     * @param email The email of the user to retrieve bookings for.
+     * @return A list of cab bookings made by the user.
+     * @throws CabBookingException If no bookings found or the user is invalid.
+     */
 	@Override
 	public List<CabBooking> viewAllTrips(String  email) {
 		Users user=userrepo.findByEmail(email).orElseThrow(()-> new CabBookingException("enter valid userId"));
@@ -121,6 +164,16 @@ public class CabBookingServiceImpl implements CabBookingService{
 
 	}
 
+
+    /**
+     * Completes a cab trip and updates the booking status.
+     * Marks the cab booking as completed and processes payment.
+     *
+     * @param cabBookingId The ID of the cab booking to complete.
+     * @param email The email of the user completing the trip.
+     * @return The completed cab booking with updated details.
+     * @throws CabBookingException If completion fails.
+     */
     @Override
     public CabBooking completeTrip(Integer cabBookingId, String email) {
         CabBooking c= cabbookingrepo.findById(cabBookingId).orElseThrow(()->new CabBookingException("enter valid cab id"));
@@ -140,6 +193,12 @@ public class CabBookingServiceImpl implements CabBookingService{
         return cabbookingrepo.save(c);
     }
 
+
+    /**
+     * Retrieves a list of all booked cab trips.
+     *
+     * @return A list of cab bookings that are currently booked.
+     */
     @Override
     public List<CabBooking> viewAllBookendCab() {
         List<CabBooking> list=cabbookingrepo.findAll();

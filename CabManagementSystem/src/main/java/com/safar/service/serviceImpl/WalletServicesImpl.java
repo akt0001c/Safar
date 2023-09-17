@@ -26,9 +26,19 @@ public class WalletServicesImpl implements WalletServices {
 	private WalletRepository wrepo;
     @Autowired
 	private UserRepository urepo;
-	
 
 
+
+    /**
+     * Adds money to the wallet with the specified walletId.
+     * If the walletId or amount is null, it throws a WalletException indicating invalid details.
+     * Checks if the wallet is active and adds the specified amount to the balance.
+     * Creates a credit transaction record for the added amount.
+     *
+     * @param walletId The wallet ID to add money to.
+     * @param amount   The amount to be added to the wallet.
+     * @return The updated wallet details.
+     */
 	@Override
 	public Wallet addMoney(Integer walletId, Float amount) {
 		if(walletId==null || amount == null)
@@ -52,6 +62,14 @@ public class WalletServicesImpl implements WalletServices {
 		return res;
 	}
 
+    /**
+     * Retrieves all transactions associated with the wallet with the specified walletId.
+     * If the walletId is null, it throws a WalletException indicating invalid details.
+     * Checks if the wallet is active before retrieving transactions.
+     *
+     * @param walletId The wallet ID to retrieve transactions for.
+     * @return The list of transactions associated with the wallet.
+     */
 	@Override
 	public List<Transactions> getAllTranactions(Integer walletId ) {
 		if(walletId==null )
@@ -69,6 +87,17 @@ public class WalletServicesImpl implements WalletServices {
 		return list;
 	}
 
+
+    /**
+     * Pays a ride bill from the wallet with the specified walletId.
+     * If the walletId or bill amount is null, it throws a WalletException indicating invalid details.
+     * Checks if the wallet is active and if the balance is sufficient for the bill.
+     * Deducts the bill amount from the wallet balance and creates a debit transaction record.
+     *
+     * @param walletId The wallet ID to pay the ride bill from.
+     * @param bill     The ride bill amount to be paid.
+     * @return The updated wallet details.
+     */
 	@Override
 	public Wallet payRideBill(Integer walletId, Float bill) {
 		if(walletId==null || bill == null)
@@ -96,12 +125,19 @@ public class WalletServicesImpl implements WalletServices {
 		
 		Wallet res= wrepo.save(ob);
 		return res;
-		
-		
-		
+
 		
 	}
 
+
+    /**
+     * Changes the status (Active/Inactive) of the wallet with the specified walletId.
+     * If the walletId is null, it throws a WalletException indicating invalid details.
+     * Toggles the status of the wallet and saves the changes.
+     *
+     * @param walletId The wallet ID to change the status of.
+     * @return The updated wallet details.
+     */
 	@Override
 	public Wallet changeStatus(Integer walletId) {
 		if(walletId==null )
@@ -119,6 +155,16 @@ public class WalletServicesImpl implements WalletServices {
 		return res;
 	}
 
+
+    /**
+     * Creates a new wallet for the user with the specified email.
+     * If the email is null, it throws a WalletException indicating invalid details.
+     * Checks if the user already has an allocated wallet and prevents creating another one.
+     * Creates a new wallet with an initial balance of 0.0f and an active status.
+     *
+     * @param email The email of the user for whom to create a wallet.
+     * @return The created wallet details.
+     */
 	@Override
 	public Wallet createWallet(String email) {
 		if(email==null )
@@ -140,15 +186,30 @@ public class WalletServicesImpl implements WalletServices {
 		
 		return res;
 	}
-	
-	
 
+
+
+    /**
+     * Retrieves the wallet details by wallet ID.
+     * If the wallet ID is null or the wallet is not found, it throws a WalletException.
+     *
+     * @param id The wallet ID to retrieve.
+     * @return The wallet details.
+     */
 	@Override
   public Wallet  getWallet(Integer id){
       Wallet res= wrepo.findById(id).orElseThrow(()->new WalletException("Wallet not found"));
 	  return res;
   }
 
+
+    /**
+     * Retrieves the wallet details of the logged-in user by email.
+     * If the email is null or the user's wallet is not found, it throws exceptions.
+     *
+     * @param email The email of the logged-in user.
+     * @return The wallet details of the logged-in user.
+     */
 	@Override
 	public Wallet getLoggedUserWallet(String email) {
 		if(email==null)
