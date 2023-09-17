@@ -4,6 +4,30 @@
 
 ![Home Page](https://github.com/akt0001c/fearful-doll-6867/assets/110126989/a5a4a01a-7dfa-4f08-8ad1-09217e88c833)
 
+## Modules
+ - User Module
+ - Cab Managment Module
+ - Driver Managment Module
+ - Booking Managment Module
+ - Wallet Managment Module
+
+## Frontend And Backend Technologies
+- HTML
+- JavaScript
+- CSS
+- Spring Boot
+- Maven
+- Spring Data Jpa
+- Hibernate
+- Spring Security
+- Mysql
+- Lombok
+- Swagger
+
+ *Gihub Link-> https://github.com/akt0001c/fearful-doll-6867.git*
+  
+  *Netlify Link-> https://6498687fdd20971f58da64a1--statuesque-jalebi-8543ee.netlify.app/*
+
 ## Table of Contents
 - [Features](#features)
 - [Prerequisites](#prerequisites)
