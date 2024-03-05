@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safar.entity.Users;
 import com.safar.entity.Wallet;
 import com.safar.entity.WalletStatus;
+import com.safar.exceptions.WalletException;
 import com.safar.service.UserService;
 import com.safar.service.WalletServices;
 import org.junit.jupiter.api.Assertions;
@@ -125,4 +126,44 @@ public class WalletControllerTest {
 
     }
 
-}
+    @Test
+    @DisplayName("Wallet object can be find")
+    public void testGetWallet_WhenValidWalletIdProvided_ThenReturnsWalletObject() throws  Exception{
+       Mockito.when(walletServices.getWallet(anyInt())).thenReturn(responseWallet);
+
+       RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/WALLET/getWallet/{wid}",1).contentType(MediaType.APPLICATION_JSON_VALUE);
+       MvcResult mvcResult= mockMvc.perform(requestBuilder).andExpect(status().isAccepted()).andReturn();
+        String responseBodyAsString= mvcResult.getResponse().getContentAsString();
+        Wallet resWallet= new ObjectMapper().readValue(responseBodyAsString,Wallet.class);
+        Assertions.assertNotNull(resWallet.getWalletId(),"Wallet should have a id");
+        Assertions.assertEquals(responseWallet.getWalletId(),resWallet.getWalletId(),"Wallet id should be equal to 1");
+        Mockito.verify(walletServices,Mockito.times(1)).getWallet(anyInt());
+
+    }
+
+
+    @Test
+    @DisplayName("Wallet object can be find for logged user")
+  public void testGetLoggedUserWallet()throws  Exception{
+        Mockito.when(walletServices.getLoggedUserWallet(anyString())).thenReturn(responseWallet);
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/WALLET/WalletDetails").principal(auth).contentType(MediaType.APPLICATION_JSON_VALUE);
+        MvcResult mvcResult = mockMvc.perform(requestBuilder).andExpect(status().isAccepted()).andReturn();
+        String responseBodyAsString= mvcResult.getResponse().getContentAsString();
+        Wallet resWallet= new ObjectMapper().readValue(responseBodyAsString,Wallet.class);
+        Assertions.assertNotNull(resWallet.getWalletId(),"Wallet should have a id");
+        Assertions.assertEquals(responseWallet.getWalletId(),resWallet.getWalletId(),"Wallet id should be equal to 1");
+        Mockito.verify(walletServices,Mockito.times(1)).getLoggedUserWallet(anyString());
+
+  }
+  @Test
+  @DisplayName("Wallet Exception can be thrown")
+  public void testGetLoggedUserWallet_WhenNullAuthenticationPassed_shouldThrowWalletException() throws Exception {
+     auth= new UsernamePasswordAuthenticationToken(null,null);
+      Mockito.when(walletServices.getLoggedUserWallet(anyString())).thenReturn(responseWallet);
+
+      RequestBuilder requestBuilder= MockMvcRequestBuilders.get("/WALLET/WalletDetails").principal(auth).contentType(MediaType.APPLICATION_JSON_VALUE);
+      MvcResult mvcResult= mockMvc.perform(requestBuilder).andExpect(result->Assertions.assertTrue(result.getResolvedException() instanceof WalletException)).andReturn();
+      }
+  }
+

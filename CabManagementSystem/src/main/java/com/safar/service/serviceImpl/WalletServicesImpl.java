@@ -197,7 +197,7 @@ public class WalletServicesImpl implements WalletServices {
      * @return The wallet details.
      */
 	@Override
-  public Wallet  getWallet(Integer id){
+  public Wallet  getWallet(Integer id)throws  WalletException{
       Wallet res= wrepo.findById(id).orElseThrow(()->new WalletException("Wallet not found"));
 	  return res;
   }

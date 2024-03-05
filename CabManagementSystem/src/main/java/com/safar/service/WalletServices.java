@@ -2,6 +2,7 @@ package com.safar.service;
 
 import com.safar.entity.Transactions;
 import com.safar.entity.Wallet;
+import com.safar.exceptions.WalletException;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public interface WalletServices {
      * @param id The ID of the wallet to retrieve.
      * @return The wallet details.
      */
-    public Wallet getWallet(Integer id);
+    public Wallet getWallet(Integer id) throws WalletException;
 
     /**
      * Retrieves the wallet associated with a logged-in user by their email.
