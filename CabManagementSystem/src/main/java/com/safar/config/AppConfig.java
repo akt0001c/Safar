@@ -58,6 +58,7 @@ public class AppConfig {
                             .requestMatchers("/cabBooking/**","cabBooking","/WALLET/**").hasAnyRole("ADMIN","USER")
                             .requestMatchers(HttpMethod.PATCH,"/users/**","/WALLET/**").hasAnyRole("ADMIN","USER")
                             .requestMatchers("/WALLET/**").hasRole("USER")
+                            .requestMatchers(HttpMethod.GET,"/WALLET/getWallet/**").hasRole("ADMIN")
                             .anyRequest().authenticated();
                 })
                 .csrf(csrf -> csrf.disable())

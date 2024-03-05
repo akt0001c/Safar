@@ -215,7 +215,7 @@ public class WalletServicesImpl implements WalletServices {
 		if(email==null)
 			  throw new UsersException("Invalid user details provided");
 		
-	   Users user= urepo.findByEmail(email).orElseThrow(()->new UsersException(" No logged User not found"));
+	   Users user= urepo.findByEmail(email).orElseThrow(()->new UsersException(" User not found OR You should logged in"));
 	   Wallet res= user.getWallet();
 	   if(res==null)
 		     throw new WalletException("NO Wallet found ");
