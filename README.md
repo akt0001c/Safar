@@ -158,6 +158,6 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 
 ## Contact
 
-For any questions or suggestions, feel free to contact us at amankumar.ak0012@gmail.com.
+For any questions or suggestions, feel free to contact us at amankumar.ak0012@gmail.com or akt00071000@gmail.com .
 
 
