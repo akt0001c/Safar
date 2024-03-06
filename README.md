@@ -136,6 +136,7 @@ spring.jpa.show-sql=true
 
 ## Testing
 - mvn test
+- mvc test for controllers
 
 ## Contributors
 - Ankit Choubry
