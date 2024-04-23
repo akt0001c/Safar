@@ -67,7 +67,7 @@ Before you begin, ensure you have met the following requirements:
 ## Getting Started
 
 To get started, follow these steps:
-1. Clone the project: `https://github.com/Amanastel/Safar_CabBooking_Application`
+1. Clone the project: `https://github.com/akt0001c/Safar.git`
 2. Configure the database in `application.properties`.
 3. Build and run the application.
 
