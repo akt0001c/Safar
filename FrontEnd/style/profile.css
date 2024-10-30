@@ -1,10 +1,10 @@
 body{
-    
+   background-color: gray;   
 }
 
 #heading{
     text-align: center;
-    color: green;
+    color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -18,21 +18,24 @@ body{
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 100px;
+    
 }
 
+
+
 #profile-data>div:nth-child(1){
-   
+   width: 10%;
     padding:40px 70px;
-    background-color: rgb(210, 209, 209);
-    box-shadow: 0px 0px  2px 3px gray;
+    
+    
     border-radius: 5px;
 }
 .fa-user-circle{
-   font-size: 200px;
+   font-size: 50px;
 }
 
 #details-section span{
-    margin-left: 50px;
+    margin-left: 70px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -40,7 +43,7 @@ body{
     padding:5px;
     box-shadow: 0px 0px  2px 3px gray;
     border-radius: 5px;
-    width:55%;
+    width:70%;
     
 }
 
@@ -83,8 +86,9 @@ body{
 #booking-div{
   width:90%;
   margin: auto;
-  box-shadow: 0px 0px  2px 3px gray;
+  box-shadow: 0px 0px  2px 3px white;
   border-radius: 5px;
+  margin-bottom: 30px;
 
 }
 
@@ -97,12 +101,16 @@ body{
     border:1px solid black;
 }
 
-
+#wallet-heading{
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
 
 #wallet{
-    box-shadow: 0px 0px  2px 3px gray;
-    width:21%;
-    margin-left: 88px;
+    box-shadow: 0px 0px  2px 3px white;
+    width:90%;
+    margin:auto;
     padding:8px;
     margin-bottom: 100px;
     height: 300px;
@@ -115,12 +123,14 @@ body{
 
 #wallet >h3{
     margin-left:25%;
+    
     font-size: 25px ;
 }
 
 #wallet span{
     color: blue;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 15px;
 }
 
 #wallet >div{
@@ -143,7 +153,7 @@ body{
 #transactions-div{
     width:90%;
     margin:auto;
-    box-shadow: 0px 0px  2px 3px gray;
+    box-shadow: 0px 0px  2px 3px white;
     border-radius: 5px;
     
 }

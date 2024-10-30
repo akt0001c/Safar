@@ -547,6 +547,13 @@ h1, h2, h3, h4, h5, h6 {
     animation: myfirst 30s linear infinite;
 }
 
+#add-driver{
+    display: none;
+    font-size: medium;
+    color: white;
+    font-weight: bold;
+}
+
 
 
 @-moz-keyframes myfirst {

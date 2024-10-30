@@ -32,9 +32,10 @@ window.onload = () => {
     document.querySelector("#user-address").textContent = loggedUser.address;
     document.querySelector("#user-mobile").textContent = loggedUser.phone;
     document.querySelector("#user-role").textContent = loggedUser.role;
+    getWalletData();
     showAllBookings();
     showAllTransaction();
-    getWalletData();
+   
 
 
 
@@ -170,10 +171,17 @@ let bookingAppend = (data) => {
         let td8 = document.createElement("button");
         td8.textContent = "Complete Ride"
         td8.setAttribute("class", "payBill_btn");
-        td8.style.backgroundColor = "Red";
-
-        td8.onclick = async (event) => {
-            // event.preventDefault();
+        td8.style.backgroundColor = "gray";
+        td8.style.color="white";
+        td8.style.width="100%";
+        if(ele.status==='COMPLETED')
+        {
+                td8.disabled=true;
+                td8.textContent='Already completed';
+        }
+            
+         td8.onclick = async (event) => {
+           
             console.log(ele);
             console.log("t8" + ele.cabBookingId);
             
@@ -184,7 +192,7 @@ let bookingAppend = (data) => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-
+            
             fetch(`http://localhost:8888/cabBooking/completeTrip/${ele.cabBookingId}`, requestOptions)
             .then(response => {
                 
@@ -204,11 +212,13 @@ let bookingAppend = (data) => {
                     })
     
                 } else {
+                    td8.disabled=false;
                     response.json().then(data => Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: data.message,
                         footer: '<a href="">Why do I have this issue?</a>'
+                        
                     }));
                 }
             })
@@ -255,7 +265,9 @@ let transactionAppend = (data) => {
 let showAllBookings = async () => {
 
     try {
-        let res = await fetch(`http://localhost:8888/users/${loggedUser.email}`, {
+        console.log(token);
+      
+       let res= await fetch(`http://localhost:8888/cabBooking/history`,{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -264,13 +276,13 @@ let showAllBookings = async () => {
         });
 
         if (res.ok) {
-            let user = await res.json();
-            let data = user.cabBookings;
+            let data = await res.json();
+         
             console.log(data);
             bookingAppend(data);
         } else {
             let error = await res.json();
-            //  alert(error.HttpStatus);
+           
             console.log(error);
         }
 
@@ -283,7 +295,8 @@ let showAllBookings = async () => {
 
 let showAllTransaction = async () => {
     try {
-        let res = await fetch(`http://localhost:8888/WALLET/getWallet`, {
+        let wid= loggedUser.wallet.walletId;
+        let res = await fetch(`http://localhost:8888/WALLET/getWallet/${wid}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
