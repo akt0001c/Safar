@@ -7,6 +7,18 @@ let addbtn = document.querySelector("#addMoney-btn");
 let token = localStorage.getItem("jwtToken") || "";
 let loggedUser = JSON.parse(localStorage.getItem("userData")) || {};
 
+const myDetailsBtn= document.querySelector("#my-details-btn");
+const walletBtn= document.querySelector("#wallet-btn");
+const transactionBtn= document.querySelector("#transaction-btn");
+const bookingBtn= document.querySelector("#booking-btn");
+
+
+const myDetailsSection= document.querySelector("#details-section");
+const walletSection= document.querySelector("#wallet-section");
+const transctionSection= document.querySelector("#transaction-section");
+const bookingSection= document.querySelector("#booking-section");
+
+
 //let token= `eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzI4MDQ1MiwiZXhwIjoxNjg3MzQwNDUyfQ.U5yb3Nxs6KI5-pYqvhlSZZuwsiKYD8miZE1R-rqpwWY`;
 // let loggedUser={
 //     "userId": 1,
@@ -27,6 +39,7 @@ let loggedUser = JSON.parse(localStorage.getItem("userData")) || {};
 
 window.onload = () => {
     console.log("working");
+    myDetailsSection.style.display="block";
     document.querySelector("#user-name").textContent = loggedUser.username;
     document.querySelector("#user-email").textContent = loggedUser.email;
     document.querySelector("#user-address").textContent = loggedUser.address;
@@ -42,7 +55,34 @@ window.onload = () => {
 };
 
 
+myDetailsBtn.onclick= ()=>{
+    myDetailsSection.style.display="block";
+    walletSection.style.display="none";
+    transctionSection.style.display="none";
+    bookingSection.style.display="none";
+};
 
+walletBtn.onclick = ()=>{
+    myDetailsSection.style.display="none";
+    walletSection.style.display="block";
+    transctionSection.style.display="none";
+    bookingSection.style.display="none";
+};
+
+transactionBtn.onclick= ()=>{
+    myDetailsSection.style.display="none";
+    walletSection.style.display="none";
+    transctionSection.style.display="block";
+    bookingSection.style.display="none";
+};
+
+
+bookingBtn.onclick= ()=>{
+    myDetailsSection.style.display="none";
+    walletSection.style.display="none";
+    transctionSection.style.display="none";
+    bookingSection.style.display="block";
+}; 
 let getWalletData = async () => {
 
     try {

@@ -1,16 +1,57 @@
 body{
-   background-color: gray;   
+   /* background-color: gray;    */
+   margin-top: 56px;
 }
 
-#heading{
+aside{
     text-align: center;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-shadow: 2px 2px 2px 2px gray;
+    width:20%;
+    height: 100vh;
+    padding:8px;
+    margin-left: 5px;
+    /* margin-top:15px; */
+    float: left;
+    position:fixed;
+
+}
+
+aside>div{
+    padding: 5px;
+    box-shadow: 0px 1px 1px 1px gray;
+    margin-bottom: 15px;
+    cursor: pointer;
+    
+}
+
+section{
+    float:right;
+    width:79%;
+    height: 100vh;
+    padding:8px;
+    margin-top: 10px;
+    overflow: hidden;
+    
+}
+
+
+
+#wallet-section{
+    display: none;
+    
+}
+
+#transaction-section{
+    display: none;
+}
+
+#booking-section{
+    display: none;
 }
 
 #profile-data{
     display: flex;
-    width:98%;
+    width:100%;
     
     justify-content: space-around;
     /* box-shadow: 0px 0px  2px 3px green; */
@@ -30,9 +71,7 @@ body{
     
     border-radius: 5px;
 }
-.fa-user-circle{
-   font-size: 50px;
-}
+
 
 #details-section span{
     margin-left: 70px;
@@ -43,7 +82,7 @@ body{
     padding:5px;
     box-shadow: 0px 0px  2px 3px gray;
     border-radius: 5px;
-    width:70%;
+    width:100%;
     
 }
 
@@ -74,21 +113,22 @@ body{
 .sub-heading{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 60px;
+    margin-bottom: 30px;
 }
 
 #trans-head{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 60px;
+    /* margin-top: 10px; */
+    margin-bottom: 30px;
 }
 
 #booking-div{
-  width:90%;
+  width:98%;
   margin: auto;
   box-shadow: 0px 0px  2px 3px white;
   border-radius: 5px;
-  margin-bottom: 30px;
+  
 
 }
 
@@ -151,9 +191,10 @@ body{
 }
 
 #transactions-div{
-    width:90%;
+    width:98;
     margin:auto;
-    box-shadow: 0px 0px  2px 3px white;
+    /* box-shadow: 0px 0px  2px 3px white; */
+    border:2px solid black;
     border-radius: 5px;
     
 }
