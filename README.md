@@ -26,7 +26,7 @@
 
  *Gihub Link-> [https://github.com/akt0001c/Safar.git](https://github.com/akt0001c/Safar.git)*
   
-  *Netlify Link-> https://6498687fdd20971f58da64a1--statuesque-jalebi-8543ee.netlify.app/*
+  *Netlify Link-> https://loquacious-kheer-25b7f3.netlify.app/*
 
 ## Table of Contents
 - [Features](#features)
