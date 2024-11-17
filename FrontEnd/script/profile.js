@@ -19,6 +19,35 @@ const transctionSection= document.querySelector("#transaction-section");
 const bookingSection= document.querySelector("#booking-section");
 
 
+// Get elements
+const addMoneyBtn = document.getElementById('addMoney-btn');
+const addMoneyPopup = document.getElementById('addMoneyPopup');
+const closePopupBtn = document.getElementById('closePopup');
+const confirmAddMoneyBtn = document.getElementById('confirmAddMoney');
+
+// Show the popup when the "Add Money" button is clicked
+addMoneyBtn.addEventListener('click', function() {
+    addMoneyPopup.classList.remove('hidden');
+});
+
+// Close the popup when the "Close" button is clicked
+closePopupBtn.addEventListener('click', function() {
+    addMoneyPopup.classList.add('hidden');
+});
+
+// Optional: Handle the confirm button click
+confirmAddMoneyBtn.addEventListener('click', function() {
+    const amount = document.getElementById('amount').value;
+    if (amount) {
+        // Here you can add your logic to add money
+        console.log(`Adding money: ${amount}`);
+        // Close the popup after confirming
+        addMoneyPopup.classList.add('hidden');
+    } else {
+        alert('Please enter an amount.');
+    }
+});
+
 //let token= `eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzI4MDQ1MiwiZXhwIjoxNjg3MzQwNDUyfQ.U5yb3Nxs6KI5-pYqvhlSZZuwsiKYD8miZE1R-rqpwWY`;
 // let loggedUser={
 //     "userId": 1,
@@ -154,33 +183,33 @@ statusbtn.onclick = async (event) => {
 };
 
 
-addbtn.onclick = async (event) => {
-    try {
-        let amount = prompt("Enter amount:");
+// addbtn.onclick = async (event) => {
+//     try {
+//         let amount = prompt("Enter amount:");
 
-        let res = await fetch(`http://localhost:8888/WALLET/addMoney?amount=${amount}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        });
+//         let res = await fetch(`http://localhost:8888/WALLET/addMoney?amount=${amount}`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Authorization": `Bearer ${token}`
+//             }
+//         });
 
-        if (res.ok) {
-            walletDetails = await res.json();
-            loggedUser.wallet = walletDetails;
-            assignValuetowallet(loggedUser.wallet);
-            showAllTransaction();
-        }
-        else {
-            alert("Something went wrong");
-        }
-    } catch (error) {
-        // alert(error);
-        console.log(error);
-    }
+//         if (res.ok) {
+//             walletDetails = await res.json();
+//             loggedUser.wallet = walletDetails;
+//             assignValuetowallet(loggedUser.wallet);
+//             showAllTransaction();
+//         }
+//         else {
+//             alert("Something went wrong");
+//         }
+//     } catch (error) {
+//         // alert(error);
+//         console.log(error);
+//     }
 
-};
+// };
 
 
 
