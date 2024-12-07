@@ -26,7 +26,7 @@
 
  *Gihub Link-> [https://github.com/akt0001c/Safar.git](https://github.com/akt0001c/Safar.git)*
   
-  *Netlify Link-> https://loquacious-kheer-25b7f3.netlify.app/*
+  *Netlify Link-> https://harmonious-salmiakki-4ba81b.netlify.app/*
 
 ## Table of Contents
 - [Features](#features)
