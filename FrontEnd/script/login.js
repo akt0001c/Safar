@@ -53,7 +53,7 @@ loginForm.addEventListener("submit", function (event) {
                             }, 2000)
                         }else{
                             setTimeout(() => {
-                                window.location.href = "/index.html"
+                                window.location.href = "./index.html"
                             }, 2000)
                         }
                     })
