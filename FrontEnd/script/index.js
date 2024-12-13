@@ -5,6 +5,7 @@ let bookCab = document.getElementById("subBtn");
 let usern = document.getElementById('userN');
 const names = localStorage.getItem("username");
 
+const addDriver= document.querySelector("#add-driver");
 if (names != undefined) {
     usern.innerHTML = names;
 } else {
@@ -27,6 +28,13 @@ window.onload = () => {
     }
     console.log(userData);
 
+    if(userData.role==="ROLE_ADMIN")
+    {
+        addDriver.style.display="block";
+    }
+     else
+        addDriver.style.display="none";
+ 
 
 
 }

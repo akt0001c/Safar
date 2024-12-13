@@ -26,7 +26,7 @@
 
  *Gihub Link-> [https://github.com/akt0001c/Safar.git](https://github.com/akt0001c/Safar.git)*
   
-  *Netlify Link-> https://6498687fdd20971f58da64a1--statuesque-jalebi-8543ee.netlify.app/*
+  *Netlify Link-> https://harmonious-salmiakki-4ba81b.netlify.app/*
 
 ## Table of Contents
 - [Features](#features)
@@ -67,7 +67,7 @@ Before you begin, ensure you have met the following requirements:
 ## Getting Started
 
 To get started, follow these steps:
-1. Clone the project: `https://github.com/Amanastel/Safar_CabBooking_Application`
+1. Clone the project: `https://github.com/akt0001c/Safar.git`
 2. Configure the database in `application.properties`.
 3. Build and run the application.
 
@@ -136,6 +136,7 @@ spring.jpa.show-sql=true
 
 ## Testing
 - mvn test
+- mvc test for controllers
 
 ## Contributors
 - Ankit Choubry
@@ -158,6 +159,6 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 
 ## Contact
 
-For any questions or suggestions, feel free to contact us at amankumar.ak0012@gmail.com.
+For any questions or suggestions, feel free to contact us at amankumar.ak0012@gmail.com or akt00071000@gmail.com .
 
 

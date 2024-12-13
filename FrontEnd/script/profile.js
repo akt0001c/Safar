@@ -7,6 +7,47 @@ let addbtn = document.querySelector("#addMoney-btn");
 let token = localStorage.getItem("jwtToken") || "";
 let loggedUser = JSON.parse(localStorage.getItem("userData")) || {};
 
+const myDetailsBtn= document.querySelector("#my-details-btn");
+const walletBtn= document.querySelector("#wallet-btn");
+const transactionBtn= document.querySelector("#transaction-btn");
+const bookingBtn= document.querySelector("#booking-btn");
+
+
+const myDetailsSection= document.querySelector("#details-section");
+const walletSection= document.querySelector("#wallet-section");
+const transctionSection= document.querySelector("#transaction-section");
+const bookingSection= document.querySelector("#booking-section");
+
+
+// Get elements
+const addMoneyBtn = document.getElementById('addMoney-btn');
+const addMoneyPopup = document.getElementById('addMoneyPopup');
+const closePopupBtn = document.getElementById('closePopup');
+const confirmAddMoneyBtn = document.getElementById('confirmAddMoney');
+
+// Show the popup when the "Add Money" button is clicked
+addMoneyBtn.addEventListener('click', function() {
+    addMoneyPopup.classList.remove('hidden');
+});
+
+// Close the popup when the "Close" button is clicked
+closePopupBtn.addEventListener('click', function() {
+    addMoneyPopup.classList.add('hidden');
+});
+
+// Optional: Handle the confirm button click
+confirmAddMoneyBtn.addEventListener('click', function() {
+    const amount = document.getElementById('amount').value;
+    if (amount) {
+        // Here you can add your logic to add money
+        console.log(`Adding money: ${amount}`);
+        // Close the popup after confirming
+        addMoneyPopup.classList.add('hidden');
+    } else {
+        alert('Please enter an amount.');
+    }
+});
+
 //let token= `eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBbWFuIiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJkaGFudXNoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImlhdCI6MTY4NzI4MDQ1MiwiZXhwIjoxNjg3MzQwNDUyfQ.U5yb3Nxs6KI5-pYqvhlSZZuwsiKYD8miZE1R-rqpwWY`;
 // let loggedUser={
 //     "userId": 1,
@@ -27,21 +68,50 @@ let loggedUser = JSON.parse(localStorage.getItem("userData")) || {};
 
 window.onload = () => {
     console.log("working");
+    myDetailsSection.style.display="block";
     document.querySelector("#user-name").textContent = loggedUser.username;
     document.querySelector("#user-email").textContent = loggedUser.email;
     document.querySelector("#user-address").textContent = loggedUser.address;
     document.querySelector("#user-mobile").textContent = loggedUser.phone;
     document.querySelector("#user-role").textContent = loggedUser.role;
+    getWalletData();
     showAllBookings();
     showAllTransaction();
-    getWalletData();
+   
 
 
 
 };
 
 
+myDetailsBtn.onclick= ()=>{
+    myDetailsSection.style.display="block";
+    walletSection.style.display="none";
+    transctionSection.style.display="none";
+    bookingSection.style.display="none";
+};
 
+walletBtn.onclick = ()=>{
+    myDetailsSection.style.display="none";
+    walletSection.style.display="block";
+    transctionSection.style.display="none";
+    bookingSection.style.display="none";
+};
+
+transactionBtn.onclick= ()=>{
+    myDetailsSection.style.display="none";
+    walletSection.style.display="none";
+    transctionSection.style.display="block";
+    bookingSection.style.display="none";
+};
+
+
+bookingBtn.onclick= ()=>{
+    myDetailsSection.style.display="none";
+    walletSection.style.display="none";
+    transctionSection.style.display="none";
+    bookingSection.style.display="block";
+}; 
 let getWalletData = async () => {
 
     try {
@@ -113,33 +183,33 @@ statusbtn.onclick = async (event) => {
 };
 
 
-addbtn.onclick = async (event) => {
-    try {
-        let amount = prompt("Enter amount:");
+// addbtn.onclick = async (event) => {
+//     try {
+//         let amount = prompt("Enter amount:");
 
-        let res = await fetch(`http://localhost:8888/WALLET/addMoney?amount=${amount}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        });
+//         let res = await fetch(`http://localhost:8888/WALLET/addMoney?amount=${amount}`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Authorization": `Bearer ${token}`
+//             }
+//         });
 
-        if (res.ok) {
-            walletDetails = await res.json();
-            loggedUser.wallet = walletDetails;
-            assignValuetowallet(loggedUser.wallet);
-            showAllTransaction();
-        }
-        else {
-            alert("Something went wrong");
-        }
-    } catch (error) {
-        // alert(error);
-        console.log(error);
-    }
+//         if (res.ok) {
+//             walletDetails = await res.json();
+//             loggedUser.wallet = walletDetails;
+//             assignValuetowallet(loggedUser.wallet);
+//             showAllTransaction();
+//         }
+//         else {
+//             alert("Something went wrong");
+//         }
+//     } catch (error) {
+//         // alert(error);
+//         console.log(error);
+//     }
 
-};
+// };
 
 
 
@@ -170,10 +240,17 @@ let bookingAppend = (data) => {
         let td8 = document.createElement("button");
         td8.textContent = "Complete Ride"
         td8.setAttribute("class", "payBill_btn");
-        td8.style.backgroundColor = "Red";
-
-        td8.onclick = async (event) => {
-            // event.preventDefault();
+        td8.style.backgroundColor = "gray";
+        td8.style.color="white";
+        td8.style.width="100%";
+        if(ele.status==='COMPLETED')
+        {
+                td8.disabled=true;
+                td8.textContent='Already completed';
+        }
+            
+         td8.onclick = async (event) => {
+           
             console.log(ele);
             console.log("t8" + ele.cabBookingId);
             
@@ -184,7 +261,7 @@ let bookingAppend = (data) => {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-
+            
             fetch(`http://localhost:8888/cabBooking/completeTrip/${ele.cabBookingId}`, requestOptions)
             .then(response => {
                 
@@ -204,11 +281,13 @@ let bookingAppend = (data) => {
                     })
     
                 } else {
+                    td8.disabled=false;
                     response.json().then(data => Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: data.message,
                         footer: '<a href="">Why do I have this issue?</a>'
+                        
                     }));
                 }
             })
@@ -255,7 +334,9 @@ let transactionAppend = (data) => {
 let showAllBookings = async () => {
 
     try {
-        let res = await fetch(`http://localhost:8888/users/${loggedUser.email}`, {
+        console.log(token);
+      
+       let res= await fetch(`http://localhost:8888/cabBooking/history`,{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -264,13 +345,13 @@ let showAllBookings = async () => {
         });
 
         if (res.ok) {
-            let user = await res.json();
-            let data = user.cabBookings;
+            let data = await res.json();
+         
             console.log(data);
             bookingAppend(data);
         } else {
             let error = await res.json();
-            //  alert(error.HttpStatus);
+           
             console.log(error);
         }
 
@@ -283,7 +364,8 @@ let showAllBookings = async () => {
 
 let showAllTransaction = async () => {
     try {
-        let res = await fetch(`http://localhost:8888/WALLET/getWallet`, {
+        let wid= loggedUser.wallet.walletId;
+        let res = await fetch(`http://localhost:8888/WALLET/getWallet/${wid}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
