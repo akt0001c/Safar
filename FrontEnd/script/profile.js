@@ -25,6 +25,24 @@ const addMoneyPopup = document.getElementById('addMoneyPopup');
 const closePopupBtn = document.getElementById('closePopup');
 const confirmAddMoneyBtn = document.getElementById('confirmAddMoney');
 
+
+window.onload = () => {
+    console.log("working");
+    defaultSetting();
+    document.querySelector("#user-name").textContent = loggedUser.username;
+    document.querySelector("#user-email").textContent = loggedUser.email;
+    document.querySelector("#user-address").textContent = loggedUser.address;
+    document.querySelector("#user-mobile").textContent = loggedUser.phone;
+    document.querySelector("#user-role").textContent = loggedUser.role;
+    getWalletData();
+    showAllBookings();
+    showAllTransaction();
+   
+
+
+
+};
+
 // Show the popup when the "Add Money" button is clicked
 addMoneyBtn.addEventListener('click', function() {
     addMoneyPopup.classList.remove('hidden');
@@ -66,21 +84,15 @@ confirmAddMoneyBtn.addEventListener('click', function() {
 // };
 
 
-window.onload = () => {
-    console.log("working");
-    myDetailsSection.style.display="block";
-    document.querySelector("#user-name").textContent = loggedUser.username;
-    document.querySelector("#user-email").textContent = loggedUser.email;
-    document.querySelector("#user-address").textContent = loggedUser.address;
-    document.querySelector("#user-mobile").textContent = loggedUser.phone;
-    document.querySelector("#user-role").textContent = loggedUser.role;
-    getWalletData();
-    showAllBookings();
-    showAllTransaction();
-   
 
 
-
+const defaultSetting= ()=>{
+    console.log("Checking default setting");
+    myDetailsSection.classList.add("visible");
+    walletSection.classList.add('hidden');
+    walletSection.classList.add('hidden');
+    bookingSection.classList.add('hidden');
+    transctionSection.classList.add("hidden");
 };
 
 

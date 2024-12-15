@@ -1,79 +1,39 @@
 body{
-<<<<<<< HEAD
-    background-color: rgb(184, 180, 180);
-=======
-   /* background-color: gray;    */
-   margin-top: 56px;
+    margin-top: 56px;
 }
 
-aside{
+
+
+aside {
     text-align: center;
-    box-shadow: 2px 2px 2px 2px gray;
-    width:20%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 24%;
     height: 100vh;
-    padding:8px;
+    padding: 16px;
     margin-left: 5px;
-    /* margin-top:15px; */
     float: left;
-    position:fixed;
-
+    position: fixed;
+    background: linear-gradient(to bottom, #4a90e2, #50e3c2);
+    border-radius: 8px;
 }
 
-aside>div{
-    padding: 5px;
-    box-shadow: 0px 1px 1px 1px gray;
+aside > div {
+    margin: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-bottom: 15px;
     cursor: pointer;
->>>>>>> e91fe4e13754b01c4128c56f154a5817f057f709
-    
-}
-
-section{
-    float:right;
-    width:79%;
-    height: 100vh;
-    padding:8px;
-    margin-top: 10px;
-    overflow: hidden;
-    
-}
-
-
-
-#wallet-section{
-    display: none;
-    
-}
-
-#transaction-section{
-    display: none;
-}
-
-#booking-section{
-    display: none;
-}
-
-#profile-data{
-    display: flex;
-    width:100%;
-    
-    justify-content: space-around;
-    /* box-shadow: 0px 0px  2px 3px green; */
-    padding: 5px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 100px;
-    
-}
-
-
-
-#profile-data>div:nth-child(1){
-   width: 10%;
-    padding:40px 70px;
-    
-    
+    font-size: 20px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
+    transition: background-color 0.5s, transform 0.5s;
+}
+
+aside > div:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+    transform: scale(1.05) translate(10px,10px) ;
 }
 
 .popup{
@@ -102,146 +62,57 @@ section{
     display: none;
 }
 
-#details-section {
-    padding: 15px; 
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 8px; 
+.visible{
+    display: block;
+}
+
+
+section {
+    margin-left: 25%; 
+    padding: 20px;
+    background: #f8f9fa; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+    color: #4a90e2; 
+}
+
+table {
     width: 100%;
-    background-color: #f9f9f9; 
-    margin: 20px 0; 
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-#details-section table {
-    width: 100%; 
-    margin:8px;
-    border-collapse: separate;
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-
-
-#details-section td {
-    padding: 10px; 
-    border: 1px solid #dee2e6; 
+table th {
+    background-color: #4a90e2; 
+    color: white;
 }
 
-#details-section tr:nth-child(even) {
-    background-color: #f2f2f2; 
+table tr:hover {
+    background-color: rgba(74, 144, 226, 0.1); 
 }
 
-#details-section tr:hover {
-    background-color: #e9ecef; 
-}
-
-#details-section span {
-    margin-left: 10px; 
-    font-family: 'Arial', sans-serif; 
-    color: #007bff; 
-    font-weight: bold; 
-}
-
-.sub-heading{
-    text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 30px;
-}
-
-#trans-head{
-    text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-   
-    margin-bottom: 30px;
-}
-
-#booking-div{
-  width:98%;
-  margin: auto;
-  box-shadow: 0px 0px  2px 3px white;
-  border-radius: 5px;
-  
-
-}
-
-#booking-table{
-    width:100%;
-    border-collapse: separate;
-}
-
-
- table,th,td{
-    border:1px solid black;
-}
-
-#wallet-heading{
-    text-align: center;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
-#wallet{
-    box-shadow: 0px 0px  2px 3px white;
-    width:90%;
-    margin:auto;
-    padding:8px;
-    margin-bottom: 100px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+button {
+    background-color: #50e3c2; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
     border-radius: 5px;
-   
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-#wallet >h3{
-    margin-left:25%;
-    
-    font-size: 25px ;
-}
-
-#wallet span{
-    color: blue;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: 15px;
-}
-
-#wallet >div{
-    width:100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-#status-btn,#addMoney-btn{
-    background-color: gray;
-    color:white;
-    font-size: 25px;
-    border: 1px solid black;
-    border-radius: 5px;
-
-    
-}
-
-#transactions-div{
-    width:98;
-    margin:auto;
-    /* box-shadow: 0px 0px  2px 3px white; */
-    border:2px solid black;
-    border-radius: 5px;
-    
-}
-
-#transactions-div>table{
-    border-collapse: separate;
-    width: 100%;
-}
-
-.details-heading{
-    font-size: 25px;
-}
-
-#wallet-transaction-div{
-    display: flex;
-    width:98%;
-    justify-content: space-around;
+button:hover {
+    background-color: #45c6b0; 
+    transform: scale(1.05);
 }
 
 

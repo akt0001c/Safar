@@ -45,102 +45,84 @@
     </aside>
 
 
+
     <section>
         <div id="details-section">
+            <h2>User Details</h2>
             <table>
                 <tr>
-                    <td class="details-heading"> Name: </td>
-                    <td> <span id="user-name"></span></td>
+                    <td class="details-heading">Name:</td>
+                    <td><span id="user-name"></span></td>
                 </tr>
                 <tr>
-                    <td class="details-heading"> Email: </td>
+                    <td class="details-heading">Email:</td>
                     <td><span id="user-email"></span></td>
                 </tr>
                 <tr>
-                    <td class="details-heading"> Address: </td>
+                    <td class="details-heading">Address:</td>
                     <td><span id="user-address"></span></td>
                 </tr>
                 <tr>
-                    <td class="details-heading"> Mobile no: </td>
+                    <td class="details-heading">Mobile no:</td>
                     <td><span id="user-mobile"></span></td>
                 </tr>
                 <tr>
-                    <td class="details-heading"> Role: </td>
+                    <td class="details-heading">Role:</td>
                     <td><span id="user-role"></span></td>
                 </tr>
-
             </table>
-
-
-
-
-
         </div>
-
-<!--Wallet div-->
-
+    
         <div id="wallet-section">
-
-            <h2 id="wallet-heading">WALLET SECTION</h2>
-              <div id="wallet">
-                  <h3>Balance: <span id="balance-box"></span></h3>
-                  <h3>Status: <span id="status-box"></span></h3>
-                  <div>
-                      <button id="status-btn">Disable</button>
-                      <button id="addMoney-btn">Add Money</button>
-                  </div>
-          
-              </div>
-          
+            <h2>Wallet Section</h2>
+            <div id="wallet">
+                <h3>Balance: <span id="balance-box"></span></h3>
+                <h3>Status: <span id="status-box"></span></h3>
+                <div>
+                    <button id="status-btn">Disable</button>
+                    <button id="addMoney-btn">Add Money</button>
+                </div>
+            </div>
         </div>
-
-<!---Transaction section -->
-
+    
         <div id="transaction-section">
-
-            <h1 id="trans-head">TRANSACTIONS</h1>
+            <h1>Transactions</h1>
             <div id="transactions-div">
-        
                 <table>
                     <thead>
-                        <th>Transaction Id</th>
-                        <th>Created At</th>
-                        <th>Transaction Amount</th>
-                        <th>Transaction Type</th>
-                        <th>Balance</th>
+                        <tr>
+                            <th>Transaction Id</th>
+                            <th>Created At</th>
+                            <th>Transaction Amount</th>
+                            <th>Transaction Type</th>
+                            <th>Balance</th>
+                        </tr>
                     </thead>
                     <tbody id="transaction-div-body"></tbody>
                 </table>
-        
-        
             </div>
-        
         </div>
-
-    <!--Booking section-->    
-
+    
         <div id="booking-section">
-
-            <h1 class="sub-heading">ALL BOOKINGS</h1>
+            <h1>All Bookings</h1>
             <div id="booking-div">
                 <table id="booking-table">
                     <thead>
-                        <th>Booking Id</th>
-                        <th>Starting Point</th>
-                        <th>Ending Point</th>
-                        <th>Booking DateTime</th>
-                        <th>Status</th>
-                        <th>Travel Distance</th>
-                        <th>Bill Amount</th>
-                        <th>Complete Ride</th>
+                        <tr>
+                            <th>Booking Id</th>
+                            <th>Starting Point</th>
+                            <th>Ending Point</th>
+                            <th>Booking DateTime</th>
+                            <th>Status</th>
+                            <th>Travel Distance</th>
+                            <th>Bill Amount</th>
+                            <th>Complete Ride</th>
+                        </tr>
                     </thead>
                     <tbody id="booking-table-body"></tbody>
                 </table>
             </div>
-        
         </div>
-
-
     </section>
 
    
